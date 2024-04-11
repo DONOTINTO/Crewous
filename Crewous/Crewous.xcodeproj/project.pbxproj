@@ -13,6 +13,10 @@
 		AC9FD0A52BC79AFC00395FC2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A42BC79AFC00395FC2 /* Base */; };
 		AC9FD0A72BC79AFD00395FC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A62BC79AFD00395FC2 /* Assets.xcassets */; };
 		AC9FD0AA2BC79AFD00395FC2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A92BC79AFD00395FC2 /* Base */; };
+		AC9FD0B32BC79B4500395FC2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0B22BC79B4500395FC2 /* Alamofire */; };
+		AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0B52BC79B6100395FC2 /* RxCocoa */; };
+		AC9FD0B82BC79B6100395FC2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0B72BC79B6100395FC2 /* RxSwift */; };
+		AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0BA2BC79B7700395FC2 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9FD0B82BC79B6100395FC2 /* RxSwift in Frameworks */,
+				AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */,
+				AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */,
+				AC9FD0B32BC79B4500395FC2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +91,12 @@
 			dependencies = (
 			);
 			name = Crewous;
+			packageProductDependencies = (
+				AC9FD0B22BC79B4500395FC2 /* Alamofire */,
+				AC9FD0B52BC79B6100395FC2 /* RxCocoa */,
+				AC9FD0B72BC79B6100395FC2 /* RxSwift */,
+				AC9FD0BA2BC79B7700395FC2 /* SnapKit */,
+			);
 			productName = Crewous;
 			productReference = AC9FD09A2BC79AFB00395FC2 /* Crewous.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +125,11 @@
 				Base,
 			);
 			mainGroup = AC9FD0912BC79AFB00395FC2;
+			packageReferences = (
+				AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = AC9FD09B2BC79AFB00395FC2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,6 +392,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC9FD0B22BC79B4500395FC2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AC9FD0B52BC79B6100395FC2 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		AC9FD0B72BC79B6100395FC2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		AC9FD0BA2BC79B7700395FC2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC9FD0922BC79AFB00395FC2 /* Project object */;
 }
