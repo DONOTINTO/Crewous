@@ -36,6 +36,14 @@
 		AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0E32BC7E0B200395FC2 /* ViewModelType.swift */; };
 		AC9FD0E72BC7E51900395FC2 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0E62BC7E51900395FC2 /* Util.swift */; };
 		AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0E82BC7EE9A00395FC2 /* SignUpViewModel.swift */; };
+		AC9FD0ED2BC7F8C100395FC2 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0EC2BC7F8C100395FC2 /* APIKey.swift */; };
+		AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0EE2BC7FEDC00395FC2 /* RouterType.swift */; };
+		AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0F22BC8006A00395FC2 /* Router.swift */; };
+		AC9FD0F62BC804C200395FC2 /* SignInQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0F52BC804C200395FC2 /* SignInQuery.swift */; };
+		AC9FD0F82BC805C700395FC2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0F72BC805C700395FC2 /* APIManager.swift */; };
+		AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */; };
+		AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FC2BC813CF00395FC2 /* APIError.swift */; };
+		AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +74,14 @@
 		AC9FD0E32BC7E0B200395FC2 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		AC9FD0E62BC7E51900395FC2 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		AC9FD0E82BC7EE9A00395FC2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		AC9FD0EC2BC7F8C100395FC2 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		AC9FD0EE2BC7FEDC00395FC2 /* RouterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterType.swift; sourceTree = "<group>"; };
+		AC9FD0F22BC8006A00395FC2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		AC9FD0F52BC804C200395FC2 /* SignInQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInQuery.swift; sourceTree = "<group>"; };
+		AC9FD0F72BC805C700395FC2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
+		AC9FD0FC2BC813CF00395FC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +118,8 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				AC9FD0FE2BC8221900395FC2 /* Storage */,
+				AC9FD0EB2BC7F8B700395FC2 /* Network */,
 				AC9FD0E52BC7E4D300395FC2 /* Util */,
 				AC9FD0E22BC7E04500395FC2 /* Protocol */,
 				AC9FD0DB2BC7C5D100395FC2 /* Extension */,
@@ -184,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0E32BC7E0B200395FC2 /* ViewModelType.swift */,
+				AC9FD0EE2BC7FEDC00395FC2 /* RouterType.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -202,6 +221,43 @@
 				AC9FD0E82BC7EE9A00395FC2 /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		AC9FD0EB2BC7F8B700395FC2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0F72BC805C700395FC2 /* APIManager.swift */,
+				AC9FD0EC2BC7F8C100395FC2 /* APIKey.swift */,
+				AC9FD0FC2BC813CF00395FC2 /* APIError.swift */,
+				AC9FD0F22BC8006A00395FC2 /* Router.swift */,
+				AC9FD0F92BC805D900395FC2 /* DataModel */,
+				AC9FD0F42BC804B300395FC2 /* QueryModel */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AC9FD0F42BC804B300395FC2 /* QueryModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0F52BC804C200395FC2 /* SignInQuery.swift */,
+			);
+			path = QueryModel;
+			sourceTree = "<group>";
+		};
+		AC9FD0F92BC805D900395FC2 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		AC9FD0FE2BC8221900395FC2 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,17 +353,25 @@
 			files = (
 				AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */,
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
+				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
+				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
 				AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */,
+				AC9FD0ED2BC7F8C100395FC2 /* APIKey.swift in Sources */,
 				AC9FD0E72BC7E51900395FC2 /* Util.swift in Sources */,
+				AC9FD0F82BC805C700395FC2 /* APIManager.swift in Sources */,
+				AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */,
 				AC9FD0DF2BC7D43C00395FC2 /* Button++.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
+				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
+				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
 				AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */,
+				AC9FD0F62BC804C200395FC2 /* SignInQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
