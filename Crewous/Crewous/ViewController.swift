@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  RunningCrew
+//  Crewous
 //
-//  Created by 이중엽 on 4/10/24.
+//  Created by 이중엽 on 4/11/24.
 //
 
 import UIKit
