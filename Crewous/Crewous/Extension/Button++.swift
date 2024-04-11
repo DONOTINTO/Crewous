@@ -11,12 +11,39 @@ extension UIButton {
     
     func custom(title: String, titleColor: UIColor, bgColor: UIColor) {
         
-        self.setTitle(title, for: .normal)
-        self.setTitleColor(titleColor, for: .normal)
-        self.backgroundColor = bgColor
-        self.layer.cornerRadius = 20
-        self.layer.masksToBounds = true
-        self.titleLabel?.font = FontManager.getFont(scale: .bold, size: .large)
+        self.configure(title: title, titleColor: titleColor, bgColor: bgColor)
+    }
+    
+    private func configure(title: String, titleColor: UIColor, bgColor: UIColor) {
+        
+        var titleAttrribute = AttributedString.init(title)
+        titleAttrribute.font = FontManager.getFont(scale: .bold, size: .large)
+        
+        var buttonConfiguration = UIButton.Configuration.plain()
+        buttonConfiguration.title = title
+        buttonConfiguration.attributedTitle = titleAttrribute
+        buttonConfiguration.background.backgroundColor = bgColor
+        buttonConfiguration.baseForegroundColor = titleColor
+        buttonConfiguration.background.cornerRadius = 20
+        
+        self.configuration = buttonConfiguration
+        
+        configureUpdateHandler(bgColor: bgColor)
+    }
+    
+    private func configureUpdateHandler(bgColor: UIColor) {
+        
+        let updateHandler: UIButton.ConfigurationUpdateHandler = { btn in
+            
+            switch btn.state {
+            case .disabled:
+                btn.configuration?.background.backgroundColor = .systemGray
+            default:
+                btn.configuration?.background.backgroundColor = bgColor
+            }
+        }
+        
+        self.configurationUpdateHandler = updateHandler
     }
     
     func animate() {

@@ -19,7 +19,7 @@ extension UITextField {
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.customGray])
         self.placeholder = placeholder
         self.backgroundColor = .customBlue
-        self.font = FontManager.getFont(scale: .semiBold, size: .medium)
+        self.font = .systemFont(ofSize: 15, weight: .regular)
         
         self.layer.cornerRadius = 20
         self.layer.masksToBounds = true
