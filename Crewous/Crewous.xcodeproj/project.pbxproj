@@ -29,6 +29,7 @@
 		AC9FD0D62BC7A52200395FC2 /* Blinker-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CD2BC7A52200395FC2 /* Blinker-Bold.ttf */; };
 		AC9FD0D72BC7A52200395FC2 /* Blinker-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CE2BC7A52200395FC2 /* Blinker-Light.ttf */; };
 		AC9FD0D82BC7A52200395FC2 /* Blinker-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CF2BC7A52200395FC2 /* Blinker-ExtraBold.ttf */; };
+		AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0D92BC7BFE200395FC2 /* FontManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		AC9FD0CD2BC7A52200395FC2 /* Blinker-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Bold.ttf"; sourceTree = "<group>"; };
 		AC9FD0CE2BC7A52200395FC2 /* Blinker-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Light.ttf"; sourceTree = "<group>"; };
 		AC9FD0CF2BC7A52200395FC2 /* Blinker-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AC9FD0D92BC7BFE200395FC2 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		AC9FD0C52BC7A50000395FC2 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				AC9FD0D92BC7BFE200395FC2 /* FontManager.swift */,
 				AC9FD0C62BC7A51300395FC2 /* Blinker */,
 			);
 			path = Font;
@@ -244,6 +247,7 @@
 			files = (
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
+				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
