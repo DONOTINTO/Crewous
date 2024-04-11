@@ -20,6 +20,15 @@
 		AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0BD2BC79C0400395FC2 /* BaseView.swift */; };
 		AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0BF2BC79C1C00395FC2 /* BaseViewController.swift */; };
 		AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0C32BC79D5000395FC2 /* SignInView.swift */; };
+		AC9FD0D02BC7A52200395FC2 /* Blinker-Headline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0C72BC7A52200395FC2 /* Blinker-Headline.ttf */; };
+		AC9FD0D12BC7A52200395FC2 /* Blinker-SemiLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0C82BC7A52200395FC2 /* Blinker-SemiLight.ttf */; };
+		AC9FD0D22BC7A52200395FC2 /* Blinker-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0C92BC7A52200395FC2 /* Blinker-Black.ttf */; };
+		AC9FD0D32BC7A52200395FC2 /* Blinker-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CA2BC7A52200395FC2 /* Blinker-Regular.ttf */; };
+		AC9FD0D42BC7A52200395FC2 /* Blinker-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CB2BC7A52200395FC2 /* Blinker-SemiBold.ttf */; };
+		AC9FD0D52BC7A52200395FC2 /* Blinker-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CC2BC7A52200395FC2 /* Blinker-Thin.ttf */; };
+		AC9FD0D62BC7A52200395FC2 /* Blinker-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CD2BC7A52200395FC2 /* Blinker-Bold.ttf */; };
+		AC9FD0D72BC7A52200395FC2 /* Blinker-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CE2BC7A52200395FC2 /* Blinker-Light.ttf */; };
+		AC9FD0D82BC7A52200395FC2 /* Blinker-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0CF2BC7A52200395FC2 /* Blinker-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,15 @@
 		AC9FD0BD2BC79C0400395FC2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		AC9FD0BF2BC79C1C00395FC2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AC9FD0C32BC79D5000395FC2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		AC9FD0C72BC7A52200395FC2 /* Blinker-Headline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Headline.ttf"; sourceTree = "<group>"; };
+		AC9FD0C82BC7A52200395FC2 /* Blinker-SemiLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-SemiLight.ttf"; sourceTree = "<group>"; };
+		AC9FD0C92BC7A52200395FC2 /* Blinker-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Black.ttf"; sourceTree = "<group>"; };
+		AC9FD0CA2BC7A52200395FC2 /* Blinker-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Regular.ttf"; sourceTree = "<group>"; };
+		AC9FD0CB2BC7A52200395FC2 /* Blinker-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-SemiBold.ttf"; sourceTree = "<group>"; };
+		AC9FD0CC2BC7A52200395FC2 /* Blinker-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Thin.ttf"; sourceTree = "<group>"; };
+		AC9FD0CD2BC7A52200395FC2 /* Blinker-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Bold.ttf"; sourceTree = "<group>"; };
+		AC9FD0CE2BC7A52200395FC2 /* Blinker-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-Light.ttf"; sourceTree = "<group>"; };
+		AC9FD0CF2BC7A52200395FC2 /* Blinker-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blinker-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +88,7 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				AC9FD0C52BC7A50000395FC2 /* Font */,
 				AC9FD0C12BC79D2F00395FC2 /* Present */,
 				AC9FD0BC2BC79BF600395FC2 /* Base */,
 				AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */,
@@ -106,6 +125,30 @@
 				AC9FD0C32BC79D5000395FC2 /* SignInView.swift */,
 			);
 			path = SignIn;
+			sourceTree = "<group>";
+		};
+		AC9FD0C52BC7A50000395FC2 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0C62BC7A51300395FC2 /* Blinker */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		AC9FD0C62BC7A51300395FC2 /* Blinker */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0C92BC7A52200395FC2 /* Blinker-Black.ttf */,
+				AC9FD0CD2BC7A52200395FC2 /* Blinker-Bold.ttf */,
+				AC9FD0CF2BC7A52200395FC2 /* Blinker-ExtraBold.ttf */,
+				AC9FD0C72BC7A52200395FC2 /* Blinker-Headline.ttf */,
+				AC9FD0CE2BC7A52200395FC2 /* Blinker-Light.ttf */,
+				AC9FD0CA2BC7A52200395FC2 /* Blinker-Regular.ttf */,
+				AC9FD0CB2BC7A52200395FC2 /* Blinker-SemiBold.ttf */,
+				AC9FD0C82BC7A52200395FC2 /* Blinker-SemiLight.ttf */,
+				AC9FD0CC2BC7A52200395FC2 /* Blinker-Thin.ttf */,
+			);
+			path = Blinker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +221,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC9FD0A72BC79AFD00395FC2 /* Assets.xcassets in Resources */,
+				AC9FD0D52BC7A52200395FC2 /* Blinker-Thin.ttf in Resources */,
+				AC9FD0D82BC7A52200395FC2 /* Blinker-ExtraBold.ttf in Resources */,
+				AC9FD0D32BC7A52200395FC2 /* Blinker-Regular.ttf in Resources */,
 				AC9FD0AA2BC79AFD00395FC2 /* Base in Resources */,
+				AC9FD0D42BC7A52200395FC2 /* Blinker-SemiBold.ttf in Resources */,
+				AC9FD0D62BC7A52200395FC2 /* Blinker-Bold.ttf in Resources */,
+				AC9FD0D22BC7A52200395FC2 /* Blinker-Black.ttf in Resources */,
+				AC9FD0D72BC7A52200395FC2 /* Blinker-Light.ttf in Resources */,
+				AC9FD0D02BC7A52200395FC2 /* Blinker-Headline.ttf in Resources */,
+				AC9FD0D12BC7A52200395FC2 /* Blinker-SemiLight.ttf in Resources */,
 				AC9FD0A52BC79AFC00395FC2 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
