@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
-		AC9FD0A22BC79AFC00395FC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* ViewController.swift */; };
+		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
 		AC9FD0A52BC79AFC00395FC2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A42BC79AFC00395FC2 /* Base */; };
 		AC9FD0A72BC79AFD00395FC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A62BC79AFD00395FC2 /* Assets.xcassets */; };
 		AC9FD0AA2BC79AFD00395FC2 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AC9FD0A92BC79AFD00395FC2 /* Base */; };
@@ -17,17 +17,23 @@
 		AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0B52BC79B6100395FC2 /* RxCocoa */; };
 		AC9FD0B82BC79B6100395FC2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0B72BC79B6100395FC2 /* RxSwift */; };
 		AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AC9FD0BA2BC79B7700395FC2 /* SnapKit */; };
+		AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0BD2BC79C0400395FC2 /* BaseView.swift */; };
+		AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0BF2BC79C1C00395FC2 /* BaseViewController.swift */; };
+		AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0C32BC79D5000395FC2 /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AC9FD0A12BC79AFC00395FC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		AC9FD0A42BC79AFC00395FC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC9FD0A62BC79AFD00395FC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC9FD0A92BC79AFD00395FC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC9FD0AB2BC79AFD00395FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC9FD0BD2BC79C0400395FC2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		AC9FD0BF2BC79C1C00395FC2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AC9FD0C32BC79D5000395FC2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,15 +70,42 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				AC9FD0C12BC79D2F00395FC2 /* Present */,
+				AC9FD0BC2BC79BF600395FC2 /* Base */,
 				AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */,
 				AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */,
-				AC9FD0A12BC79AFC00395FC2 /* ViewController.swift */,
 				AC9FD0A32BC79AFC00395FC2 /* Main.storyboard */,
 				AC9FD0A62BC79AFD00395FC2 /* Assets.xcassets */,
 				AC9FD0A82BC79AFD00395FC2 /* LaunchScreen.storyboard */,
 				AC9FD0AB2BC79AFD00395FC2 /* Info.plist */,
 			);
 			path = Crewous;
+			sourceTree = "<group>";
+		};
+		AC9FD0BC2BC79BF600395FC2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0BD2BC79C0400395FC2 /* BaseView.swift */,
+				AC9FD0BF2BC79C1C00395FC2 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		AC9FD0C12BC79D2F00395FC2 /* Present */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0C22BC79D3400395FC2 /* SignIn */,
+			);
+			path = Present;
+			sourceTree = "<group>";
+		};
+		AC9FD0C22BC79D3400395FC2 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */,
+				AC9FD0C32BC79D5000395FC2 /* SignInView.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +190,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC9FD0A22BC79AFC00395FC2 /* ViewController.swift in Sources */,
+				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
+				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
+				AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
+				AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
