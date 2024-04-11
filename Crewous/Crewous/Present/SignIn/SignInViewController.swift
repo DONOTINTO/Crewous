@@ -46,6 +46,15 @@ class SignInViewController: BaseViewController<SignInView> {
             owner.layoutView.signInButton.animate()
             
             // 다음 화면으로 넘어가기
+            owner.layoutView.signInValidLabel.isHidden = isValid
+            
+            // Test Code
+            let testAlert = UIAlertController(title: "로그인", message: "로그인성공!", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "확인", style: .cancel)
+            
+            testAlert.addAction(alertAction)
+            
+            owner.present(testAlert, animated: true)
             
         }.disposed(by: disposeBag)
     }

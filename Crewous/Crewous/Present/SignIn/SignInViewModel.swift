@@ -29,23 +29,46 @@ class SignInViewModel: ViewModelType {
         let signInTouchEnabled = PublishRelay<Bool>()
         let signInValidation = PublishRelay<Bool>()
         
-        Observable.combineLatest(input.emailText, input.passwordText)
-            .subscribe(with: self) { owner, input in
+        let signInObservable = Observable.combineLatest(input.emailText, input.passwordText)
+            .map { signInData in
                 
-                let (email, password) = input
+                let (email, password) = signInData
                 
-                // 이메일, 패스워드 모두 입력했으면 Sign In Button 활성화
-                signInTouchEnabled.accept((!email.isEmpty && !password.isEmpty))
-                
-            }.disposed(by: disposeBag)
+                return SignInQuery(email: email, password: password)
+            }
         
-        input.signInButtonTap.bind(with: self) { owner, _ in
+        signInObservable.subscribe(with: self) { owner, signInData in
             
-            // 로그인 시도
-            // -> 성공 : accessToken / refreshToken 저장 -> 다음 화면
-            // -> 실패 : 불일치 안내 문구표기
-            signInValidation.accept(true)
+            let email = signInData.email, password = signInData.password
+            
+            // 이메일, 패스워드 모두 입력했으면 Sign In Button 활성화
+            signInTouchEnabled.accept((!email.isEmpty && !password.isEmpty))
+            
+            return
         }.disposed(by: disposeBag)
+        
+        input.signInButtonTap
+            .withLatestFrom(signInObservable)
+            .debug()
+            .flatMap { signInQuery in
+                return APIManager.callAPI(
+                    router: Router.login(loginQuery: signInQuery),
+                    dataModel: SignInDataModel.self)
+            }.subscribe(with: self) { owner, signInData in
+                
+                switch signInData {
+                case .success(let data):
+                    //데이터 저장 (accessToken / refreshToken / isLogin)
+                    UDManager.accessToken = data.accessToken
+                    UDManager.refreshToken = data.refreshToken
+                    UDManager.isLogin = true
+                    
+                    signInValidation.accept(true)
+                case .failure(let error):
+                    print("로그인 실패 error code: \(error.rawValue)")
+                    signInValidation.accept(false)
+                }
+            }.disposed(by: disposeBag)
         
         return Output(signInTouchEnabled: signInTouchEnabled, signInValidation: signInValidation)
     }
