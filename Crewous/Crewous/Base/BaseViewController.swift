@@ -27,6 +27,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
 
         bind()
         configure()
+        makeBackBarButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,4 +42,10 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     func configureCollectionView() { }
     
     func configureNavigation() { }
+    
+    private func makeBackBarButton() {
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem?.tintColor = .white
+    }
 }

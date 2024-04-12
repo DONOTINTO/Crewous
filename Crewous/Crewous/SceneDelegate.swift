@@ -14,6 +14,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        // MARK: Navigation bar appearance
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = .clear
+        navigationBarAppearance.shadowColor = .clear
+        // 일반 네이게이션 바 appearance settings
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        // 랜드스케이프 되었을 때 네이게이션 바 appearance settings
+        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+        // 스크롤 엣지가 닿았을 때 네이게이션 바 appearance settings
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        
+        // MARK: Tab bar appearance
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = .clear
+        // 스크롤 엣지가 닿았을 때 탭바 appearance settings
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        // 일반 탭바 appearance settings
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)

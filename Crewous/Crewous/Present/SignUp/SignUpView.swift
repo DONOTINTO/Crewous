@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class SignUpView: BaseView {
+    
+    let scrollView = UIScrollView()
+    let contentView = UIView()
 
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
@@ -20,55 +23,69 @@ class SignUpView: BaseView {
     
     override func configureHierarchy() {
         
-        [emailTextField, passwordTextField, nickTextField, heightTextField, weightTextField, positionTextField, signUpButton].forEach { addSubview($0)
+        addSubview(scrollView)
+        
+        scrollView.addSubview(contentView)
+        
+        [emailTextField, passwordTextField, nickTextField, heightTextField, weightTextField, positionTextField, signUpButton].forEach { contentView.addSubview($0)
         }
     }
     
     override func configureLayout() {
         
+        scrollView.snp.makeConstraints {
+            $0.horizontalEdges.top.equalTo(self)
+            $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-10)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+        }
+        
         let startPoint = UIScreen.main.bounds.height / 12
         
         emailTextField.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(startPoint)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.top.equalTo(contentView).inset(startPoint)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         nickTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         heightTextField.snp.makeConstraints {
             $0.top.equalTo(nickTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         weightTextField.snp.makeConstraints {
             $0.top.equalTo(heightTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         positionTextField.snp.makeConstraints {
             $0.top.equalTo(weightTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
         }
         
         signUpButton.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(positionTextField.snp.bottom).offset(30)
-            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
+            $0.top.equalTo(positionTextField.snp.bottom).offset(100)
+            $0.horizontalEdges.equalTo(contentView).inset(20)
             $0.height.equalTo(50)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(50)
+            $0.bottom.equalTo(contentView).inset(50)
         }
     }
     
@@ -81,5 +98,8 @@ class SignUpView: BaseView {
         weightTextField.custom(placeholder: "Weight", imageStr: "scalemass")
         positionTextField.custom(placeholder: "Postion", imageStr: "figure.basketball")
         signUpButton.custom(title: "Sign Up", titleColor: .black, bgColor: .customGreen)
+        
+        heightTextField.keyboardType = .decimalPad
+        weightTextField.keyboardType = .decimalPad
     }
 }
