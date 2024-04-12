@@ -29,6 +29,7 @@ class SignInViewModel: ViewModelType {
         let signInTouchEnabled = PublishRelay<Bool>()
         let signInValidation = PublishRelay<Bool>()
         
+        // Sign In Query로 변환
         let signInObservable = Observable.combineLatest(input.emailText, input.passwordText)
             .map { signInData in
                 
@@ -37,6 +38,7 @@ class SignInViewModel: ViewModelType {
                 return SignInQuery(email: email, password: password)
             }
         
+        // 이메일 비밀번호 입력 체크
         signInObservable.subscribe(with: self) { owner, signInData in
             
             let email = signInData.email, password = signInData.password
@@ -47,10 +49,13 @@ class SignInViewModel: ViewModelType {
             return
         }.disposed(by: disposeBag)
         
+        // 로그인 API 호출
         input.signInButtonTap
             .withLatestFrom(signInObservable)
             .debug()
             .flatMap { signInQuery in
+                
+                print("#### Sign In API Call ####")
                 return APIManager.callAPI(
                     router: Router.login(loginQuery: signInQuery),
                     dataModel: SignInDataModel.self)
@@ -58,6 +63,8 @@ class SignInViewModel: ViewModelType {
                 
                 switch signInData {
                 case .success(let data):
+                    
+                    print("#### Sign In API Success ####")
                     //데이터 저장 (accessToken / refreshToken / isLogin)
                     UDManager.accessToken = data.accessToken
                     UDManager.refreshToken = data.refreshToken
@@ -65,7 +72,8 @@ class SignInViewModel: ViewModelType {
                     
                     signInValidation.accept(true)
                 case .failure(let error):
-                    print("로그인 실패 error code: \(error.rawValue)")
+                    
+                    print("#### Sign In API Fail - ErrorCode = \(error.rawValue) ####")
                     signInValidation.accept(false)
                 }
             }.disposed(by: disposeBag)
