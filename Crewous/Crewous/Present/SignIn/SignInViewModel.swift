@@ -21,12 +21,14 @@ class SignInViewModel: ViewModelType {
     
     struct Output {
         let signInTouchEnabled: PublishRelay<Bool>
+        let signInButtonTap: PublishRelay<Void>
         let signInValidation: PublishRelay<Bool>
     }
     
     func transform(input: Input) -> Output {
         
         let signInTouchEnabled = PublishRelay<Bool>()
+        let signInButtonTap = PublishRelay<Void>()
         let signInValidation = PublishRelay<Bool>()
         
         // Sign In Query로 변환
@@ -55,6 +57,8 @@ class SignInViewModel: ViewModelType {
             .debug()
             .flatMap { signInQuery in
                 
+                signInButtonTap.accept(())
+                
                 print("#### Sign In API Call ####")
                 return APIManager.callAPI(
                     router: Router.login(loginQuery: signInQuery),
@@ -78,6 +82,6 @@ class SignInViewModel: ViewModelType {
                 }
             }.disposed(by: disposeBag)
         
-        return Output(signInTouchEnabled: signInTouchEnabled, signInValidation: signInValidation)
+        return Output(signInTouchEnabled: signInTouchEnabled, signInButtonTap: signInButtonTap, signInValidation: signInValidation)
     }
 }

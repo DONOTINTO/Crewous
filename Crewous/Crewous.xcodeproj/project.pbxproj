@@ -44,6 +44,8 @@
 		AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */; };
 		AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FC2BC813CF00395FC2 /* APIError.swift */; };
 		AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */; };
+		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
+		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		AC9FD0FC2BC813CF00395FC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0E82BC7EE9A00395FC2 /* SignUpViewModel.swift */,
+				ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */,
+				ACDF67A42BC90BAA0046766B /* SignUpView.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
+				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
@@ -367,6 +374,7 @@
 				AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */,
 				AC9FD0DF2BC7D43C00395FC2 /* Button++.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
+				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,

@@ -39,7 +39,7 @@ extension UITextField {
         }
         
         // 커스텀 패딩 레이아웃 안에 이미지 삽입
-        let frame = CGRect(x: 0, y: 0, width: customImage.size.width + 30, height: customImage.size.height)
+        let frame = CGRect(x: 0, y: 0, width: 50, height: customImage.size.height)
         let paddingLayoutView = UIView(frame: frame)
         let paddingImage = UIImageView(frame: frame)
         

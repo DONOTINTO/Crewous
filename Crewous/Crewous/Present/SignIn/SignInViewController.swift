@@ -26,6 +26,9 @@ class SignInViewController: BaseViewController<SignInView> {
         // SignUP VC로 이동
         tapGesture.rx.event.bind(with: self) { owner, _ in
             
+            let nextVC = SignUpViewController()
+            owner.navigationController?.pushViewController(nextVC, animated: true)
+            
         }.disposed(by: disposeBag)
         
         // MARK: ViewModel
@@ -36,14 +39,21 @@ class SignInViewController: BaseViewController<SignInView> {
         
         let output = viewModel.transform(input: input)
         
+        // SignIn 버튼 터치 가능 여부 판단
         output.signInTouchEnabled.bind(with: self) { owner, isEnabled in
             
             owner.layoutView.signInButton.isEnabled = isEnabled
         }.disposed(by: disposeBag)
         
-        output.signInValidation.bind(with: self) { owner, isValid in
+        // SignIn 버튼 클릭 직후 애니메이션
+        output.signInButtonTap.bind(with: self) { owner, _ in
             
             owner.layoutView.signInButton.animate()
+        }.disposed(by: disposeBag)
+        
+        // SignIn 성공 여부
+        output.signInValidation.bind(with: self) { owner, isValid in
+            
             owner.layoutView.signInValidLabel.isHidden = isValid
             
             // Test Code

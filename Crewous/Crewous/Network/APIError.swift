@@ -13,5 +13,5 @@ enum APIError: Int, Error {
     case error400 = 400
     case error401 = 401
     
-    case unknown999 = 999
+    case unknownError = 999
 }
