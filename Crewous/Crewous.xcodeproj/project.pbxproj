@@ -46,6 +46,7 @@
 		AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
+		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0F52BC804C200395FC2 /* SignInQuery.swift */,
+				ACDF67A82BC94DE60046766B /* SignUpQuery.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */,
 				AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */,
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
 				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
