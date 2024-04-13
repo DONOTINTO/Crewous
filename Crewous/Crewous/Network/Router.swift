@@ -10,23 +10,21 @@ import Alamofire
 
 enum Router: RouterType {
     
-    case login(loginQuery: SignInQuery)
+    case signIn(signInQuery: SignInQuery)
+    case signUp(signUpQuery: SignUpQuery)
 }
 
 extension Router {
     
     var baseURL: String {
         
-        switch self {
-        case .login:
-            return APIKey.baseURL.rawValue
-        }
+        return APIKey.baseURL.rawValue
     }
     
     var method: HTTPMethod {
         
         switch self {
-        case .login:
+        case .signIn, .signUp:
             return .post
         }
     }
@@ -34,15 +32,17 @@ extension Router {
     var path: String {
         
         switch self {
-        case .login:
-            return Path.login.rawValue
+        case .signIn:
+            return Path.signIn.rawValue
+        case .signUp:
+            return Path.signUp.rawValue
         }
     }
     
     var header: [String : String] {
         
         switch self {
-        case .login:
+        case .signIn, .signUp:
             return [
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
@@ -64,8 +64,10 @@ extension Router {
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
         switch self {
-        case .login(let signInQuery):
+        case .signIn(let signInQuery):
             return try? encoder.encode(signInQuery)
+        case .signUp(let signUpQuery):
+            return try? encoder.encode(signUpQuery)
         }
     }
 }

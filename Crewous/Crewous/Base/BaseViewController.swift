@@ -48,4 +48,29 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         navigationItem.backBarButtonItem = backButton
         navigationItem.backBarButtonItem?.tintColor = .white
     }
+    
+    func forceQuit(_ errorCode: Int) {
+        
+        let alert = UIAlertController(title: "Error", message: "Quotes with unexpected error -\(errorCode)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Quit", style: .cancel) { _ in
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                exit(0)
+            }
+        }
+        
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func makeAlert(msg: String, handler: @escaping ((UIAlertAction) -> Void) = { _ in }) {
+        
+        let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: handler)
+        
+        alert.addAction(alertAction)
+        
+        present(alert, animated: true)
+    }
 }

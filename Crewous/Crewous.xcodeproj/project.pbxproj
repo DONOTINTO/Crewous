@@ -47,6 +47,7 @@
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
+		ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
+		ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */,
+				ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				AC9FD0DF2BC7D43C00395FC2 /* Button++.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
+				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
