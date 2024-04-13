@@ -40,33 +40,39 @@ class SignInViewController: BaseViewController<SignInView> {
         let output = viewModel.transform(input: input)
         
         // SignIn 버튼 터치 가능 여부 판단
-        output.signInTouchEnabled.bind(with: self) { owner, isEnabled in
-            
-            owner.layoutView.signInButton.isEnabled = isEnabled
-        }.disposed(by: disposeBag)
+        output.signInTouchEnabled.drive(layoutView.signInButton.rx.isEnabled).disposed(by: disposeBag)
         
         // SignIn 버튼 클릭 직후 애니메이션
-        output.signInButtonTap.bind(with: self) { owner, _ in
+        output.signInButtonTap.drive(with: self) { owner, _ in
             
             owner.layoutView.signInButton.animate()
         }.disposed(by: disposeBag)
         
-        // SignIn 성공 여부
-        output.signInValidation.bind(with: self) { owner, isValid in
+        // SignIn 성공
+        output.signInSuccess.drive(with: self) { owner, _ in
             
-            owner.layoutView.signInValidLabel.isHidden = isValid
+            owner.layoutView.signInValidLabel.isHidden = true
+            // 로그인 -> 다음 화면 넘어가기
+            owner.makeAlert(msg: "SignIn")
             
-            // Test Code
-            if isValid {
-                // 다음 화면으로 넘어가기
-                let testAlert = UIAlertController(title: "로그인", message: "로그인성공!", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "확인", style: .cancel)
-                
-                testAlert.addAction(alertAction)
-                
-                owner.present(testAlert, animated: true)
+        }.disposed(by: disposeBag)
+        
+        // SignIn 실패
+        output.signInFailure.drive(with: self) { owner, apiError in
+            
+            // 공통 오류 -> 강제 종료
+            if apiError.checkCommonError() {
+                owner.forceQuit(apiError.rawValue)
             }
             
+            switch apiError {
+            case .code400:
+                owner.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
+            case .code401:
+                owner.makeAlert(msg: "이메일, 비밀번호를 확인해주세요.")
+            default:
+                return
+            }
         }.disposed(by: disposeBag)
     }
 }

@@ -20,16 +20,18 @@ class SignInViewModel: ViewModelType {
     }
     
     struct Output {
-        let signInTouchEnabled: PublishRelay<Bool>
-        let signInButtonTap: PublishRelay<Void>
-        let signInValidation: PublishRelay<Bool>
+        let signInTouchEnabled: Driver<Bool>
+        let signInButtonTap: Driver<Void>
+        let signInSuccess: Driver<Void>
+        let signInFailure: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
         let signInTouchEnabled = PublishRelay<Bool>()
         let signInButtonTap = PublishRelay<Void>()
-        let signInValidation = PublishRelay<Bool>()
+        let signInSuccess = PublishRelay<Void>()
+        let signInFailure = PublishRelay<APIError>()
         
         // Sign In Query로 변환
         let signInObservable = Observable.combineLatest(input.emailText, input.passwordText)
@@ -61,10 +63,13 @@ class SignInViewModel: ViewModelType {
                 
                 print("#### Sign In API Call ####")
                 return APIManager.callAPI(
-                    router: Router.login(loginQuery: signInQuery),
+                    router: Router.signIn(signInQuery: signInQuery),
                     dataModel: SignInDataModel.self)
             }.subscribe(with: self) { owner, signInData in
                 
+                // 200 - 성공
+                // 400 - 필수값 미입력 (미입력 방지 처리 완료)
+                // 401 - 미가입 or 비밀번호 오류
                 switch signInData {
                 case .success(let data):
                     
@@ -74,14 +79,17 @@ class SignInViewModel: ViewModelType {
                     UDManager.refreshToken = data.refreshToken
                     UDManager.isLogin = true
                     
-                    signInValidation.accept(true)
-                case .failure(let error):
+                    signInSuccess.accept(())
+                case .failure(let apiError):
                     
-                    print("#### Sign In API Fail - ErrorCode = \(error.rawValue) ####")
-                    signInValidation.accept(false)
+                    print("#### Sign In API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    signInFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
         
-        return Output(signInTouchEnabled: signInTouchEnabled, signInButtonTap: signInButtonTap, signInValidation: signInValidation)
+        return Output(signInTouchEnabled: signInTouchEnabled.asDriver(onErrorJustReturn: false),
+                      signInButtonTap: signInButtonTap.asDriver(onErrorJustReturn: ()),
+                      signInSuccess: signInSuccess.asDriver(onErrorJustReturn: ()),
+                      signInFailure: signInFailure.asDriver(onErrorJustReturn: .unknownError))
     }
 }
