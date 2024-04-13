@@ -53,7 +53,12 @@ class SignInViewController: BaseViewController<SignInView> {
             
             owner.layoutView.signInValidLabel.isHidden = true
             // 로그인 -> 다음 화면 넘어가기
-            owner.makeAlert(msg: "SignIn")
+            owner.makeAlert(msg: "SignIn") { _ in
+                
+                let testVC = StatsViewController()
+                
+                owner.navigationController?.pushViewController(testVC, animated: true)
+            }
             
         }.disposed(by: disposeBag)
         

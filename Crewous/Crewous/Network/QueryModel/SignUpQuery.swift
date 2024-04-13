@@ -10,7 +10,5 @@ import Foundation
 struct SignUpQuery: Encodable {
     let email: String
     let password: String
-    let nick: String
-    let phoneNum: String // 키 / 몸무게 저장
-    let birthDay: String // 포지션 저장
+    let nick: String // 닉네임 / 키 / 몸무게 / 포지션 저장
 }

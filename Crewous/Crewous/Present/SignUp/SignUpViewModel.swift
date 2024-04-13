@@ -113,9 +113,9 @@ class SignUpViewModel: ViewModelType {
                 
                 let (email, password, nick, height, weight, position) = signUpData
                 
-                let physical = "\(height)/\(weight)"
+                let proxy = "\(nick)/\(height)/\(weight)/\(position)"
                 
-                return SignUpQuery(email: email, password: password, nick: nick, phoneNum: physical, birthDay: position)
+                return SignUpQuery(email: email, password: password, nick: proxy)
             }
         
         // 회원가입 TODO: 회원가입 API 콜 및 처리

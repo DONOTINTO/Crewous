@@ -12,6 +12,8 @@ enum APIError: Int, Error {
     case success = 200 // 정상 동작 -> 데이터 모델 이상
     case code400 = 400
     case code401 = 401
+    case code403 = 403
+    case code419 = 419
     case code409 = 409
     
     // 공통 응답 코드

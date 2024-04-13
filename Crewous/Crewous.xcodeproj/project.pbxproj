@@ -48,6 +48,12 @@
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
 		ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */; };
+		ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67AD2BCAAD090046766B /* StatsViewController.swift */; };
+		ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67AF2BCAAD140046766B /* StatsView.swift */; };
+		ACDF67B52BCB238B0046766B /* Label++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B42BCB238B0046766B /* Label++.swift */; };
+		ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B62BCB26410046766B /* StatsViewModel.swift */; };
+		ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */; };
+		ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67BA2BCB2E100046766B /* RxSwift++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +96,12 @@
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
 		ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataModel.swift; sourceTree = "<group>"; };
+		ACDF67AD2BCAAD090046766B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		ACDF67AF2BCAAD140046766B /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		ACDF67B42BCB238B0046766B /* Label++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label++.swift"; sourceTree = "<group>"; };
+		ACDF67B62BCB26410046766B /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSelfDataModel.swift; sourceTree = "<group>"; };
+		ACDF67BA2BCB2E100046766B /* RxSwift++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +138,7 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				ACDF67B12BCAB4D30046766B /* Layout */,
 				AC9FD0FE2BC8221900395FC2 /* Storage */,
 				AC9FD0EB2BC7F8B700395FC2 /* Network */,
 				AC9FD0E52BC7E4D300395FC2 /* Util */,
@@ -156,6 +169,7 @@
 		AC9FD0C12BC79D2F00395FC2 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				ACDF67AC2BCA9F5B0046766B /* Stats */,
 				AC9FD0EA2BC7EE9D00395FC2 /* SignUp */,
 				AC9FD0C22BC79D3400395FC2 /* SignIn */,
 			);
@@ -202,6 +216,8 @@
 			children = (
 				AC9FD0DC2BC7C5F400395FC2 /* TextField++.swift */,
 				AC9FD0DE2BC7D43C00395FC2 /* Button++.swift */,
+				ACDF67B42BCB238B0046766B /* Label++.swift */,
+				ACDF67BA2BCB2E100046766B /* RxSwift++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -260,6 +276,7 @@
 			children = (
 				AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */,
 				ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */,
+				ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -270,6 +287,23 @@
 				AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		ACDF67AC2BCA9F5B0046766B /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				ACDF67B62BCB26410046766B /* StatsViewModel.swift */,
+				ACDF67AD2BCAAD090046766B /* StatsViewController.swift */,
+				ACDF67AF2BCAAD140046766B /* StatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		ACDF67B12BCAB4D30046766B /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,10 +401,16 @@
 				AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */,
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
 				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
+				ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */,
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
+				ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */,
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
+				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
+				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
+				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
+				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
