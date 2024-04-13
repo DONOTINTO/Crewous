@@ -31,6 +31,7 @@ class SignUpViewModel: ViewModelType {
         let weightValidation: Driver<Bool>
         let positionValidation: Driver<Bool>
         let signUpButtonValidation: Driver<Bool>
+        let signUpButtonTap: Driver<Void>
         
         let signUpSuccess: Driver<Void>
         let signUpFailure: Driver<APIError>
@@ -153,6 +154,7 @@ class SignUpViewModel: ViewModelType {
                       weightValidation: weightValidation.asDriver(onErrorJustReturn: false),
                       positionValidation: positionValidation.asDriver(onErrorJustReturn: false),
                       signUpButtonValidation: signUpButtonValidation.asDriver(onErrorJustReturn: false),
+                      signUpButtonTap: input.signUpButtonTap.asDriver(onErrorJustReturn: ()),
                       signUpSuccess: signUpSuccess.asDriver(onErrorJustReturn: ()),
                       signUpFailure: signUpFailure.asDriver(onErrorJustReturn: .unknownError))
     }

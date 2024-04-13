@@ -121,8 +121,18 @@ class SignUpViewController: BaseViewController<SignUpView> {
                 
             }.disposed(by: disposeBag)
         
+        // 회원가입 버튼 클릭
+        output.signUpButtonTap
+            .drive(with: self) { owner, _ in
+                
+                owner.layoutView.indicator.startAnimating()
+                owner.layoutView.signUpButton.animate()
+            }.disposed(by: disposeBag)
+        
         // 회원가입 성공
         output.signUpSuccess.drive(with: self) { owner, _ in
+            
+            owner.layoutView.indicator.stopAnimating()
             
             // 가입 완료 안내 alert 띄우기
             owner.makeAlert(msg: "SignUp") { _ in
@@ -138,6 +148,8 @@ class SignUpViewController: BaseViewController<SignUpView> {
             if apiError.checkCommonError() {
                 owner.forceQuit(apiError.rawValue)
             }
+            
+            owner.layoutView.indicator.stopAnimating()
             
             switch apiError {
             case .code400:

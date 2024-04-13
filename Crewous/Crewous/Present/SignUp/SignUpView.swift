@@ -31,6 +31,7 @@ class SignUpView: BaseView {
     let positionTextField = UITextField()
     let positionValidLabel = UILabel()
     
+    let indicator = UIActivityIndicatorView(style: .medium)
     let signUpButton = UIButton()
     
     override func configureHierarchy() {
@@ -39,7 +40,7 @@ class SignUpView: BaseView {
         
         scrollView.addSubview(contentView)
         
-        [emailTextField, emailValidLabel ,passwordTextField, passwordValidLabel, nickTextField, nickValidLabel, heightTextField, heightValidLabel, weightTextField, weightValidLabel, positionTextField, positionValidLabel, signUpButton].forEach { contentView.addSubview($0)
+        [emailTextField, emailValidLabel ,passwordTextField, passwordValidLabel, nickTextField, nickValidLabel, heightTextField, heightValidLabel, weightTextField, weightValidLabel, positionTextField, positionValidLabel, indicator, signUpButton].forEach { contentView.addSubview($0)
         }
     }
     
@@ -123,6 +124,11 @@ class SignUpView: BaseView {
             $0.horizontalEdges.equalTo(contentView).inset(20)
         }
         
+        indicator.snp.makeConstraints {
+            $0.bottom.equalTo(signUpButton.snp.top).offset(-10)
+            $0.leading.equalTo(signUpButton).offset(10)
+        }
+        
         signUpButton.snp.makeConstraints {
             $0.top.equalTo(positionTextField.snp.bottom).offset(100)
             $0.horizontalEdges.equalTo(contentView).inset(20)
@@ -146,40 +152,24 @@ class SignUpView: BaseView {
         weightTextField.keyboardType = .decimalPad
         signUpButton.isEnabled = false
         
-        emailValidLabel.text = "Incorrect email address."
-        emailValidLabel.textColor = .customGray
-        emailValidLabel.font = .systemFont(ofSize: 13)
-        emailValidLabel.adjustsFontSizeToFitWidth = true
+        emailValidLabel.custom(title: "Incorrect email address", color: .customGray, fontSize: 13)
         emailValidLabel.isHidden = true
         
-        passwordValidLabel.text = "8 to 20 (include: english, num, special char)"
-        passwordValidLabel.textColor = .customGray
-        passwordValidLabel.font = .systemFont(ofSize: 13)
-        passwordValidLabel.adjustsFontSizeToFitWidth = true
+        passwordValidLabel.custom(title: "8 to 20 (include: english, num, special char)", color: .customGray, fontSize: 13)
         passwordValidLabel.isHidden = true
         
-        nickValidLabel.text = "2 to 16"
-        nickValidLabel.textColor = .customGray
-        nickValidLabel.font = .systemFont(ofSize: 13)
-        nickValidLabel.adjustsFontSizeToFitWidth = true
+        nickValidLabel.custom(title: "2 to 16", color: .customGray, fontSize: 13)
         nickValidLabel.isHidden = true
         
-        heightValidLabel.text = "Only Number"
-        heightValidLabel.textColor = .customGray
-        heightValidLabel.font = .systemFont(ofSize: 13)
-        heightValidLabel.adjustsFontSizeToFitWidth = true
+        heightValidLabel.custom(title: "Only Number", color: .customGray, fontSize: 13)
         heightValidLabel.isHidden = true
         
-        weightValidLabel.text = "Only Number"
-        weightValidLabel.textColor = .customGray
-        weightValidLabel.font = .systemFont(ofSize: 13)
-        weightValidLabel.adjustsFontSizeToFitWidth = true
+        weightValidLabel.custom(title: "Only Number", color: .customGray, fontSize: 13)
         weightValidLabel.isHidden = true
         
-        positionValidLabel.text = "2 to 16"
-        positionValidLabel.textColor = .customGray
-        positionValidLabel.font = .systemFont(ofSize: 13)
-        positionValidLabel.adjustsFontSizeToFitWidth = true
+        positionValidLabel.custom(title: "2 to 16", color: .customGray, fontSize: 13)
         positionValidLabel.isHidden = true
+        
+        indicator.hidesWhenStopped = true
     }
 }
