@@ -45,18 +45,18 @@ class SignInViewController: BaseViewController<SignInView> {
         // SignIn 버튼 클릭 직후 애니메이션
         output.signInButtonTap.drive(with: self) { owner, _ in
             
+            owner.layoutView.indicator.startAnimating()
             owner.layoutView.signInButton.animate()
         }.disposed(by: disposeBag)
         
         // SignIn 성공
         output.signInSuccess.drive(with: self) { owner, _ in
-            
+            owner.layoutView.indicator.stopAnimating()
             owner.layoutView.signInValidLabel.isHidden = true
             // 로그인 -> 다음 화면 넘어가기
             owner.makeAlert(msg: "SignIn") { _ in
                 
                 let testVC = StatsViewController()
-                
                 owner.navigationController?.pushViewController(testVC, animated: true)
             }
             
@@ -69,6 +69,8 @@ class SignInViewController: BaseViewController<SignInView> {
             if apiError.checkCommonError() {
                 owner.forceQuit(apiError.rawValue)
             }
+            
+            owner.layoutView.indicator.stopAnimating()
             
             switch apiError {
             case .code400:

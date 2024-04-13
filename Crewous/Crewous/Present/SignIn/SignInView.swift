@@ -16,10 +16,11 @@ class SignInView: BaseView {
     let signInValidLabel = UILabel()
     let signInButton = UIButton()
     let createLabel = UILabel()
+    let indicator = UIActivityIndicatorView(style: .medium)
 
     override func configureHierarchy() {
         
-        [emailTextField, emailValidLabel, passwordTextField, signInValidLabel, signInButton, createLabel].forEach { addSubview($0) }
+        [emailTextField, emailValidLabel, passwordTextField, signInValidLabel, signInButton, createLabel, indicator].forEach { addSubview($0) }
     }
 
     override func configureLayout() {
@@ -46,6 +47,11 @@ class SignInView: BaseView {
             $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
         }
         
+        indicator.snp.makeConstraints {
+            $0.bottom.equalTo(signInButton.snp.top).offset(-10)
+            $0.leading.equalTo(signInButton).offset(10)
+        }
+        
         signInButton.snp.makeConstraints {
             $0.top.greaterThanOrEqualTo(passwordTextField.snp.bottom).offset(50)
             $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(20)
@@ -70,14 +76,12 @@ class SignInView: BaseView {
         signInButton.custom(title: "Sign In", titleColor: .black, bgColor: .customGreen)
         signInButton.isEnabled = false
         
-        createLabel.text = "Create Account"
-        createLabel.textColor = .customGray
-        createLabel.font = FontManager.getFont(scale: .bold, size: .small)
+        createLabel.custom(title: "Create Account", color: .customGray, fontScale: .bold, fontSize: .small)
         createLabel.isUserInteractionEnabled = true
         
-        signInValidLabel.text = "Please, Check Your Email & Password"
-        signInValidLabel.textColor = .systemRed
-        signInValidLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        signInValidLabel.custom(title: "Please, Check Your Email & Password", color: .systemRed, fontSize: 15)
         signInValidLabel.isHidden = true
+        
+        indicator.hidesWhenStopped = true
     }
 }
