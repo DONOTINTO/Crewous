@@ -31,7 +31,9 @@ class SignUpViewModel: ViewModelType {
         let weightValidation: Driver<Bool>
         let positionValidation: Driver<Bool>
         let signUpButtonValidation: Driver<Bool>
-        let signUpButtonTap: Driver<Void>
+        
+        let signUpSuccess: Driver<Void>
+        let signUpFailure: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -43,7 +45,9 @@ class SignUpViewModel: ViewModelType {
         let weightValidation = PublishRelay<Bool>()
         let positionValidation = PublishRelay<Bool>()
         let signUpButtonValidation = PublishRelay<Bool>()
-        let signUpButtonTap = input.signUpButtonTap.asDriver(onErrorJustReturn: ())
+        
+        let signUpSuccess = PublishRelay<Void>()
+        let signUpFailure = PublishRelay<APIError>()
         
         // 이메일 정규식 체크
         input.emailText.bind(with: self) { owner, email in
@@ -115,12 +119,32 @@ class SignUpViewModel: ViewModelType {
             }
         
         // 회원가입 TODO: 회원가입 API 콜 및 처리
-        // input.signUpButtonTap
-        //     .withLatestFrom(signUpObservable)
-        //     .debug()
-        //     .flatMap { signUpQuery in
-        //         
-        //     }
+        input.signUpButtonTap
+            .withLatestFrom(signUpObservable)
+            .debug()
+            .flatMap { signUpQuery in
+                
+                print("#### Sign In API Call ####")
+                return APIManager.callAPI(
+                    router: Router.signUp(signUpQuery: signUpQuery),
+                    dataModel: SignUpDataModel.self)
+            }.subscribe(with: self) { owner, signUpData in
+                
+                // 200 - 성공
+                // 400 - 필수값 미입력 (미입력 방지 처리 완료)
+                // 409 - 이미 가입한 이메일 (이메일 중복체크 필요 없을듯)
+                switch signUpData {
+                case .success:
+                    
+                    print("#### Sign In API Success ####")
+                    signUpSuccess.accept(())
+                case .failure(let apiError):
+                    
+                    print("#### Sign In API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    signUpFailure.accept(apiError)
+                }
+                
+            }.disposed(by: disposeBag)
         
         return Output(emailValidation: emailValidation.asDriver(onErrorJustReturn: false),
                       passwordValidation: passwordValidation.asDriver(onErrorJustReturn: false),
@@ -128,7 +152,8 @@ class SignUpViewModel: ViewModelType {
                       heightValidation: heightValidation.asDriver(onErrorJustReturn: false),
                       weightValidation: weightValidation.asDriver(onErrorJustReturn: false),
                       positionValidation: positionValidation.asDriver(onErrorJustReturn: false),
-                      signUpButtonValidation: signUpValidation.asDriver(onErrorJustReturn: false),
-                      signUpButtonTap: signUpButtonTap)
+                      signUpButtonValidation: signUpButtonValidation.asDriver(onErrorJustReturn: false),
+                      signUpSuccess: signUpSuccess.asDriver(onErrorJustReturn: ()),
+                      signUpFailure: signUpFailure.asDriver(onErrorJustReturn: .unknownError))
     }
 }

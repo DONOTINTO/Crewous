@@ -10,12 +10,12 @@ import RxSwift
 import RxCocoa
 
 class SignUpViewController: BaseViewController<SignUpView> {
-
+    
     let viewModel = SignUpViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func bind() {
@@ -120,5 +120,34 @@ class SignUpViewController: BaseViewController<SignUpView> {
                 owner.layoutView.signUpButton.isEnabled = isValid
                 
             }.disposed(by: disposeBag)
+        
+        // 회원가입 성공
+        output.signUpSuccess.drive(with: self) { owner, _ in
+            
+            // 가입 완료 안내 alert 띄우기
+            owner.makeAlert(msg: "SignUp") { _ in
+                owner.navigationController?.popViewController(animated: true)
+            }
+            
+        }.disposed(by: disposeBag)
+        
+        // 회원가입 실패
+        output.signUpFailure.drive(with: self) { owner, apiError in
+            
+            // 공통 오류 -> 강제 종료
+            if apiError.checkCommonError() {
+                owner.forceQuit(apiError.rawValue)
+            }
+            
+            switch apiError {
+            case .code400:
+                owner.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
+            case .code409:
+                owner.makeAlert(msg: "이미 가입한 이메일입니다.")
+            default:
+                return
+            }
+            
+        }.disposed(by: disposeBag)
     }
 }
