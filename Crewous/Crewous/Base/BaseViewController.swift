@@ -216,11 +216,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         guard let sceneDelegate = windowScene.delegate as? SceneDelegate else { return }
         
-        let statsVC = StatsViewController()
-        let statsNaviVC = UINavigationController(rootViewController: statsVC)
-        
-        let tabVC = UITabBarController()
-        tabVC.setViewControllers([statsNaviVC], animated: true)
+        let tabVC = sceneDelegate.makeTabVC()
         
         sceneDelegate.window?.rootViewController = tabVC
         sceneDelegate.window?.makeKeyAndVisible()

@@ -48,11 +48,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #if DEBUG
         if UDManager.isLogin {
             
-            let statsVC = StatsViewController()
-            let statsNaviVC = UINavigationController(rootViewController: statsVC)
+            let tabVC = makeTabVC()
             
-            let tabVC = UITabBarController()
-            tabVC.setViewControllers([statsNaviVC], animated: true)
             self.window?.rootViewController = tabVC
             
         } else {
@@ -93,7 +90,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    func makeTabVC() -> UITabBarController {
+     
+        let statsVC = StatsViewController()
+        let statsNaviVC = UINavigationController(rootViewController: statsVC)
+        
+        let tabVC = UITabBarController()
+        tabVC.setViewControllers([statsNaviVC], animated: true)
+        tabVC.tabBar.items?[0].image = UIImage(systemName: "star.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        
+        return tabVC
+    }
 }
 
