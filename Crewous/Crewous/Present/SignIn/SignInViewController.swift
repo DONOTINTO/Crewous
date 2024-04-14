@@ -18,6 +18,7 @@ class SignInViewController: BaseViewController<SignInView> {
     }
     
     override func bind() {
+        super.bind()
         
         // MARK: Tap Gesture
         let tapGesture = UITapGestureRecognizer()
@@ -56,8 +57,7 @@ class SignInViewController: BaseViewController<SignInView> {
             // 로그인 -> 다음 화면 넘어가기
             owner.makeAlert(msg: "SignIn") { _ in
                 
-                let testVC = StatsViewController()
-                owner.navigationController?.pushViewController(testVC, animated: true)
+                owner.changeRootViewToStats()
             }
             
         }.disposed(by: disposeBag)
@@ -65,21 +65,9 @@ class SignInViewController: BaseViewController<SignInView> {
         // SignIn 실패
         output.signInFailure.drive(with: self) { owner, apiError in
             
-            // 공통 오류 -> 강제 종료
-            if apiError.checkCommonError() {
-                owner.forceQuit(apiError.rawValue)
-            }
-            
             owner.layoutView.indicator.stopAnimating()
+            owner.errorHandler(apiError, calltype: .signIn)
             
-            switch apiError {
-            case .code400:
-                owner.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
-            case .code401:
-                owner.makeAlert(msg: "이메일, 비밀번호를 확인해주세요.")
-            default:
-                return
-            }
         }.disposed(by: disposeBag)
     }
 }

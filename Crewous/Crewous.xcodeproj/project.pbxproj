@@ -54,6 +54,7 @@
 		ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B62BCB26410046766B /* StatsViewModel.swift */; };
 		ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */; };
 		ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67BA2BCB2E100046766B /* RxSwift++.swift */; };
+		ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		ACDF67B62BCB26410046766B /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSelfDataModel.swift; sourceTree = "<group>"; };
 		ACDF67BA2BCB2E100046766B /* RxSwift++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift++.swift"; sourceTree = "<group>"; };
+		ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 				AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */,
 				ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */,
 				ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */,
+				ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
+				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
 				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,

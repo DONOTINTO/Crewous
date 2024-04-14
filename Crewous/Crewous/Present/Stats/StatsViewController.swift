@@ -19,6 +19,7 @@ class StatsViewController: BaseViewController<StatsView> {
     }
     
     override func bind() {
+        super.bind()
         
         let viewWillAppearObservable = self.rx.viewWillAppear
         
@@ -44,21 +45,8 @@ class StatsViewController: BaseViewController<StatsView> {
         // 유저 정보 불러오기 실패
         output.fetchFailure.bind(with: self) { owner, apiError in
             
-            // 공통 오류 -> 강제 종료
-            if apiError.checkCommonError() {
-                owner.forceQuit(apiError.rawValue)
-            }
+            owner.errorHandler(apiError, calltype: .fetchSelf)
             
-            switch apiError {
-            case .code401:
-                print("401")
-            case .code403:
-                print("403")
-            case .code419:
-                print("419")
-            default:
-                return
-            }
         }.disposed(by: disposeBag)
     }
 }

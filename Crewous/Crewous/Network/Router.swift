@@ -13,6 +13,8 @@ enum Router: RouterType {
     case signIn(signInQuery: SignInQuery)
     case signUp(signUpQuery: SignUpQuery)
     case fetchSelf
+    
+    case refresh
 }
 
 extension Router {
@@ -27,7 +29,7 @@ extension Router {
         switch self {
         case .signIn, .signUp:
             return .post
-        case .fetchSelf:
+        case .refresh, .fetchSelf:
             return .get
         }
     }
@@ -41,6 +43,8 @@ extension Router {
             return Path.signUp.rawValue
         case .fetchSelf:
             return Path.fetchSelf.rawValue
+        case .refresh:
+            return Path.refresh.rawValue
         }
     }
     
@@ -56,6 +60,12 @@ extension Router {
             return [
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken
+            ]
+        case .refresh:
+            return [
+                HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
+                HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
+                HTTPHeader.Key.refresh.rawValue: UDManager.refreshToken
             ]
         }
     }

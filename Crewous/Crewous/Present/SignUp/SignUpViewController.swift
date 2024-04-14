@@ -19,6 +19,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
     }
     
     override func bind() {
+        super.bind()
         
         // MARK: Tap Gesture
         let tapGesture = UITapGestureRecognizer()
@@ -144,21 +145,8 @@ class SignUpViewController: BaseViewController<SignUpView> {
         // 회원가입 실패
         output.signUpFailure.drive(with: self) { owner, apiError in
             
-            // 공통 오류 -> 강제 종료
-            if apiError.checkCommonError() {
-                owner.forceQuit(apiError.rawValue)
-            }
-            
             owner.layoutView.indicator.stopAnimating()
-            
-            switch apiError {
-            case .code400:
-                owner.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
-            case .code409:
-                owner.makeAlert(msg: "이미 가입한 이메일입니다.")
-            default:
-                return
-            }
+            owner.errorHandler(apiError, calltype: .signUp)
             
         }.disposed(by: disposeBag)
     }

@@ -13,8 +13,9 @@ enum APIError: Int, Error {
     case code400 = 400
     case code401 = 401
     case code403 = 403
-    case code419 = 419
     case code409 = 409
+    case code418 = 418
+    case code419 = 419
     
     // 공통 응답 코드
     case sesacKeyError = 420 // 새싹 키값 오류
@@ -30,5 +31,13 @@ enum APIError: Int, Error {
         default:
             return false
         }
+    }
+    
+    enum CallType {
+        
+        case signIn
+        case signUp
+        case fetchSelf
+        case refresh
     }
 }
