@@ -30,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
         tabBarAppearance.backgroundColor = .clear
+        tabBarAppearance.shadowColor = .clear
         // 스크롤 엣지가 닿았을 때 탭바 appearance settings
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         // 일반 탭바 appearance settings
@@ -37,12 +38,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        let rootVC = SignInViewController()
-        let naviVC = UINavigationController(rootViewController: rootVC)
+        self.window = UIWindow(windowScene: windowScene)
         
-        self.window = window
-        self.window?.rootViewController = naviVC
+        if UDManager.isLogin {
+            
+            let statsVC = StatsViewController()
+            let statsNaviVC = UINavigationController(rootViewController: statsVC)
+            
+            let tabVC = UITabBarController()
+            tabVC.setViewControllers([statsNaviVC], animated: true)
+            self.window?.rootViewController = tabVC
+            
+        } else {
+            
+            let rootVC = SignInViewController()
+            let naviVC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = naviVC
+        }
+        
         self.window?.makeKeyAndVisible()
     }
 
