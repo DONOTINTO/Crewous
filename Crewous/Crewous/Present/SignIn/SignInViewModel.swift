@@ -55,6 +55,7 @@ class SignInViewModel: ViewModelType {
         
         // 로그인 API 호출
         input.signInButtonTap
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
             .withLatestFrom(signInObservable)
             .debug()
             .flatMap { signInQuery in

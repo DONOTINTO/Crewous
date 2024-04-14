@@ -17,7 +17,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     }
     
     let disposeBag = DisposeBag()
-    private let refreshAccessToken = PublishRelay<Void>()
+    let refreshAccessToken = PublishRelay<Void>()
+    let completionHandler = PublishRelay<() -> Void>()
     
     override func loadView() {
         
@@ -39,25 +40,49 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     
     func bind() {
         
-        refreshAccessToken
-            .flatMap {
+        let refreshObservable = refreshAccessToken.flatMap {
+            return (APIManager.callAPI(router: Router.refresh, dataModel: RefreshDataModel.self))
+        }
+        
+        Observable.zip(refreshObservable, completionHandler)
+            .bind(with: self) { owner, data in
                 
-                print("#### Refresh API Call ####")
-                return APIManager.callAPI(router: Router.refresh, dataModel: RefreshDataModel.self)
-            }.bind(with: self) { owner, result in
+                let (result, completion) = data
                 
                 switch result {
                 case .success(let refreshData):
                     
                     print("#### Refresh API Success ####")
                     UDManager.accessToken = refreshData.accessToken
+                    completion()
                     
                 case .failure(let apiError):
                     
                     print("#### Refresh API Fail - ErrorCode = \(apiError.rawValue) ####")
                     owner.errorHandler(apiError, calltype: .refresh)
                 }
+                
             }.disposed(by: disposeBag)
+        
+        // refreshAccessToken
+        //     .flatMap {
+        //         
+        //         print("#### Refresh API Call ####")
+        //         return (APIManager.callAPI(router: Router.refresh, dataModel: RefreshDataModel.self))
+        //     }.bind(with: self) { owner, result in
+        //         
+        //         switch result {
+        //         case .success(let refreshData):
+        //             
+        //             print("#### Refresh API Success ####")
+        //             UDManager.accessToken = refreshData.accessToken
+        //             
+        //         case .failure(let apiError):
+        //             
+        //             print("#### Refresh API Fail - ErrorCode = \(apiError.rawValue) ####")
+        //             owner.errorHandler(apiError, calltype: .refresh)
+        //         }
+        //     }.disposed(by: disposeBag)
     }
     
     func configure() { }
@@ -72,7 +97,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         navigationItem.backBarButtonItem?.tintColor = .white
     }
     
-    func errorHandler(_ apiError: APIError, calltype: APIError.CallType) {
+    func errorHandler(_ apiError: APIError, calltype: APIError.CallType, completionHandler: @escaping (() -> Void) = { }) {
         
         // 공통 오류 -> 강제 종료
         if apiError.checkCommonError() {
@@ -80,7 +105,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         }
         
         switch calltype {
-        // MARK: Sign IN
+            // MARK: Sign IN
         case .signIn:
             
             switch apiError {
@@ -92,7 +117,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: Sign In
+            // MARK: Sign In
         case .signUp:
             
             switch apiError {
@@ -103,8 +128,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
-        
-        // MARK: Fetch Self
+            
+            // MARK: Fetch Self
         case .fetchSelf:
             
             switch apiError {
@@ -115,18 +140,20 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     guard let self else { return }
                     
                     self.changeRootViewToSignIn()
+                    UDManager.isLogin = false
+                    
                 }
                 
             case .code419:
                 // 엑세스 토큰 재발급
-                // 재발급 불가 -> 로그인 화면으로 이동
                 refreshAccessToken.accept(())
+                self.completionHandler.accept(completionHandler)
                 
             default:
                 return
             }
-        
-        // MARK: Refresh
+            
+            // MARK: Refresh
         case .refresh:
             
             switch apiError {
@@ -137,6 +164,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     guard let self else { return }
                     
                     self.changeRootViewToSignIn()
+                    UDManager.isLogin = false
                 }
                 
             default:
@@ -176,7 +204,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         guard let sceneDelegate = windowScene.delegate as? SceneDelegate else { return }
         
-        let rootVC = SignUpViewController()
+        let rootVC = SignInViewController()
         let naviVC = UINavigationController(rootViewController: rootVC)
         
         sceneDelegate.window?.rootViewController = naviVC

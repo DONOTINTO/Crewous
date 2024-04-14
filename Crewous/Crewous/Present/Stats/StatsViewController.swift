@@ -45,8 +45,10 @@ class StatsViewController: BaseViewController<StatsView> {
         // 유저 정보 불러오기 실패
         output.fetchFailure.bind(with: self) { owner, apiError in
             
-            owner.errorHandler(apiError, calltype: .fetchSelf)
-            
+            // 재호출
+            owner.errorHandler(apiError, calltype: .fetchSelf) {
+                owner.viewWillAppear(true)
+            }
         }.disposed(by: disposeBag)
     }
 }

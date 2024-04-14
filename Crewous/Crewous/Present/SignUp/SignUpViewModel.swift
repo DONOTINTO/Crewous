@@ -121,6 +121,7 @@ class SignUpViewModel: ViewModelType {
         
         // 회원가입 TODO: 회원가입 API 콜 및 처리
         input.signUpButtonTap
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
             .withLatestFrom(signUpObservable)
             .debug()
             .flatMap { signUpQuery in

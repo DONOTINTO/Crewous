@@ -38,10 +38,10 @@ class StatsViewModel: ViewModelType {
                 
                 switch fetchSelfData {
                 case .success(let data):
-                    print("#### Sign In API Success ####")
+                    print("#### Fetch Self API Success ####")
                     fetchSuccess.accept(data)
                 case .failure(let apiError):
-                    print("#### Sign In API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    print("#### Fetch Self API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
                 }
                 

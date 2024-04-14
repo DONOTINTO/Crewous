@@ -13,9 +13,6 @@ extension RxSwift.Reactive where Base: UIViewController {
     return methodInvoked(#selector(UIViewController.viewWillAppear))
             .map {
                 let result: Void = $0.first as? Void ?? ()
-                
-                print(result)
-                
                 return result
             }
   }

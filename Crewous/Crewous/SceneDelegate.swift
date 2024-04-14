@@ -40,6 +40,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
+        
+        // let rootVC = SignInViewController()
+        // let naviVC = UINavigationController(rootViewController: rootVC)
+        // self.window?.rootViewController = naviVC
+        
+        #if DEBUG
         if UDManager.isLogin {
             
             let statsVC = StatsViewController()
@@ -55,6 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let naviVC = UINavigationController(rootViewController: rootVC)
             self.window?.rootViewController = naviVC
         }
+        #endif
         
         self.window?.makeKeyAndVisible()
     }
