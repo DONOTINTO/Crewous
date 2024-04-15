@@ -16,6 +16,12 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
         configureEmbedded()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func configureEmbedded() {
         
         let isJoinedCrew = UDManager.isJoinedCrew
@@ -41,10 +47,5 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
             
             vc.didMove(toParent: self)
         }
-    }
-    
-    override func configureNavigation() {
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

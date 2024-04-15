@@ -21,13 +21,15 @@ class WithoutCrewView: BaseView {
     override func configureLayout() {
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(self).inset(10)
-            $0.horizontalEdges.equalTo(self).inset(30)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(10)
+            $0.leading.lessThanOrEqualTo(self.safeAreaLayoutGuide).inset(30)
+            $0.trailing.greaterThanOrEqualTo(self.safeAreaLayoutGuide).inset(30)
         }
         
         makeCrewButton.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(40)
-            $0.horizontalEdges.equalTo(self).inset(30)
+            $0.leading.lessThanOrEqualTo(self.safeAreaLayoutGuide).inset(30)
+            $0.trailing.greaterThanOrEqualTo(self.safeAreaLayoutGuide).inset(30)
             $0.height.equalTo(50)
         }
     }
