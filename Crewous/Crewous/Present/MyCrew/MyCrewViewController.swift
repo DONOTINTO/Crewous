@@ -18,14 +18,29 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
     
     func configureEmbedded() {
         
-        let vc = WithoutCrewViewController()
-        self.addChild(vc)
-        layoutView.containerView.addSubview(vc.layoutView)
+        let isJoinedCrew = UDManager.isJoinedCrew
         
-        vc.layoutView.frame = layoutView.containerView.bounds
-        vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        vc.didMove(toParent: self)
+        if isJoinedCrew {
+            let vc = WithCrewViewController()
+            
+            self.addChild(vc)
+            layoutView.containerView.addSubview(vc.layoutView)
+            
+            vc.layoutView.frame = layoutView.containerView.bounds
+            vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            vc.didMove(toParent: self)
+        } else {
+            let vc = WithoutCrewViewController()
+            
+            self.addChild(vc)
+            layoutView.containerView.addSubview(vc.layoutView)
+            
+            vc.layoutView.frame = layoutView.containerView.bounds
+            vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            vc.didMove(toParent: self)
+        }
     }
     
     override func configureNavigation() {
