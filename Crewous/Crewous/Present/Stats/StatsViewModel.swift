@@ -20,14 +20,17 @@ class StatsViewModel: ViewModelType {
     
     struct Output {
         
-        let fetchSuccess: PublishRelay<FetchSelfDataModel>
+        let fetchSelfSuccess: PublishRelay<FetchSelfDataModel>
+        let fetchCrewSuccess: PublishRelay<FetchMyCrewDataModel>
         let fetchFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let fetchSuccess = PublishRelay<FetchSelfDataModel>()
+        let fetchSelfSuccess = PublishRelay<FetchSelfDataModel>()
+        let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
         let fetchFailure = PublishRelay<APIError>()
+        let fetchMyCrew = PublishRelay<Void>()
         
         input.viewWillAppearObservable
             .flatMap { _ in
@@ -39,7 +42,8 @@ class StatsViewModel: ViewModelType {
                 switch fetchSelfData {
                 case .success(let data):
                     print("#### Fetch Self API Success ####")
-                    fetchSuccess.accept(data)
+                    fetchSelfSuccess.accept(data)
+                    fetchMyCrew.accept(())
                 case .failure(let apiError):
                     print("#### Fetch Self API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
@@ -47,7 +51,24 @@ class StatsViewModel: ViewModelType {
                 
             }.disposed(by: disposeBag)
         
-        return Output(fetchSuccess: fetchSuccess,
+        fetchMyCrew
+            .flatMap {
+                
+                return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
+            }.subscribe(with: self) { owner, fetchMyCrewData in
+                
+                switch fetchMyCrewData {
+                    
+                case .success(let data):
+                    print("#### Fetch Crew API Success ####")
+                    fetchCrewSuccess.accept(data)
+                case .failure(let apiError):
+                    fetchFailure.accept(apiError)
+                }
+            }.disposed(by: disposeBag)
+        
+        return Output(fetchSelfSuccess: fetchSelfSuccess,
+                      fetchCrewSuccess: fetchCrewSuccess,
                       fetchFailure: fetchFailure)
     }
 }

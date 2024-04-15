@@ -13,6 +13,7 @@ enum Router: RouterType {
     case signIn(signInQuery: SignInQuery)
     case signUp(signUpQuery: SignUpQuery)
     case fetchSelf
+    case fetchMyCrew
     
     case refresh
 }
@@ -29,7 +30,7 @@ extension Router {
         switch self {
         case .signIn, .signUp:
             return .post
-        case .refresh, .fetchSelf:
+        case .refresh, .fetchSelf, .fetchMyCrew:
             return .get
         }
     }
@@ -45,6 +46,8 @@ extension Router {
             return Path.fetchSelf.rawValue
         case .refresh:
             return Path.refresh.rawValue
+        case .fetchMyCrew:
+            return Path.fetchMyCrew.rawValue
         }
     }
     
@@ -56,7 +59,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .fetchSelf:
+        case .fetchSelf, .fetchMyCrew:
             return [
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken

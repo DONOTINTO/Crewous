@@ -41,9 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         
-        // let rootVC = SignInViewController()
-        // let naviVC = UINavigationController(rootViewController: rootVC)
-        // self.window?.rootViewController = naviVC
+        let rootVC = SignInViewController()
+        let naviVC = UINavigationController(rootViewController: rootVC)
+        self.window?.rootViewController = naviVC
         
         #if DEBUG
         if UDManager.isLogin {
@@ -96,9 +96,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let statsVC = StatsViewController()
         let statsNaviVC = UINavigationController(rootViewController: statsVC)
         
+        let myCrewVC = MyCrewViewController()
+        let myCrewNaviVC = UINavigationController(rootViewController: myCrewVC)
+        
         let tabVC = UITabBarController()
-        tabVC.setViewControllers([statsNaviVC], animated: true)
+        tabVC.setViewControllers([statsNaviVC, myCrewNaviVC], animated: true)
         tabVC.tabBar.items?[0].image = UIImage(systemName: "star.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[1].image = UIImage(systemName: "star.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         
         return tabVC
     }

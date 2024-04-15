@@ -140,8 +140,6 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     guard let self else { return }
                     
                     self.changeRootViewToSignIn()
-                    UDManager.isLogin = false
-                    
                 }
                 
             case .code419:
@@ -164,8 +162,27 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     guard let self else { return }
                     
                     self.changeRootViewToSignIn()
-                    UDManager.isLogin = false
                 }
+                
+            default:
+                return
+            }
+            
+        case .fetchMyCrew:
+            
+            switch apiError {
+            case .code400, .code401, .code403:
+                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
+                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToSignIn()
+                }
+            case .code419:
+                // 엑세스 토큰 재발급
+                refreshAccessToken.accept(())
+                self.completionHandler.accept(completionHandler)
                 
             default:
                 return
@@ -206,6 +223,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         
         let rootVC = SignInViewController()
         let naviVC = UINavigationController(rootViewController: rootVC)
+        
+        UDManager.isLogin = false
+        UDManager.isJoinedCrew = false
+        UDManager.accessToken = ""
+        UDManager.refreshToken = ""
         
         sceneDelegate.window?.rootViewController = naviVC
         sceneDelegate.window?.makeKeyAndVisible()

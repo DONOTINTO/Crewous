@@ -24,7 +24,11 @@ class StatsView: BaseView {
     let positionLiteralLabel = UILabel()
     let positionInfoLabel = UILabel()
     
+    let indicator = UIActivityIndicatorView(style: .medium)
+    
     override func configureHierarchy() {
+        
+        addSubview(indicator)
         
         [profileImageView, nickLabel, crewLabel, lineView].forEach { addSubview($0) }
         
@@ -42,8 +46,13 @@ class StatsView: BaseView {
         nickLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
-            $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.trailing.equalTo(indicator.snp.leading)
             $0.height.equalTo(25)
+        }
+        
+        indicator.snp.makeConstraints {
+            $0.top.equalTo(profileImageView)
+            $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
         }
         
         crewLabel.snp.makeConstraints {
@@ -133,5 +142,7 @@ class StatsView: BaseView {
         
         positionLiteralLabel.custom(title: "POSITION", color: .customGray, fontScale: .bold, fontSize: .small)
         positionInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        
+        indicator.hidesWhenStopped = true
     }
 }

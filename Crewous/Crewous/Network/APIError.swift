@@ -39,5 +39,6 @@ enum APIError: Int, Error {
         case signUp
         case fetchSelf
         case refresh
+        case fetchMyCrew
     }
 }

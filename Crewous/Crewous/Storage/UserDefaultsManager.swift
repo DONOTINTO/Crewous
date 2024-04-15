@@ -12,6 +12,7 @@ class UDManager {
     private static let ud = UserDefaults.standard
     
     private static let isLoginStr = "isLogin"
+    private static let isJoinedCrewStr = "joinedCrew"
     private static let accessTokenStr = "accessToken"
     private static let refreshTokenStr = "refreshToken"
     
@@ -20,6 +21,14 @@ class UDManager {
             return ud.bool(forKey: isLoginStr)
         } set {
             ud.set(newValue, forKey: isLoginStr)
+        }
+    }
+    
+    static var isJoinedCrew: Bool {
+        get {
+            return ud.bool(forKey: isJoinedCrewStr)
+        } set {
+            ud.set(newValue, forKey: isJoinedCrewStr)
         }
     }
     
