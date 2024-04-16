@@ -40,5 +40,6 @@ enum APIError: Int, Error {
         case fetchSelf
         case refresh
         case fetchMyCrew
+        case uploadImage
     }
 }

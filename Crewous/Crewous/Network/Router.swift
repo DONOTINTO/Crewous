@@ -15,6 +15,8 @@ enum Router: RouterType {
     case fetchSelf
     case fetchMyCrew
     
+    case uploadImage
+    
     case refresh
 }
 
@@ -28,7 +30,7 @@ extension Router {
     var method: HTTPMethod {
         
         switch self {
-        case .signIn, .signUp:
+        case .signIn, .signUp, .uploadImage:
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew:
             return .get
@@ -48,10 +50,12 @@ extension Router {
             return Path.refresh.rawValue
         case .fetchMyCrew:
             return Path.fetchMyCrew.rawValue
+        case .uploadImage:
+            return Path.uploadImage.rawValue
         }
     }
     
-    var header: [String : String] {
+    var header: [String: String] {
         
         switch self {
         case .signIn, .signUp:
@@ -69,6 +73,12 @@ extension Router {
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.refresh.rawValue: UDManager.refreshToken
+            ]
+        case .uploadImage:
+            return [
+                HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
+                HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
+                HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
         }
     }

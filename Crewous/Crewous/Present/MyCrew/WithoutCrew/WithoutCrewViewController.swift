@@ -56,7 +56,7 @@ extension WithoutCrewViewController: PHPickerViewControllerDelegate {
         itemProvider.loadObject(ofClass: UIImage.self) { readingImage, error in
             
             guard let image = readingImage as? UIImage,
-                  let data = image.jpegData(compressionQuality: 1.0) else { return }
+                  let data = image.compressedJPEGData else { return }
             
             DispatchQueue.main.sync {
                 

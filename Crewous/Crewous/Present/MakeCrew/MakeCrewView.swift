@@ -179,7 +179,7 @@ class MakeCrewView: BaseView {
     }
     
     func configure(_ data: Data) {
-        imageView.image = UIImage(data: data)
         
+        imageView.image = UIImage(data: data)
     }
 }

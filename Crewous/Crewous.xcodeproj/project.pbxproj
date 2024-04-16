@@ -66,6 +66,8 @@
 		ACDF67F42BCD74700046766B /* MakeCrewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F32BCD74700046766B /* MakeCrewViewController.swift */; };
 		ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F52BCD74790046766B /* MakeCrewView.swift */; };
 		ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */; };
+		ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68072BCE81960046766B /* UploadImageDataModel.swift */; };
+		ACDF680A2BCE96440046766B /* Image++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68092BCE96440046766B /* Image++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,8 @@
 		ACDF67F32BCD74700046766B /* MakeCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewViewController.swift; sourceTree = "<group>"; };
 		ACDF67F52BCD74790046766B /* MakeCrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewView.swift; sourceTree = "<group>"; };
 		ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewViewModel.swift; sourceTree = "<group>"; };
+		ACDF68072BCE81960046766B /* UploadImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageDataModel.swift; sourceTree = "<group>"; };
+		ACDF68092BCE96440046766B /* Image++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,7 @@
 				AC9FD0DE2BC7D43C00395FC2 /* Button++.swift */,
 				ACDF67B42BCB238B0046766B /* Label++.swift */,
 				ACDF67BA2BCB2E100046766B /* RxSwift++.swift */,
+				ACDF68092BCE96440046766B /* Image++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */,
 				ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */,
 				ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */,
+				ACDF68072BCE81960046766B /* UploadImageDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -474,8 +480,10 @@
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
 				ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */,
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
+				ACDF680A2BCE96440046766B /* Image++.swift in Sources */,
 				ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
+				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,

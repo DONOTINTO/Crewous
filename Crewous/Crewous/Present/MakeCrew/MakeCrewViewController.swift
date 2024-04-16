@@ -40,6 +40,10 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
             
             owner.layoutView.scrollView.endEditing(true)
         }.disposed(by: disposeBag)
+        
+        // MARK: View Model
+        let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable())
+        viewModel.transform(input: input)
     }
     
     override func configure() {
