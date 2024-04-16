@@ -16,6 +16,7 @@ enum Router: RouterType {
     case fetchMyCrew
     
     case uploadImage
+    case makeCrew(makeCrewQuery: MakeCrewQuery)
     
     case refresh
 }
@@ -30,7 +31,7 @@ extension Router {
     var method: HTTPMethod {
         
         switch self {
-        case .signIn, .signUp, .uploadImage:
+        case .signIn, .signUp, .uploadImage, .makeCrew:
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew:
             return .get
@@ -52,6 +53,8 @@ extension Router {
             return Path.fetchMyCrew.rawValue
         case .uploadImage:
             return Path.uploadImage.rawValue
+        case .makeCrew:
+            return Path.makeCrew.rawValue
         }
     }
     
@@ -80,6 +83,12 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
+        case .makeCrew:
+            return [
+                HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
+                HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
+                HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
+            ]
         }
     }
     
@@ -101,6 +110,8 @@ extension Router {
             return try? encoder.encode(signInQuery)
         case .signUp(let signUpQuery):
             return try? encoder.encode(signUpQuery)
+        case .makeCrew(let makeCrewQuery):
+            return try? encoder.encode(makeCrewQuery)
         default:
             return nil
         }

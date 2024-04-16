@@ -9,10 +9,10 @@ import Foundation
 
 struct FetchMyCrewDataModel: Decodable {
     
-    let data: [MyCrewData]
+    let data: [PostData]
 }
 
-struct MyCrewData: Decodable {
+struct PostData: Decodable {
     let postID: String
     let product_id: String
     let title: String
@@ -21,7 +21,7 @@ struct MyCrewData: Decodable {
     let content2: String
     let content3: String
     let content4: String
-    let content5: String
+    let content5: String?
     let createdAt: String
     let creator: Creater
     let files: [String]

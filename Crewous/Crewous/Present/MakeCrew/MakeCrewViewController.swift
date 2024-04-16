@@ -42,7 +42,17 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
         }.disposed(by: disposeBag)
         
         // MARK: View Model
-        let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable())
+        
+        let crewName = layoutView.crewNameTextField.rx.text.orEmpty.asObservable()
+        let introduce = layoutView.introduceTextView.rx.text.orEmpty.asObservable()
+        let time = layoutView.timeTextField.rx.text.orEmpty.asObservable()
+        let place = layoutView.placeTextField.rx.text.orEmpty.asObservable()
+        let membershipFee = layoutView.membershipFeeTextField.rx.text.orEmpty.asObservable()
+        let uniform = layoutView.uniformTextField.rx.text.orEmpty.asObservable()
+        
+        let allData = Observable.combineLatest(crewName, introduce, time, place, membershipFee, uniform)
+        
+        let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable(), inputDataObservable: allData)
         viewModel.transform(input: input)
     }
     

@@ -191,6 +191,32 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
+            
+        case .makeCrew:
+            
+            switch apiError {
+            case .code401, .code403:
+                
+                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
+                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToSignIn()
+                }
+                
+            case .code410:
+                
+                makeAlert(msg: "크루 생성 실패")
+                
+            case .code419:
+                // 엑세스 토큰 재발급
+                refreshAccessToken.accept(())
+                self.completionHandler.accept(completionHandler)
+                
+            default:
+                return
+            }
         }
     }
     

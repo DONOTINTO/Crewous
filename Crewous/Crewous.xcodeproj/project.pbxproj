@@ -68,6 +68,7 @@
 		ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */; };
 		ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68072BCE81960046766B /* UploadImageDataModel.swift */; };
 		ACDF680A2BCE96440046766B /* Image++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68092BCE96440046766B /* Image++.swift */; };
+		ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewViewModel.swift; sourceTree = "<group>"; };
 		ACDF68072BCE81960046766B /* UploadImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageDataModel.swift; sourceTree = "<group>"; };
 		ACDF68092BCE96440046766B /* Image++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image++.swift"; sourceTree = "<group>"; };
+		ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 			children = (
 				AC9FD0F52BC804C200395FC2 /* SignInQuery.swift */,
 				ACDF67A82BC94DE60046766B /* SignUpQuery.swift */,
+				ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */,
 				AC9FD0F62BC804C200395FC2 /* SignInQuery.swift in Sources */,
 				ACDF67E12BCD14920046766B /* MyCrewViewController.swift in Sources */,
+				ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

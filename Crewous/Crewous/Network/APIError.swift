@@ -14,6 +14,7 @@ enum APIError: Int, Error {
     case code401 = 401
     case code403 = 403
     case code409 = 409
+    case code410 = 410
     case code418 = 418
     case code419 = 419
     
@@ -41,5 +42,6 @@ enum APIError: Int, Error {
         case refresh
         case fetchMyCrew
         case uploadImage
+        case makeCrew
     }
 }
