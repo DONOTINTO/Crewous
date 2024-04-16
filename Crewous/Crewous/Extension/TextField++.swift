@@ -26,8 +26,19 @@ extension UITextField {
         self.autocapitalizationType = .none
     }
     
-    func custom(title: String) {
+    func custom(placeholder: String, fontSize: FontManager.FontSize) {
         
+        self.textColor = .white
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.customGray])
+        self.placeholder = placeholder
+        self.font = .systemFont(ofSize: fontSize.rawValue, weight: .regular)
+        self.autocapitalizationType = .none
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.customGray.cgColor
+        
+        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+        self.leftViewMode = .always
+        self.layer.cornerRadius = 10
     }
     
     func makeCustomImageView(imageStr: String) -> UIView? {

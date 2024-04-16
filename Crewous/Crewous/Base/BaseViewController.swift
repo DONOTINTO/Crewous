@@ -31,6 +31,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         bind()
         configure()
         makeBackBarButton()
+        configureNavigation()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,26 +64,6 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 }
                 
             }.disposed(by: disposeBag)
-        
-        // refreshAccessToken
-        //     .flatMap {
-        //         
-        //         print("#### Refresh API Call ####")
-        //         return (APIManager.callAPI(router: Router.refresh, dataModel: RefreshDataModel.self))
-        //     }.bind(with: self) { owner, result in
-        //         
-        //         switch result {
-        //         case .success(let refreshData):
-        //             
-        //             print("#### Refresh API Success ####")
-        //             UDManager.accessToken = refreshData.accessToken
-        //             
-        //         case .failure(let apiError):
-        //             
-        //             print("#### Refresh API Fail - ErrorCode = \(apiError.rawValue) ####")
-        //             owner.errorHandler(apiError, calltype: .refresh)
-        //         }
-        //     }.disposed(by: disposeBag)
     }
     
     func configure() { }

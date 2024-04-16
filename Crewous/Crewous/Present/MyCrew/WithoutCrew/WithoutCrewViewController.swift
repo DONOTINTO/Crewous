@@ -16,18 +16,6 @@ class WithoutCrewViewController: BaseViewController<WithoutCrewView> {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-     
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    
     override func bind() {
         
         layoutView.makeCrewButton.rx.tap
@@ -43,6 +31,7 @@ class WithoutCrewViewController: BaseViewController<WithoutCrewView> {
                 
                 let phPicker = PHPickerViewController(configuration: config)
                 phPicker.delegate = self
+                owner.tabBarController?.tabBar.isHidden = true
                 
                 owner.navigationController?.pushViewController(phPicker, animated: true)
                 
@@ -55,6 +44,7 @@ extension WithoutCrewViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         if results.isEmpty {
+            self.tabBarController?.tabBar.isHidden = false
             picker.navigationController?.popViewController(animated: true)
             return
         }

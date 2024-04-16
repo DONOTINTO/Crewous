@@ -12,7 +12,6 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavigation()
         configureEmbedded()
     }
     
@@ -20,6 +19,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func configureEmbedded() {

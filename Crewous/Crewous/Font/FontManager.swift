@@ -11,6 +11,7 @@ enum FontManager {
     
     enum FontSize: CGFloat {
         
+        case tiny = 11
         case small = 15
         case medium = 20
         case large = 30
