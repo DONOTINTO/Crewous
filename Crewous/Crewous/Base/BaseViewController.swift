@@ -207,7 +207,9 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 
             case .code410:
                 
-                makeAlert(msg: "크루 생성 실패")
+                makeAlert(msg: "크루 생성 실패하여 재시도합니다", buttonTitle: "Retry") { _ in
+                    completionHandler()
+                }
                 
             case .code419:
                 // 엑세스 토큰 재발급
@@ -242,6 +244,18 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: handler)
         
         alert.addAction(alertAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func makeAlert(msg: String, buttonTitle: String, handler: @escaping ((UIAlertAction) -> Void) = { _ in }) {
+        
+        let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: buttonTitle, style: .default, handler: handler)
+        let cancleAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(okAlertAction)
+        alert.addAction(cancleAlertAction)
         
         present(alert, animated: true)
     }

@@ -22,12 +22,16 @@ class MakeCrewViewModel: ViewModelType {
     }
     
     struct Output {
+        let makeCrewSuccess: PublishRelay<PostData>
         
+        let uploadImageFailure: PublishRelay<APIError>
+        let makeCrewFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let uploadImageData = PublishRelay<UploadImageDataModel>()
+        let uploadImageSuccess = PublishRelay<UploadImageDataModel>()
+        let makeCrewSuccess = PublishRelay<PostData>()
         
         let uploadImageFailure = PublishRelay<APIError>()
         let makeCrewFailure = PublishRelay<APIError>()
@@ -44,7 +48,7 @@ class MakeCrewViewModel: ViewModelType {
                 case .success(let data):
                     
                     print("#### UploadImage API Success ####")
-                    uploadImageData.accept(data)
+                    uploadImageSuccess.accept(data)
                 case .failure(let apiError):
                     
                     print("#### UploadImage API Fail - ErrorCode = \(apiError.rawValue) ####")
@@ -53,7 +57,7 @@ class MakeCrewViewModel: ViewModelType {
             }.disposed(by: disposeBag)
         
         // make crew query 생성
-        let createCrewObservable = Observable.combineLatest(input.inputDataObservable, uploadImageData)
+        let createCrewObservable = Observable.combineLatest(input.inputDataObservable, uploadImageSuccess)
             .map { data in
                 let (inputData, imageData) = data
                 
@@ -80,7 +84,7 @@ class MakeCrewViewModel: ViewModelType {
                     
                 case .success(let data):
                     print("#### Make Crew API Success ####")
-                    dump(data)
+                    makeCrewSuccess.accept(data)
                 case .failure(let apiError):
                     print("#### Make Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     makeCrewFailure.accept(apiError)
@@ -88,6 +92,6 @@ class MakeCrewViewModel: ViewModelType {
             }.disposed(by: disposeBag)
         
         
-        return Output()
+        return Output(makeCrewSuccess: makeCrewSuccess, uploadImageFailure: uploadImageFailure, makeCrewFailure: makeCrewFailure)
     }
 }

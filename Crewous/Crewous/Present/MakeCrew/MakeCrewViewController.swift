@@ -53,7 +53,30 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
         let allData = Observable.combineLatest(crewName, introduce, time, place, membershipFee, uniform)
         
         let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable(), inputDataObservable: allData)
-        viewModel.transform(input: input)
+        let output = viewModel.transform(input: input)
+        
+        output.makeCrewSuccess
+            .bind(with: self) { owner, postData in
+                owner.navigationController?.popToRootViewController(animated: true)
+            }.disposed(by: disposeBag)
+        
+        output.uploadImageFailure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .uploadImage) {
+                    // API 토큰 재발급 -> 크루 생성 재시도
+                    owner.layoutView.createCrewButton.sendActions(for: .touchUpInside)
+                }
+            }.disposed(by: disposeBag)
+        
+        output.makeCrewFailure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .makeCrew) {
+                    // 크루 생성(포스트 게시) 실패, API 토큰 재발급 -> 크루 생성 재시도
+                    owner.layoutView.createCrewButton.sendActions(for: .touchUpInside)
+                }
+            }.disposed(by: disposeBag)
     }
     
     override func configure() {
