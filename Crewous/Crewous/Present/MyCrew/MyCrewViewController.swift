@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MyCrewViewController: BaseViewController<MyCrewView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureEmbedded()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,8 +24,12 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
     }
     
     override func bind() {
+        super.bind()
         
-        
+        self.rx.viewWillAppear
+            .subscribe(with: self) { owner, _ in
+                owner.configureEmbedded()
+            }.disposed(by: disposeBag)
     }
     
     func configureEmbedded() {

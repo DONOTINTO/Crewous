@@ -15,6 +15,7 @@ class MakeCrewViewModel: ViewModelType {
     
     var imageData: Data!
     var crewID: String = ""
+    var imageFiles: [String] = []
     
     struct Input {
         
@@ -55,6 +56,7 @@ class MakeCrewViewModel: ViewModelType {
                     
                     print("#### UploadImage API Success ####")
                     uploadImageSuccess.accept(data)
+                    owner.imageFiles = data.files
                 case .failure(let apiError):
                     
                     print("#### UploadImage API Fail - ErrorCode = \(apiError.rawValue) ####")
@@ -63,9 +65,8 @@ class MakeCrewViewModel: ViewModelType {
             }.disposed(by: disposeBag)
         
         // make crew query 생성
-        let createCrewObservable = Observable.combineLatest(input.inputDataObservable, uploadImageSuccess)
-            .map { data in
-                let (inputData, imageData) = data
+        let createCrewObservable = uploadImageSuccess.withLatestFrom(input.inputDataObservable)
+            .map { [weak self] inputData in
                 
                 return MakeCrewQuery(title: inputData.0,
                                      content: inputData.1,
@@ -74,7 +75,7 @@ class MakeCrewViewModel: ViewModelType {
                                      content3: inputData.4,
                                      content4: inputData.5,
                                      product_id: ProductID.crew.rawValue,
-                                     files: imageData.files)
+                                     files: self?.imageFiles ?? [])
             }
         
         

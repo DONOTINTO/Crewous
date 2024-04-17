@@ -149,6 +149,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
+            // MARK: Fetch My Crew ( Like2를 누른 Post 정보 가져오기)
         case .fetchMyCrew:
             
             switch apiError {
@@ -169,6 +170,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
+            // MARK: Upload Image
         case .uploadImage:
             
             switch apiError {
@@ -192,6 +194,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
+            // MARK: Make Crew
         case .makeCrew:
             
             switch apiError {
@@ -220,6 +223,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
+            // MARK: 크루 가입(Post Like-2)
         case .like2:
             
             switch apiError {
@@ -232,6 +236,28 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 // 엑세스 토큰 재발급
                 refreshAccessToken.accept(())
                 self.completionHandler.accept(completionHandler)
+            default:
+                return
+            }
+            
+        case .withDraw:
+            
+            switch apiError {
+            case .code401, .code403:
+                
+                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
+                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToSignIn()
+                }
+            case .code419:
+                
+                // 엑세스 토큰 재발급
+                refreshAccessToken.accept(())
+                self.completionHandler.accept(completionHandler)
+                
             default:
                 return
             }

@@ -44,5 +44,6 @@ enum APIError: Int, Error {
         case uploadImage
         case makeCrew
         case like2
+        case withDraw
     }
 }

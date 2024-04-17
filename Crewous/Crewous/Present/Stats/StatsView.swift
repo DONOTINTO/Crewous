@@ -24,6 +24,9 @@ class StatsView: BaseView {
     let positionLiteralLabel = UILabel()
     let positionInfoLabel = UILabel()
     
+    
+    let withDrawButton =  UIButton()
+    
     let indicator = UIActivityIndicatorView(style: .medium)
     
     override func configureHierarchy() {
@@ -33,6 +36,8 @@ class StatsView: BaseView {
         [profileImageView, nickLabel, crewLabel, lineView].forEach { addSubview($0) }
         
         [heightLiteralLabel, heightInfoLabel, crewLiteralLabel, crewInfoLabel, weightLiteralLabel, weightInfoLabel, positionLiteralLabel, positionInfoLabel].forEach { addSubview($0) }
+        
+        addSubview(withDrawButton)
     }
     
     override func configureLayout() {
@@ -96,7 +101,7 @@ class StatsView: BaseView {
         }
         
         weightLiteralLabel.snp.makeConstraints {
-            $0.top.equalTo(heightInfoLabel.snp.bottom).offset(40)
+            $0.top.equalTo(heightLiteralLabel.snp.bottom).offset(90)
             $0.leading.equalTo(safeAreaLayoutGuide).inset(30)
             $0.trailing.equalTo(self.snp.centerX)
         }
@@ -108,7 +113,7 @@ class StatsView: BaseView {
         }
         
         positionLiteralLabel.snp.makeConstraints {
-            $0.top.equalTo(crewInfoLabel.snp.bottom).offset(40)
+            $0.top.equalTo(crewLiteralLabel.snp.bottom).offset(90)
             $0.leading.equalTo(self.snp.centerX)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
         }
@@ -117,6 +122,13 @@ class StatsView: BaseView {
             $0.top.equalTo(positionLiteralLabel.snp.bottom).offset(10)
             $0.leading.equalTo(self.snp.centerX)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
+        }
+        
+        // TEST
+        withDrawButton.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.height.equalTo(30)
         }
     }
     
@@ -142,6 +154,9 @@ class StatsView: BaseView {
         
         positionLiteralLabel.custom(title: "POSITION", color: .customGray, fontScale: .bold, fontSize: .small)
         positionInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        
+        // TEST
+        withDrawButton.custom(title: "탈퇴(테스트용)", titleColor: .black, bgColor: .customGreen)
         
         indicator.hidesWhenStopped = true
     }

@@ -40,6 +40,7 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.layoutView.indicator.stopAnimating()
                 
                 let (fetchSelfData, fetchCrewData) = datas
+                dump(fetchCrewData)
                 
                 let mappingData: [String] = fetchSelfData.nick.split(separator: "/").map { String($0) }
                 let nick = mappingData[0]
@@ -74,5 +75,30 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.viewWillAppear(true)
             }
         }.disposed(by: disposeBag)
+        
+        
+        
+        // 탈퇴(테스트)
+        layoutView.withDrawButton.rx.tap
+            .flatMap {
+                
+                return APIManager.callAPI(router: Router.withDraw, dataModel: WithDrawDataModel.self)
+            }.subscribe(with: self) { owner, result in
+                
+                switch result {
+                    
+                case .success(let data):
+                    dump(data)
+                    owner.makeAlert(msg: "탈퇴 완료") { [weak self] _ in
+                        
+                        guard let self else { return }
+                        
+                        owner.changeRootViewToSignIn()
+                    }
+                    
+                case .failure(_):
+                    print("fail")
+                }
+            }.disposed(by: disposeBag)
     }
 }

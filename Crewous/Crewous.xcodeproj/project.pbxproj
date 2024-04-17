@@ -70,6 +70,7 @@
 		ACDF680A2BCE96440046766B /* Image++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68092BCE96440046766B /* Image++.swift */; };
 		ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */; };
 		ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68172BD001620046766B /* Like2DataModel.swift */; };
+		ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68192BD015700046766B /* WithDrawDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,7 @@
 		ACDF68092BCE96440046766B /* Image++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image++.swift"; sourceTree = "<group>"; };
 		ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewQuery.swift; sourceTree = "<group>"; };
 		ACDF68172BD001620046766B /* Like2DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2DataModel.swift; sourceTree = "<group>"; };
+		ACDF68192BD015700046766B /* WithDrawDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +319,7 @@
 				ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */,
 				ACDF68072BCE81960046766B /* UploadImageDataModel.swift */,
 				ACDF68172BD001620046766B /* Like2DataModel.swift */,
+				ACDF68192BD015700046766B /* WithDrawDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,
 				ACDF67EC2BCD6A750046766B /* WithCrewView.swift in Sources */,
 				ACDF67E52BCD165F0046766B /* WithoutCrewViewController.swift in Sources */,
+				ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
