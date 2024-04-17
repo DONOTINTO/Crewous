@@ -69,6 +69,7 @@
 		ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68072BCE81960046766B /* UploadImageDataModel.swift */; };
 		ACDF680A2BCE96440046766B /* Image++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68092BCE96440046766B /* Image++.swift */; };
 		ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */; };
+		ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68172BD001620046766B /* Like2DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,7 @@
 		ACDF68072BCE81960046766B /* UploadImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageDataModel.swift; sourceTree = "<group>"; };
 		ACDF68092BCE96440046766B /* Image++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image++.swift"; sourceTree = "<group>"; };
 		ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewQuery.swift; sourceTree = "<group>"; };
+		ACDF68172BD001620046766B /* Like2DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 				ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */,
 				ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */,
 				ACDF68072BCE81960046766B /* UploadImageDataModel.swift */,
+				ACDF68172BD001620046766B /* Like2DataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				AC9FD0DF2BC7D43C00395FC2 /* Button++.swift in Sources */,
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
 				ACDF67E32BCD14A00046766B /* MyCrewView.swift in Sources */,
+				ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */,
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
 				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,

@@ -117,4 +117,46 @@ struct APIManager {
             return Disposables.create()
         }
     }
+    
+    static func like2APICall(router: Router) -> Single<Result<Like2DataModel, APIError>> {
+        
+        return Single<Result<Like2DataModel, APIError>>.create { single in
+            
+            let url = router.baseURL + router.path
+            let header: HTTPHeaders = [
+                HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
+                HTTPHeader.Key.authorization.rawValue: UDManager.accessToken
+            ]
+            
+            AF.request(url,
+                       method: .post,
+                       parameters: router.parameters,
+                       encoding: JSONEncoding(),
+                       headers: header
+            ).responseDecodable(of: Like2DataModel.self) { response in
+                
+                guard let responseData = response.response else { return }
+                let statusCode = responseData.statusCode
+                
+                switch response.result {
+                case .success(let success):
+                    
+                    single(.success(.success(success)))
+                    
+                case .failure(_):
+                    
+                    print("failure - \(statusCode)")
+                    
+                    // Custom API Error로 Error 코드 구분
+                    guard let error = APIError(rawValue: statusCode) else {
+                        print("정의되지 않은 error code 입니다")
+                        return
+                    }
+                    
+                    single(.success(.failure(error)))
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }

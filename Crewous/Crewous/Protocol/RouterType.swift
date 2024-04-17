@@ -13,6 +13,7 @@ protocol RouterType: URLRequestConvertible {
     var baseURL: String { get }
     var method: HTTPMethod { get }
     var path: String { get }
+    var parameters: Parameters? { get }
     var header: [String: String] { get }
     var query: [URLQueryItem]? { get }
     var body: Data? { get }

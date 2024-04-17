@@ -219,6 +219,22 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
+            
+        case .like2:
+            
+            switch apiError {
+            case .code400, .code401, .code403, .code410:
+                
+                makeAlert(msg: "크루 생성 실패하여 재시도합니다", buttonTitle: "Retry") { _ in
+                    completionHandler()
+                }
+            case .code419:
+                // 엑세스 토큰 재발급
+                refreshAccessToken.accept(())
+                self.completionHandler.accept(completionHandler)
+            default:
+                return
+            }
         }
     }
     

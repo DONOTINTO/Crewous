@@ -14,31 +14,37 @@ class MakeCrewViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     var imageData: Data!
+    var crewID: String = ""
     
     struct Input {
         
         let createButtonObservable: Observable<Void>
         let inputDataObservable: Observable<(String, String, String, String, String, String)>
+        let like2Observable: PublishRelay<String>
     }
     
     struct Output {
         let makeCrewSuccess: PublishRelay<PostData>
+        let like2Success: PublishRelay<Void>
         
         let uploadImageFailure: PublishRelay<APIError>
         let makeCrewFailure: PublishRelay<APIError>
+        let like2Failure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
         let uploadImageSuccess = PublishRelay<UploadImageDataModel>()
         let makeCrewSuccess = PublishRelay<PostData>()
+        let like2Success = PublishRelay<Void>()
         
         let uploadImageFailure = PublishRelay<APIError>()
         let makeCrewFailure = PublishRelay<APIError>()
+        let like2Failure = PublishRelay<APIError>()
         
         // 이미지 업로드 API 호출
         input.createButtonObservable
-            .flatMap {
+            .flatMap { 
                 
                 print("#### UploadImage API Call ####")
                 return APIManager.uploadImage(router: Router.uploadImage, dataModel: UploadImageDataModel.self, image: self.imageData)
@@ -84,6 +90,7 @@ class MakeCrewViewModel: ViewModelType {
                     
                 case .success(let data):
                     print("#### Make Crew API Success ####")
+                    owner.crewID = data.postID
                     makeCrewSuccess.accept(data)
                 case .failure(let apiError):
                     print("#### Make Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
@@ -91,7 +98,30 @@ class MakeCrewViewModel: ViewModelType {
                 }
             }.disposed(by: disposeBag)
         
+        // 생성된 포스터 like2 API 호출
+        input.like2Observable
+            .flatMap { productID in
+                
+                print("#### Like2 API Call ####")
+                return APIManager.like2APICall(router: Router.like2(postID: productID))
+            }.subscribe(with: self) { owner, result in
+                
+                switch result {
+                    
+                case .success(_):
+                    print("#### Like2 API Success ####")
+                    like2Success.accept(())
+                case .failure(let apiError):
+                    print("#### Like2 API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    like2Failure.accept(apiError)
+                }
+            }.disposed(by: disposeBag)
+            
         
-        return Output(makeCrewSuccess: makeCrewSuccess, uploadImageFailure: uploadImageFailure, makeCrewFailure: makeCrewFailure)
+        return Output(makeCrewSuccess: makeCrewSuccess,
+                      like2Success: like2Success,
+                      uploadImageFailure: uploadImageFailure,
+                      makeCrewFailure: makeCrewFailure,
+                      like2Failure: like2Failure)
     }
 }

@@ -49,17 +49,28 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
         let place = layoutView.placeTextField.rx.text.orEmpty.asObservable()
         let membershipFee = layoutView.membershipFeeTextField.rx.text.orEmpty.asObservable()
         let uniform = layoutView.uniformTextField.rx.text.orEmpty.asObservable()
+        let like2Observable = PublishRelay<String>()
         
         let allData = Observable.combineLatest(crewName, introduce, time, place, membershipFee, uniform)
         
-        let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable(), inputDataObservable: allData)
+        let input = MakeCrewViewModel.Input(createButtonObservable: layoutView.createCrewButton.rx.tap.asObservable(), inputDataObservable: allData, like2Observable: like2Observable)
         let output = viewModel.transform(input: input)
         
+        // 크루 생성
         output.makeCrewSuccess
             .bind(with: self) { owner, postData in
+                // 내가 만든 크루는 좋아요 - 2 적용하기
+                print("Like2 API 호출 Post ID = \(postData.postID)")
+                like2Observable.accept(postData.postID)
+            }.disposed(by: disposeBag)
+        
+        // 내가 만든 크루 좋아요 성공
+        output.like2Success
+            .bind(with: self) { owner, _ in
                 owner.navigationController?.popToRootViewController(animated: true)
             }.disposed(by: disposeBag)
         
+        // 이미지 업로드 실패
         output.uploadImageFailure
             .bind(with: self) { owner, apiError in
                 
@@ -69,12 +80,21 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
                 }
             }.disposed(by: disposeBag)
         
+        // 크루 생성 실패
         output.makeCrewFailure
             .bind(with: self) { owner, apiError in
                 
                 owner.errorHandler(apiError, calltype: .makeCrew) {
                     // 크루 생성(포스트 게시) 실패, API 토큰 재발급 -> 크루 생성 재시도
                     owner.layoutView.createCrewButton.sendActions(for: .touchUpInside)
+                }
+            }.disposed(by: disposeBag)
+        
+        output.like2Failure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .like2) {
+                    like2Observable.accept(owner.viewModel.crewID)
                 }
             }.disposed(by: disposeBag)
     }

@@ -22,6 +22,11 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func bind() {
+        
+        
+    }
+    
     func configureEmbedded() {
         
         let isJoinedCrew = UDManager.isJoinedCrew

@@ -17,6 +17,7 @@ enum Router: RouterType {
     
     case uploadImage
     case makeCrew(makeCrewQuery: MakeCrewQuery)
+    case like2(postID: String)
     
     case refresh
 }
@@ -31,7 +32,7 @@ extension Router {
     var method: HTTPMethod {
         
         switch self {
-        case .signIn, .signUp, .uploadImage, .makeCrew:
+        case .signIn, .signUp, .uploadImage, .makeCrew, .like2:
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew:
             return .get
@@ -55,6 +56,8 @@ extension Router {
             return Path.uploadImage.rawValue
         case .makeCrew:
             return Path.makeCrew.rawValue
+        case .like2(let postID):
+            return "/v1/posts/\(postID)/like-2"
         }
     }
     
@@ -66,7 +69,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .fetchSelf, .fetchMyCrew:
+        case .fetchSelf, .fetchMyCrew, .like2:
             return [
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken
@@ -89,6 +92,16 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
+        }
+    }
+    
+    var parameters: Parameters? {
+        
+        switch self {
+        case .like2:
+            return ["like_status" : true]
+        default:
+            return nil
         }
     }
     
