@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 class MyCrewViewController: BaseViewController<MyCrewView> {
+    
+    let viewModel = MyCrewViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +26,36 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
     }
     
     override func bind() {
-        super.bind()
         
-        self.rx.viewWillAppear
-            .subscribe(with: self) { owner, _ in
-                owner.configureEmbedded()
+        let input = MyCrewViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear)
+        let output = viewModel.transform(input: input)
+        
+        // 크루 정보 체크 성공
+        output.fetchCrewSuccess
+            .bind(with: self) { owner, fetchCrewData in
+                
+                guard let crewData = fetchCrewData.data.first else {
+                    UDManager.isJoinedCrew = false
+                    owner.configureEmbedded(nil)
+                    return
+                }
+                
+                UDManager.isJoinedCrew = true
+                owner.configureEmbedded(crewData)
+                
+            }.disposed(by: disposeBag)
+        
+        // 크루 정보 체크 실패
+        output.fetchFailure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .fetchSelf)
             }.disposed(by: disposeBag)
     }
     
-    func configureEmbedded() {
+    func configureEmbedded(_ crewData: PostData?) {
         
-        let isJoinedCrew = UDManager.isJoinedCrew
-        
-        if isJoinedCrew {
+        if let crewData {
             let vc = WithCrewViewController()
             
             self.addChild(vc)

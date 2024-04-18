@@ -83,5 +83,12 @@ class SignInView: BaseView {
         signInValidLabel.isHidden = true
         
         indicator.hidesWhenStopped = true
+        
+        #if DEBUG
+        
+        emailTextField.text = "text@meme.com"
+        passwordTextField.text = "a123123@"
+        
+        #endif
     }
 }

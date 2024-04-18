@@ -12,7 +12,7 @@ class SignUpView: BaseView {
     
     let scrollView = UIScrollView()
     let contentView = UIView()
-
+    
     let emailTextField = UITextField()
     let emailValidLabel = UILabel()
     
@@ -171,5 +171,16 @@ class SignUpView: BaseView {
         positionValidLabel.isHidden = true
         
         indicator.hidesWhenStopped = true
+        
+        #if DEBUG
+        
+        emailTextField.text = "text@meme.com"
+        passwordTextField.text = "a123123@"
+        nickTextField.text = "donotinto"
+        heightTextField.text = "200"
+        weightTextField.text = "200"
+        positionTextField.text = "PG"
+        
+        #endif
     }
 }

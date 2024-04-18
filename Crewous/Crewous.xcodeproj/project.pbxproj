@@ -72,6 +72,7 @@
 		ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68172BD001620046766B /* Like2DataModel.swift */; };
 		ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68192BD015700046766B /* WithDrawDataModel.swift */; };
 		ACDF682A2BD0FCD60046766B /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68292BD0FCD60046766B /* APIInterceptor.swift */; };
+		ACDF682C2BD132240046766B /* MyCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF682B2BD132240046766B /* MyCrewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		ACDF68172BD001620046766B /* Like2DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2DataModel.swift; sourceTree = "<group>"; };
 		ACDF68192BD015700046766B /* WithDrawDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawDataModel.swift; sourceTree = "<group>"; };
 		ACDF68292BD0FCD60046766B /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
+		ACDF682B2BD132240046766B /* MyCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCrewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +357,7 @@
 		ACDF67DE2BCCFC260046766B /* MyCrew */ = {
 			isa = PBXGroup;
 			children = (
+				ACDF682B2BD132240046766B /* MyCrewViewModel.swift */,
 				ACDF67E02BCD14920046766B /* MyCrewViewController.swift */,
 				ACDF67E22BCD14A00046766B /* MyCrewView.swift */,
 				ACDF67DF2BCD13EB0046766B /* WithoutCrew */,
@@ -506,6 +509,7 @@
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
 				ACDF67EE2BCD6A860046766B /* WithCrewViewController.swift in Sources */,
+				ACDF682C2BD132240046766B /* MyCrewViewModel.swift in Sources */,
 				AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */,
 				AC9FD0ED2BC7F8C100395FC2 /* APIKey.swift in Sources */,
 				ACDF67F42BCD74700046766B /* MakeCrewViewController.swift in Sources */,

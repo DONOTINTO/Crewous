@@ -52,12 +52,7 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.layoutView.weightInfoLabel.text = "\(weight)KG"
                 owner.layoutView.positionInfoLabel.text = position
                 
-                guard let crewData = fetchCrewData.data.first else {
-                    UDManager.isJoinedCrew = false
-                    return
-                }
-                
-                UDManager.isJoinedCrew = true
+                guard let crewData = fetchCrewData.data.first else { return }
                 
                 owner.layoutView.crewLabel.text = "Crew - \(crewData.title)"
                 owner.layoutView.crewInfoLabel.text = crewData.title
