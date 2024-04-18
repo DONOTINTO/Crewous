@@ -34,6 +34,16 @@ enum APIError: Int, Error {
         }
     }
     
+    func checkAccessTokenError() -> Bool {
+        
+        switch self {
+        case .code419:
+            return true
+        default:
+            return false
+        }
+    }
+    
     enum CallType {
         
         case signIn

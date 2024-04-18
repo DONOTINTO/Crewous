@@ -71,6 +71,7 @@
 		ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */; };
 		ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68172BD001620046766B /* Like2DataModel.swift */; };
 		ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68192BD015700046766B /* WithDrawDataModel.swift */; };
+		ACDF682A2BD0FCD60046766B /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68292BD0FCD60046766B /* APIInterceptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,7 @@
 		ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewQuery.swift; sourceTree = "<group>"; };
 		ACDF68172BD001620046766B /* Like2DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2DataModel.swift; sourceTree = "<group>"; };
 		ACDF68192BD015700046766B /* WithDrawDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawDataModel.swift; sourceTree = "<group>"; };
+		ACDF68292BD0FCD60046766B /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0F72BC805C700395FC2 /* APIManager.swift */,
+				ACDF68292BD0FCD60046766B /* APIInterceptor.swift */,
 				AC9FD0EC2BC7F8C100395FC2 /* APIKey.swift */,
 				AC9FD0FC2BC813CF00395FC2 /* APIError.swift */,
 				AC9FD0F22BC8006A00395FC2 /* Router.swift */,
@@ -528,6 +531,7 @@
 				AC9FD0F62BC804C200395FC2 /* SignInQuery.swift in Sources */,
 				ACDF67E12BCD14920046766B /* MyCrewViewController.swift in Sources */,
 				ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */,
+				ACDF682A2BD0FCD60046766B /* APIInterceptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,8 +17,6 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     }
     
     let disposeBag = DisposeBag()
-    let refreshAccessToken = PublishRelay<Void>()
-    let completionHandler = PublishRelay<() -> Void>()
     
     override func loadView() {
         
@@ -39,32 +37,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         self.layoutView.endEditing(true)
     }
     
-    func bind() {
-        
-        let refreshObservable = refreshAccessToken.flatMap {
-            return (APIManager.callAPI(router: Router.refresh, dataModel: RefreshDataModel.self))
-        }
-        
-        Observable.zip(refreshObservable, completionHandler)
-            .bind(with: self) { owner, data in
-                
-                let (result, completion) = data
-                
-                switch result {
-                case .success(let refreshData):
-                    
-                    print("#### Refresh API Success ####")
-                    UDManager.accessToken = refreshData.accessToken
-                    completion()
-                    
-                case .failure(let apiError):
-                    
-                    print("#### Refresh API Fail - ErrorCode = \(apiError.rawValue) ####")
-                    owner.errorHandler(apiError, calltype: .refresh)
-                }
-                
-            }.disposed(by: disposeBag)
-    }
+    func bind() { }
     
     func configure() { }
     
@@ -85,8 +58,13 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             self.forceQuit(apiError.rawValue)
         }
         
+        // 엑세스 토큰 오류 (intercept로 이미 재시도 후 넘어온 오류이기에 재발급 실패로 봐도 무방) -> 로그인 화면으로 변경
+        if apiError.checkAccessTokenError() {
+            self.changeRootViewToSignIn()
+        }
+        
         switch calltype {
-            // MARK: Sign IN
+        // MARK: Sign IN
         case .signIn:
             
             switch apiError {
@@ -98,7 +76,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-            // MARK: Sign In
+        // MARK: Sign In
         case .signUp:
             
             switch apiError {
@@ -110,7 +88,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-            // MARK: Fetch Self
+        // MARK: Fetch Self
         case .fetchSelf:
             
             switch apiError {
@@ -123,16 +101,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     self.changeRootViewToSignIn()
                 }
                 
-            case .code419:
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
-                
             default:
                 return
             }
             
-            // MARK: Refresh
+        // MARK: Refresh
         case .refresh:
             
             switch apiError {
@@ -149,7 +122,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-            // MARK: Fetch My Crew ( Like2를 누른 Post 정보 가져오기)
+        // MARK: Fetch My Crew ( Like2를 누른 Post 정보 가져오기)
         case .fetchMyCrew:
             
             switch apiError {
@@ -161,16 +134,12 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     
                     self.changeRootViewToSignIn()
                 }
-            case .code419:
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
                 
             default:
                 return
             }
             
-            // MARK: Upload Image
+        // MARK: Upload Image
         case .uploadImage:
             
             switch apiError {
@@ -184,17 +153,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     self.changeRootViewToSignIn()
                 }
                 
-            case .code419:
-                
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
-                
             default:
                 return
             }
             
-            // MARK: Make Crew
+        // MARK: Make Crew
         case .makeCrew:
             
             switch apiError {
@@ -214,16 +177,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     completionHandler()
                 }
                 
-            case .code419:
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
-                
             default:
                 return
             }
             
-            // MARK: 크루 가입(Post Like-2)
+        // MARK: 크루 가입(Post Like-2)
         case .like2:
             
             switch apiError {
@@ -232,14 +190,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 makeAlert(msg: "크루 생성 실패하여 재시도합니다", buttonTitle: "Retry") { _ in
                     completionHandler()
                 }
-            case .code419:
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
             default:
                 return
             }
-            
+        
+        // MARK: 회원 탈퇴(With Draw)
         case .withDraw:
             
             switch apiError {
@@ -252,12 +207,6 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                     
                     self.changeRootViewToSignIn()
                 }
-            case .code419:
-                
-                // 엑세스 토큰 재발급
-                refreshAccessToken.accept(())
-                self.completionHandler.accept(completionHandler)
-                
             default:
                 return
             }

@@ -40,7 +40,6 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.layoutView.indicator.stopAnimating()
                 
                 let (fetchSelfData, fetchCrewData) = datas
-                dump(fetchCrewData)
                 
                 let mappingData: [String] = fetchSelfData.nick.split(separator: "/").map { String($0) }
                 let nick = mappingData[0]
@@ -71,9 +70,7 @@ class StatsViewController: BaseViewController<StatsView> {
             owner.layoutView.indicator.stopAnimating()
             
             // 재호출
-            owner.errorHandler(apiError, calltype: .fetchSelf) {
-                owner.viewWillAppear(true)
-            }
+            owner.errorHandler(apiError, calltype: .fetchSelf)
         }.disposed(by: disposeBag)
         
         
@@ -88,7 +85,7 @@ class StatsViewController: BaseViewController<StatsView> {
                 switch result {
                     
                 case .success(let data):
-                    dump(data)
+                    
                     owner.makeAlert(msg: "탈퇴 완료") { [weak self] _ in
                         
                         guard let self else { return }

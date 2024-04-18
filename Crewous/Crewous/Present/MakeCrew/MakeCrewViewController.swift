@@ -74,10 +74,7 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
         output.uploadImageFailure
             .bind(with: self) { owner, apiError in
                 
-                owner.errorHandler(apiError, calltype: .uploadImage) {
-                    // API 토큰 재발급 -> 크루 생성 재시도
-                    owner.layoutView.createCrewButton.sendActions(for: .touchUpInside)
-                }
+                owner.errorHandler(apiError, calltype: .uploadImage)
             }.disposed(by: disposeBag)
         
         // 크루 생성 실패
@@ -85,7 +82,6 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
             .bind(with: self) { owner, apiError in
                 
                 owner.errorHandler(apiError, calltype: .makeCrew) {
-                    // 크루 생성(포스트 게시) 실패, API 토큰 재발급 -> 크루 생성 재시도
                     owner.layoutView.createCrewButton.sendActions(for: .touchUpInside)
                 }
             }.disposed(by: disposeBag)

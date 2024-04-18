@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-extension RxSwift.Reactive where Base: UIViewController {
+extension Reactive where Base: UIViewController {
     public var viewWillAppear: Observable<Void> {
     return methodInvoked(#selector(UIViewController.viewWillAppear))
             .map {

@@ -20,8 +20,9 @@ struct APIManager {
                 let urlRequest = try router.asURLRequest()
                 
                 // AF -> API 통신
-                AF.request(urlRequest).responseDecodable(of: T.self) { response in
-                    
+                AF.request(urlRequest, interceptor: APIInterceptor()).responseDecodable(of: T.self) { response in
+                    // dump(response.response)
+                    print("통신❗️")
                     guard let responseData = response.response else { return }
                     let statusCode = responseData.statusCode
                     
@@ -37,8 +38,7 @@ struct APIManager {
                         // -> success
                         single(.success(.success(success)))
                         
-                    case .failure(_):
-                        
+                    case .failure(let error):
                         print("failure - \(statusCode)")
                         
                         // Custom API Error로 Error 코드 구분
