@@ -73,6 +73,8 @@
 		ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68192BD015700046766B /* WithDrawDataModel.swift */; };
 		ACDF682A2BD0FCD60046766B /* APIInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF68292BD0FCD60046766B /* APIInterceptor.swift */; };
 		ACDF682C2BD132240046766B /* MyCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF682B2BD132240046766B /* MyCrewViewModel.swift */; };
+		ACF18F612BD13F94002C0548 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ACF18F602BD13F94002C0548 /* Kingfisher */; };
+		ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF18F622BD14860002C0548 /* ImageView++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,7 @@
 		ACDF68192BD015700046766B /* WithDrawDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawDataModel.swift; sourceTree = "<group>"; };
 		ACDF68292BD0FCD60046766B /* APIInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInterceptor.swift; sourceTree = "<group>"; };
 		ACDF682B2BD132240046766B /* MyCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCrewViewModel.swift; sourceTree = "<group>"; };
+		ACF18F622BD14860002C0548 /* ImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,7 @@
 				AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */,
 				AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */,
 				AC9FD0B32BC79B4500395FC2 /* Alamofire in Frameworks */,
+				ACF18F612BD13F94002C0548 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +263,7 @@
 				ACDF67B42BCB238B0046766B /* Label++.swift */,
 				ACDF67BA2BCB2E100046766B /* RxSwift++.swift */,
 				ACDF68092BCE96440046766B /* Image++.swift */,
+				ACF18F622BD14860002C0548 /* ImageView++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				AC9FD0B52BC79B6100395FC2 /* RxCocoa */,
 				AC9FD0B72BC79B6100395FC2 /* RxSwift */,
 				AC9FD0BA2BC79B7700395FC2 /* SnapKit */,
+				ACF18F602BD13F94002C0548 /* Kingfisher */,
 			);
 			productName = Crewous;
 			productReference = AC9FD09A2BC79AFB00395FC2 /* Crewous.app */;
@@ -449,6 +455,7 @@
 				AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = AC9FD09B2BC79AFB00395FC2 /* Products */;
 			projectDirPath = "";
@@ -501,6 +508,7 @@
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
+				ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */,
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
@@ -892,6 +900,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -914,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		ACF18F602BD13F94002C0548 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

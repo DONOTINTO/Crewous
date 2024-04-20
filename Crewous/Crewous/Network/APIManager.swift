@@ -38,7 +38,7 @@ struct APIManager {
                         // -> success
                         single(.success(.success(success)))
                         
-                    case .failure(_):
+                    case .failure(let error):
                         print("failure - \(statusCode)")
                         
                         // Custom API Error로 Error 코드 구분

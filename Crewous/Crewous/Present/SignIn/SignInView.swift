@@ -86,7 +86,7 @@ class SignInView: BaseView {
         
         #if DEBUG
         
-        emailTextField.text = "text@meme.com"
+        emailTextField.text = "test@meme.com"
         passwordTextField.text = "a123123@"
         
         #endif

@@ -63,6 +63,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
             
             vc.layoutView.frame = layoutView.containerView.bounds
             vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            vc.layoutView.configure(crewData)
             
             vc.didMove(toParent: self)
         } else {

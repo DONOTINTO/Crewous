@@ -55,8 +55,8 @@ class MakeCrewViewModel: ViewModelType {
                 case .success(let data):
                     
                     print("#### UploadImage API Success ####")
-                    uploadImageSuccess.accept(data)
                     owner.imageFiles = data.files
+                    uploadImageSuccess.accept(data)
                 case .failure(let apiError):
                     
                     print("#### UploadImage API Fail - ErrorCode = \(apiError.rawValue) ####")
