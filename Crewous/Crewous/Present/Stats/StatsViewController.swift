@@ -54,8 +54,8 @@ class StatsViewController: BaseViewController<StatsView> {
                 
                 guard let crewData = fetchCrewData.data.first else { return }
                 
-                owner.layoutView.crewLabel.text = "Crew - \(crewData.title)"
-                owner.layoutView.crewInfoLabel.text = crewData.title
+                owner.layoutView.crewLabel.text = "Crew - \(crewData.crewName)"
+                owner.layoutView.crewInfoLabel.text = crewData.crewName
                 
             }.disposed(by: disposeBag)
         

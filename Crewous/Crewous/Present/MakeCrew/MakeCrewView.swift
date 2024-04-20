@@ -47,7 +47,7 @@ class MakeCrewView: BaseView {
     
     override func configureLayout() {
         
-        let ratio = (UIScreen.main.bounds.width / 5) * 3
+        let ratio = (UIScreen.main.bounds.width / 5) * 2.5
         
         scrollView.snp.makeConstraints {
             $0.horizontalEdges.top.equalTo(self)

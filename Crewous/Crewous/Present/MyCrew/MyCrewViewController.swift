@@ -56,7 +56,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
     func configureEmbedded(_ crewData: PostData?) {
         
         if let crewData {
-            let vc = WithCrewViewController()
+            let vc = CrewDetailViewController()
             
             self.addChild(vc)
             layoutView.containerView.addSubview(vc.layoutView)

@@ -30,6 +30,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         configure()
         makeBackBarButton()
         configureNavigation()
+        configureCollectionView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

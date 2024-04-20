@@ -15,12 +15,12 @@ struct FetchMyCrewDataModel: Decodable {
 struct PostData: Decodable {
     let postID: String
     let product_id: String
-    let title: String
-    let content: String
-    let content1: String
-    let content2: String
-    let content3: String
-    let content4: String
+    let crewName: String
+    let introduce: String
+    let timeInfo: String
+    let placeInfo: String
+    let membershipFee: String
+    let uniformColor: String
     let content5: String?
     let createdAt: String
     let creator: Creater
@@ -33,12 +33,12 @@ struct PostData: Decodable {
     enum CodingKeys: String, CodingKey {
         case postID = "post_id"
         case product_id
-        case title
-        case content
-        case content1
-        case content2
-        case content3
-        case content4
+        case crewName = "title"
+        case introduce = "content"
+        case timeInfo = "content1"
+        case placeInfo = "content2"
+        case membershipFee = "content3"
+        case uniformColor = "content4"
         case content5
         case createdAt
         case creator
