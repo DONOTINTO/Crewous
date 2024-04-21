@@ -6,19 +6,27 @@
 //
 
 import UIKit
+import SnapKit
 
 class InfoPageView: BaseView {
-
+    
+    let tableView = UITableView()
 
     override func configureHierarchy() {
         
+        addSubview(tableView)
     }
 
     override func configureLayout() {
         
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self)
+        }
     }
     
     override func configureView() {
-        backgroundColor = .systemMint
+        
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
     }
 }

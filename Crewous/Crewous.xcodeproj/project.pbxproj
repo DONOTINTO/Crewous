@@ -23,6 +23,7 @@
 		AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */; };
 		AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265112BD5050D00531BC1 /* NSObject++.swift */; };
 		AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265142BD5320D00531BC1 /* PageDelegate.swift */; };
+		AC3265172BD54B5800531BC1 /* InfoPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265162BD54B5800531BC1 /* InfoPageTableViewCell.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -110,6 +111,7 @@
 		AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageViewModel.swift; sourceTree = "<group>"; };
 		AC3265112BD5050D00531BC1 /* NSObject++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject++.swift"; sourceTree = "<group>"; };
 		AC3265142BD5320D00531BC1 /* PageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDelegate.swift; sourceTree = "<group>"; };
+		AC3265162BD54B5800531BC1 /* InfoPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageTableViewCell.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */,
 				AC3264FF2BD38F3A00531BC1 /* InfoPageViewController.swift */,
 				AC3265012BD38F4600531BC1 /* InfoPageView.swift */,
+				AC3265162BD54B5800531BC1 /* InfoPageTableViewCell.swift */,
 			);
 			path = InfoPage;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */,
 				ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */,
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
+				AC3265172BD54B5800531BC1 /* InfoPageTableViewCell.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
 				AC3264FC2BD38B1800531BC1 /* CrewContentCollectionViewCell.swift in Sources */,
 				ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */,

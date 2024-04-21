@@ -9,8 +9,11 @@ import Foundation
 
 extension NSObject {
     
-    var identifier: String {
-        
-        return String.init(describing: self)
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    var id: String {
+        return String(describing: self)
     }
 }

@@ -42,7 +42,7 @@ class ContentPageViewController: UIPageViewController {
                 
                 let (postData, identifier) = data
                 
-                guard let vc = owner.pages.filter({ $0.identifier == identifier }).first else { return }
+                guard let vc = owner.pages.filter({ $0.id == identifier }).first else { return }
                 
                 if let infoVC = vc as? InfoPageViewController {
                     infoVC.viewModel.data.accept(postData)
@@ -89,8 +89,8 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
         let vc = previousViewControllers[0]
-        guard let changedVC = pages.filter({ $0.identifier != vc.identifier }).first else { return }
+        guard let changedVC = pages.filter({ $0.id != vc.id }).first else { return }
         
-        viewModel.afterPagingEvent.accept(changedVC.identifier)
+        viewModel.afterPagingEvent.accept(changedVC.id)
     }
 }

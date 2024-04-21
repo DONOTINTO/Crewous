@@ -14,6 +14,7 @@ enum FontManager {
         case tiny = 11
         case small = 15
         case medium = 20
+        case regular = 25
         case large = 30
     }
     

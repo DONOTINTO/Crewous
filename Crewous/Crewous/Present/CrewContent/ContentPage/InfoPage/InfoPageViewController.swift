@@ -23,7 +23,26 @@ class InfoPageViewController: BaseViewController<InfoPageView> {
         
         viewModel.data
             .bind(with: self) { owner, data in
-                // print("info")
+                
+                let info = [data.timeInfo, data.placeInfo, data.membershipFee, data.uniformColor]
+                owner.viewModel.info.accept(info)
             }.disposed(by: disposeBag)
+        
+        viewModel.info
+            .bind(to: layoutView.tableView.rx.items(cellIdentifier: InfoPageTableViewCell.identifier,
+                                                    cellType: InfoPageTableViewCell.self)) { [weak self] index, data, cell in
+                
+                guard let self else { return }
+                
+                cell.backgroundColor = .clear
+                cell.selectionStyle = .none
+                cell.configure(title: self.viewModel.infoTitle[index], content: data)
+                
+            }.disposed(by: disposeBag)
+    }
+    
+    override func configure() {
+        
+        layoutView.tableView.register(InfoPageTableViewCell.self, forCellReuseIdentifier: InfoPageTableViewCell.identifier)
     }
 }

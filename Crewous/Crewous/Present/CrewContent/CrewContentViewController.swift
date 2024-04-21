@@ -43,7 +43,7 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
         
         // Collection View
         viewModel.category
-            .bind(to: layoutView.contentCollectionView.rx.items(cellIdentifier: "cell",
+            .bind(to: layoutView.contentCollectionView.rx.items(cellIdentifier: CrewContentCollectionViewCell.identifier,
                                                                 cellType: CrewContentCollectionViewCell.self)) { [weak self] index, data, cell in
                 
                 guard let self else { return }
@@ -81,7 +81,7 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     override func configureCollectionView() {
         
         layoutView.contentCollectionView.isScrollEnabled = false
-        layoutView.contentCollectionView.register(CrewContentCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        layoutView.contentCollectionView.register(CrewContentCollectionViewCell.self, forCellWithReuseIdentifier: CrewContentCollectionViewCell.identifier)
     }
 }
 
