@@ -6,24 +6,35 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CrewDetailViewController: BaseViewController<CrewDetailView> {
+    
+    let viewModel = CrewDetailViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        embedded()
     }
     
-    func embedded() {
+    override func bind() {
         
-        let crewContentVC = CrewContentViewController()
-        self.addChild(crewContentVC)
-        layoutView.containerView.addSubview(crewContentVC.layoutView)
-        
-        crewContentVC.layoutView.frame = layoutView.containerView.bounds
-        crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
-        crewContentVC.didMove(toParent: self)
+        // Crew Content VC Embedded + PostData전달
+        viewModel.data.bind(with: self) { owner, data in
+            
+            owner.layoutView.configure(data)
+            
+            let crewContentVC = CrewContentViewController()
+            
+            self.addChild(crewContentVC)
+            owner.layoutView.containerView.addSubview(crewContentVC.layoutView)
+            
+            crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
+            crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            crewContentVC.viewModel.data.accept(data)
+            
+            crewContentVC.didMove(toParent: self)
+            
+        }.disposed(by: disposeBag)
     }
 }

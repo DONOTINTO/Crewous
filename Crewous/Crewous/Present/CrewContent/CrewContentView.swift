@@ -25,15 +25,15 @@ class CrewContentView: BaseView {
     override func configureLayout() {
         
         contentCollectionView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide)
+            $0.top.equalTo(self)
             $0.horizontalEdges.equalTo(self)
             $0.height.equalTo(30)
         }
         
         containerScrollView.snp.makeConstraints {
-            $0.top.equalTo(contentCollectionView.snp.bottom)
+            $0.top.lessThanOrEqualTo(contentCollectionView.snp.bottom)
             $0.horizontalEdges.equalTo(self)
-            $0.bottom.equalTo(self)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
         containerView.snp.makeConstraints {

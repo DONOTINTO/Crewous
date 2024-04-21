@@ -19,6 +19,6 @@ class InfoPageView: BaseView {
     }
     
     override func configureView() {
-        backgroundColor = .brown
+        backgroundColor = .systemMint
     }
 }

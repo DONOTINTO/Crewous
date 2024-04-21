@@ -25,11 +25,13 @@ class CrewDetailView: BaseView {
 
     override func configureHierarchy() {
         
-        [imageView, profileImageView, crewLabel, leaderLabel, containerView].forEach { addSubview($0) }
+        [imageView, profileImageView, crewLabel, leaderLabel].forEach { addSubview($0) }
         
         addSubview(introduceScrollView)
         introduceScrollView.addSubview(contentView)
         contentView.addSubview(introduceLabel)
+        
+        addSubview(containerView)
     }
     
     override func configureLayout() {

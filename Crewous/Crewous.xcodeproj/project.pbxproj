@@ -16,6 +16,12 @@
 		AC3265022BD38F4600531BC1 /* InfoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265012BD38F4600531BC1 /* InfoPageView.swift */; };
 		AC3265042BD38F7000531BC1 /* MemberPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265032BD38F7000531BC1 /* MemberPageView.swift */; };
 		AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265052BD38F7F00531BC1 /* MemberPageViewController.swift */; };
+		AC3265082BD3A2CA00531BC1 /* CrewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265072BD3A2CA00531BC1 /* CrewDetailViewModel.swift */; };
+		AC32650A2BD4F82000531BC1 /* CrewContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265092BD4F82000531BC1 /* CrewContentViewModel.swift */; };
+		AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650B2BD4FB5700531BC1 /* ContentPageViewModel.swift */; };
+		AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */; };
+		AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */; };
+		AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265112BD5050D00531BC1 /* NSObject++.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -96,6 +102,12 @@
 		AC3265012BD38F4600531BC1 /* InfoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageView.swift; sourceTree = "<group>"; };
 		AC3265032BD38F7000531BC1 /* MemberPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageView.swift; sourceTree = "<group>"; };
 		AC3265052BD38F7F00531BC1 /* MemberPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageViewController.swift; sourceTree = "<group>"; };
+		AC3265072BD3A2CA00531BC1 /* CrewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewDetailViewModel.swift; sourceTree = "<group>"; };
+		AC3265092BD4F82000531BC1 /* CrewContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewContentViewModel.swift; sourceTree = "<group>"; };
+		AC32650B2BD4FB5700531BC1 /* ContentPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPageViewModel.swift; sourceTree = "<group>"; };
+		AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageViewModel.swift; sourceTree = "<group>"; };
+		AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageViewModel.swift; sourceTree = "<group>"; };
+		AC3265112BD5050D00531BC1 /* NSObject++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject++.swift"; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,12 +194,11 @@
 		AC3264F12BD37FA300531BC1 /* CrewContent */ = {
 			isa = PBXGroup;
 			children = (
+				AC3265092BD4F82000531BC1 /* CrewContentViewModel.swift */,
 				AC3264F42BD3800800531BC1 /* CrewContentViewController.swift */,
 				AC3264F22BD37FF300531BC1 /* CrewContentView.swift */,
 				AC3264FB2BD38B1800531BC1 /* CrewContentCollectionViewCell.swift */,
 				AC3264F82BD3896900531BC1 /* ContentPage */,
-				AC3264FD2BD38EFA00531BC1 /* InfoPage */,
-				AC3264FE2BD38F1300531BC1 /* MemberPage */,
 			);
 			path = CrewContent;
 			sourceTree = "<group>";
@@ -195,7 +206,10 @@
 		AC3264F82BD3896900531BC1 /* ContentPage */ = {
 			isa = PBXGroup;
 			children = (
+				AC32650B2BD4FB5700531BC1 /* ContentPageViewModel.swift */,
 				AC3264F92BD389CD00531BC1 /* ContentPageViewController.swift */,
+				AC3264FD2BD38EFA00531BC1 /* InfoPage */,
+				AC3264FE2BD38F1300531BC1 /* MemberPage */,
 			);
 			path = ContentPage;
 			sourceTree = "<group>";
@@ -203,6 +217,7 @@
 		AC3264FD2BD38EFA00531BC1 /* InfoPage */ = {
 			isa = PBXGroup;
 			children = (
+				AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */,
 				AC3264FF2BD38F3A00531BC1 /* InfoPageViewController.swift */,
 				AC3265012BD38F4600531BC1 /* InfoPageView.swift */,
 			);
@@ -212,6 +227,7 @@
 		AC3264FE2BD38F1300531BC1 /* MemberPage */ = {
 			isa = PBXGroup;
 			children = (
+				AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */,
 				AC3265052BD38F7F00531BC1 /* MemberPageViewController.swift */,
 				AC3265032BD38F7000531BC1 /* MemberPageView.swift */,
 			);
@@ -323,6 +339,7 @@
 				ACDF67BA2BCB2E100046766B /* RxSwift++.swift */,
 				ACDF68092BCE96440046766B /* Image++.swift */,
 				ACF18F622BD14860002C0548 /* ImageView++.swift */,
+				AC3265112BD5050D00531BC1 /* NSObject++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -443,6 +460,7 @@
 		ACDF67EA2BCD6A5B0046766B /* CrewDetail */ = {
 			isa = PBXGroup;
 			children = (
+				AC3265072BD3A2CA00531BC1 /* CrewDetailViewModel.swift */,
 				ACDF67ED2BCD6A860046766B /* CrewDetailViewController.swift */,
 				ACDF67EB2BCD6A750046766B /* CrewDetailView.swift */,
 			);
@@ -552,12 +570,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC3265082BD3A2CA00531BC1 /* CrewDetailViewModel.swift in Sources */,
 				ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */,
 				AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */,
 				AC3264F72BD3813000531BC1 /* CrewContentCompositional.swift in Sources */,
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
 				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
 				AC3264FA2BD389CD00531BC1 /* ContentPageViewController.swift in Sources */,
+				AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */,
 				ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */,
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
@@ -568,8 +588,10 @@
 				AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */,
 				ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
+				AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */,
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				AC3264F52BD3800800531BC1 /* CrewContentViewController.swift in Sources */,
+				AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
 				ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */,
@@ -578,6 +600,7 @@
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
 				AC3264F32BD37FF300531BC1 /* CrewContentView.swift in Sources */,
 				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,
+				AC32650A2BD4F82000531BC1 /* CrewContentViewModel.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
@@ -602,6 +625,7 @@
 				ACDF67EC2BCD6A750046766B /* CrewDetailView.swift in Sources */,
 				ACDF67E52BCD165F0046766B /* WithoutCrewViewController.swift in Sources */,
 				ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */,
+				AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,

@@ -6,25 +6,34 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CrewContentViewController: BaseViewController<CrewContentView> {
+    
+    let viewModel = CrewContentViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        embeddedPageVC()
     }
-
-    func embeddedPageVC() {
+    
+    override func bind() {
         
-        let pageVC = ContentPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-        
-        self.addChild(pageVC)
-        layoutView.containerView.addSubview(pageVC.view)
-        
-        pageVC.view.frame = layoutView.containerView.bounds
-        pageVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        pageVC.didMove(toParent: self)
+        viewModel.data
+            .bind(with: self) { owner, data in
+                
+                let pageVC = ContentPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+                
+                self.addChild(pageVC)
+                owner.layoutView.containerView.addSubview(pageVC.view)
+                
+                pageVC.view.frame = owner.layoutView.containerView.bounds
+                pageVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                pageVC.viewModel.data.accept(data)
+                
+                pageVC.didMove(toParent: self)
+            }.disposed(by: disposeBag)
     }
     
     override func configureCollectionView() {
