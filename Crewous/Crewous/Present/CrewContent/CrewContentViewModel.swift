@@ -11,17 +11,14 @@ import RxCocoa
 
 class CrewContentViewModel {
  
-    let category: [String] = ["INFO", "MEMBERS"]
-    
     var data = PublishRelay<PostData>()
-
+    let category = BehaviorRelay(value: ["INFO", "MEMBERS"])
     var selected = 0
+    
     let newSelected = BehaviorRelay(value: 0)
     let isNext = PublishRelay<Bool>()
     
-    let disposeBag = DisposeBag()
-    
-    
+    var disposeBag = DisposeBag()
     
     init() {
         

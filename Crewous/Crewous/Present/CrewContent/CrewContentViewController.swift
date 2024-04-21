@@ -12,7 +12,7 @@ import RxCocoa
 class CrewContentViewController: BaseViewController<CrewContentView> {
     
     let viewModel = CrewContentViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +20,7 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     
     override func bind() {
         
+        // Page VC Embedded
         viewModel.data
             .bind(with: self) { owner, data in
                 
@@ -30,12 +31,36 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
                 
                 pageVC.view.frame = owner.layoutView.containerView.bounds
                 pageVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+                // Post Data 전달
                 pageVC.viewModel.data.accept(data)
+                
+                // 페이지 Delegate 설정
                 pageVC.pageDelegate = self
                 
                 pageVC.didMove(toParent: self)
             }.disposed(by: disposeBag)
         
+        // Collection View
+        viewModel.category
+            .bind(to: layoutView.contentCollectionView.rx.items(cellIdentifier: "cell",
+                                                                cellType: CrewContentCollectionViewCell.self)) { [weak self] index, data, cell in
+                
+                guard let self else { return }
+                cell.titleLabel.text = data
+                
+                cell.configure(isSelected: index == self.viewModel.selected)
+                
+            }.disposed(by: disposeBag)
+        
+        // Cell 클릭
+        layoutView.contentCollectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                
+                owner.viewModel.newSelected.accept(indexPath.row)
+            }.disposed(by: disposeBag)
+        
+        // Selected 변경 시
         viewModel.isNext
             .bind(with: self) { owner, isNext in
                 
@@ -56,8 +81,6 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     override func configureCollectionView() {
         
         layoutView.contentCollectionView.isScrollEnabled = false
-        layoutView.contentCollectionView.delegate = self
-        layoutView.contentCollectionView.dataSource = self
         layoutView.contentCollectionView.register(CrewContentCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
 }
@@ -72,30 +95,5 @@ extension CrewContentViewController: PageDelegate {
     func previousComplete(_ index: Int) {
         
         viewModel.newSelected.accept(index)
-    }
-}
-
-extension CrewContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return viewModel.category.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CrewContentCollectionViewCell else { return UICollectionViewCell() }
-        
-        let data = viewModel.category[indexPath.row]
-        cell.titleLabel.text = data
-        
-        cell.configure(isSelected: indexPath.row == viewModel.selected)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        viewModel.newSelected.accept(indexPath.row)
     }
 }

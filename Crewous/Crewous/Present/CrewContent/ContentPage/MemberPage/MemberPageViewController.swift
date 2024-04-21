@@ -22,7 +22,7 @@ class MemberPageViewController: BaseViewController<MemberPageView> {
         
         viewModel.data
             .bind(with: self) { owner, data in
-                print("member")
+                // print("member")
             }.disposed(by: disposeBag)
     }
 }

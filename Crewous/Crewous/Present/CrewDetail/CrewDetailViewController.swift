@@ -19,7 +19,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
     
     override func bind() {
         
-        // Crew Content VC Embedded + PostData전달
+        // Crew Content VC Embedded
         viewModel.data.bind(with: self) { owner, data in
             
             owner.layoutView.configure(data)
@@ -31,6 +31,8 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
             
             crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
             crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            
+            // PostData전달
             crewContentVC.viewModel.data.accept(data)
             
             crewContentVC.didMove(toParent: self)

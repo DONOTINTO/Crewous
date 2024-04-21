@@ -23,7 +23,7 @@ class InfoPageViewController: BaseViewController<InfoPageView> {
         
         viewModel.data
             .bind(with: self) { owner, data in
-                print("info")
+                // print("info")
             }.disposed(by: disposeBag)
     }
 }

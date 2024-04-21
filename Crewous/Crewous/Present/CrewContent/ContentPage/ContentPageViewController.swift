@@ -46,10 +46,12 @@ class ContentPageViewController: UIPageViewController {
                 
                 if let infoVC = vc as? InfoPageViewController {
                     infoVC.viewModel.data.accept(postData)
+                    owner.pageDelegate?.previousComplete(0)
                 }
                 
                 if let memberVC = vc as? MemberPageViewController {
                     memberVC.viewModel.data.accept(postData)
+                    owner.pageDelegate?.nextComplete(1)
                 }
                 
             }.disposed(by: disposeBag)
@@ -67,7 +69,6 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
         guard previousIndex >= 0 else { return nil }
         
         guard pages.count > previousIndex else { return nil }
-        pageDelegate?.previousComplete(previousIndex)
         
         return pages[previousIndex]
     }
@@ -81,7 +82,6 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
         guard nextIndex < pages.count else { return nil }
         
         guard pages.count > nextIndex else { return nil }
-        pageDelegate?.nextComplete(nextIndex)
         
         return pages[nextIndex]
     }
