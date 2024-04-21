@@ -16,6 +16,8 @@ class ContentPageViewController: UIPageViewController {
     
     let disposeBag = DisposeBag()
     
+    var pageDelegate: PageDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +67,7 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
         guard previousIndex >= 0 else { return nil }
         
         guard pages.count > previousIndex else { return nil }
+        pageDelegate?.previousComplete(previousIndex)
         
         return pages[previousIndex]
     }
@@ -78,6 +81,7 @@ extension ContentPageViewController: UIPageViewControllerDataSource, UIPageViewC
         guard nextIndex < pages.count else { return nil }
         
         guard pages.count > nextIndex else { return nil }
+        pageDelegate?.nextComplete(nextIndex)
         
         return pages[nextIndex]
     }

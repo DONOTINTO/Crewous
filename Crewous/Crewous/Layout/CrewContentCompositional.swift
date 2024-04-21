@@ -23,7 +23,7 @@ enum CrewContentCompositional {
     
     private static func createContent() -> NSCollectionLayoutSection {
         
-        let groupInterSpacing: CGFloat = 10
+        let groupInterSpacing: CGFloat = 30
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100),
                                               heightDimension: .absolute(30))
@@ -37,7 +37,7 @@ enum CrewContentCompositional {
         section.interGroupSpacing = groupInterSpacing
         section.orthogonalScrollingBehavior = .continuous
         
-        // section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         return section
     }

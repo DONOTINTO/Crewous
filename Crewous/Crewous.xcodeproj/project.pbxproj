@@ -22,6 +22,7 @@
 		AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */; };
 		AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */; };
 		AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265112BD5050D00531BC1 /* NSObject++.swift */; };
+		AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265142BD5320D00531BC1 /* PageDelegate.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -108,6 +109,7 @@
 		AC32650D2BD5002100531BC1 /* InfoPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageViewModel.swift; sourceTree = "<group>"; };
 		AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageViewModel.swift; sourceTree = "<group>"; };
 		AC3265112BD5050D00531BC1 /* NSObject++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject++.swift"; sourceTree = "<group>"; };
+		AC3265142BD5320D00531BC1 /* PageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 			path = MemberPage;
 			sourceTree = "<group>";
 		};
+		AC3265132BD531FF00531BC1 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AC3265142BD5320D00531BC1 /* PageDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		AC9FD0912BC79AFB00395FC2 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				AC3265132BD531FF00531BC1 /* Delegate */,
 				ACDF67B12BCAB4D30046766B /* Layout */,
 				AC9FD0FE2BC8221900395FC2 /* Storage */,
 				AC9FD0EB2BC7F8B700395FC2 /* Network */,
@@ -622,6 +633,7 @@
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
 				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,
+				AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */,
 				ACDF67EC2BCD6A750046766B /* CrewDetailView.swift in Sources */,
 				ACDF67E52BCD165F0046766B /* WithoutCrewViewController.swift in Sources */,
 				ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */,
