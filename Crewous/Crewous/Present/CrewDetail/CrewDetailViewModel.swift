@@ -60,6 +60,13 @@ class CrewDetailViewModel: ViewModelType {
                     } onCompleted: { _ in
                         
                         dispatchGroup.notify(queue: .main) {
+                            
+                            usersData.sort {
+                                let firstNick = ($0.nick.split(separator: "/"))[3]
+                                let secondNick = ($1.nick.split(separator: "/"))[3]
+                                
+                                return firstNick.count < secondNick.count
+                            }
                             userDataSuccess.accept(usersData)
                         }
                     }.disposed(by: owner.disposeBag)

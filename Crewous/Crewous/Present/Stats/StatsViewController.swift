@@ -17,24 +17,24 @@ class StatsViewController: BaseViewController<StatsView> {
         super.viewDidLoad()
 
         #if DEBUG
-        // 
-        // let a = PublishRelay<Void>()
-        // a.flatMap {
-        //     return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
-        // }.subscribe(with: self) { owner, result in
-        //     
-        //     switch result {
-        //         
-        //     case .success(let success):
-        //         print(success)
-        //     case .failure(let failure):
-        //         print(failure)
-        //     }
-        // }.disposed(by: disposeBag)
-        // 
-        // print("##################################")
-        // 
-        // a.accept(())
+        
+        let a = PublishRelay<Void>()
+        a.flatMap {
+            return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
+        }.subscribe(with: self) { owner, result in
+            
+            switch result {
+                
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }.disposed(by: disposeBag)
+        
+        print("##################################")
+        
+        a.accept(())
         
         #endif
     }

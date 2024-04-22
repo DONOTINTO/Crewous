@@ -25,7 +25,8 @@ class InfoPageView: BaseView {
     }
     
     override func configureView() {
-        
+    
+        tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
     }

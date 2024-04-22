@@ -32,7 +32,7 @@ class MemberPageTableViewCell: UITableViewCell {
         }
         
         profileImageView.snp.makeConstraints {
-            $0.verticalEdges.leading.equalTo(contentView).inset(5)
+            $0.verticalEdges.leading.equalTo(contentView).inset(7)
             $0.height.width.equalTo(30)
         }
         
@@ -53,14 +53,14 @@ class MemberPageTableViewCell: UITableViewCell {
         
         let image = UIImage.profile
         profileImageView.image = image
-        nickLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .regular)
-        positionLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .regular)
+        nickLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .medium)
+        positionLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .medium)
     }
     
     func configure(nick: String, position: String) {
         
-        nickLabel.text = nick
-        positionLabel.text = position
+        nickLabel.text = nick.uppercased()
+        positionLabel.text = position.uppercased()
     }
 
 }
