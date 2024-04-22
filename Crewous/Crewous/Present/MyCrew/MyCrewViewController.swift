@@ -35,12 +35,10 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
             .bind(with: self) { owner, fetchCrewData in
                 
                 guard let crewData = fetchCrewData.data.first else {
-                    UDManager.isJoinedCrew = false
                     owner.configureEmbedded(nil)
                     return
                 }
                 
-                UDManager.isJoinedCrew = true
                 owner.configureEmbedded(crewData)
                 
             }.disposed(by: disposeBag)

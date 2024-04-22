@@ -261,7 +261,6 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         let naviVC = UINavigationController(rootViewController: rootVC)
         
         UDManager.isLogin = false
-        UDManager.isJoinedCrew = false
         UDManager.accessToken = ""
         UDManager.refreshToken = ""
         

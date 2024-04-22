@@ -20,14 +20,14 @@ class StatsViewModel: ViewModelType {
     
     struct Output {
         
-        let fetchSelfSuccess: PublishRelay<FetchSelfDataModel>
+        let fetchSelfSuccess: PublishRelay<FetchUserDataModel>
         let fetchCrewSuccess: PublishRelay<FetchMyCrewDataModel>
         let fetchFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let fetchSelfSuccess = PublishRelay<FetchSelfDataModel>()
+        let fetchSelfSuccess = PublishRelay<FetchUserDataModel>()
         let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
         let fetchFailure = PublishRelay<APIError>()
         let fetchMyCrew = PublishRelay<Void>()
@@ -36,7 +36,7 @@ class StatsViewModel: ViewModelType {
             .flatMap { _ in
                 
                 return APIManager.callAPI(router: Router.fetchSelf,
-                                          dataModel: FetchSelfDataModel.self)
+                                          dataModel: FetchUserDataModel.self)
             }.subscribe(with: self) { owner, fetchSelfData in
                 
                 switch fetchSelfData {

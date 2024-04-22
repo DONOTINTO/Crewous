@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct FetchSelfDataModel: Decodable {
+struct FetchUserDataModel: Decodable {
     
     let userID: String
-    let email: String
+    let email: String?
     let nick: String
     let followers: [Follow]
     let following: [Follow]

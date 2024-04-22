@@ -6,20 +6,26 @@
 //
 
 import UIKit
+import SnapKit
 
 class MemberPageView: BaseView {
-
+    
+    let tableView = UITableView()
     
     override func configureHierarchy() {
         
+        addSubview(tableView)
     }
 
     override func configureLayout() {
         
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self)
+        }
     }
     
     override func configureView() {
-        backgroundColor = .systemCyan
+        tableView.backgroundColor = .clear
     }
 
 }

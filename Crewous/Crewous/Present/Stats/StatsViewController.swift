@@ -16,6 +16,27 @@ class StatsViewController: BaseViewController<StatsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        #if DEBUG
+        // 
+        // let a = PublishRelay<Void>()
+        // a.flatMap {
+        //     return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
+        // }.subscribe(with: self) { owner, result in
+        //     
+        //     switch result {
+        //         
+        //     case .success(let success):
+        //         print(success)
+        //     case .failure(let failure):
+        //         print(failure)
+        //     }
+        // }.disposed(by: disposeBag)
+        // 
+        // print("##################################")
+        // 
+        // a.accept(())
+        
+        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +112,12 @@ class StatsViewController: BaseViewController<StatsView> {
                 case .failure(_):
                     print("fail")
                 }
+            }.disposed(by: disposeBag)
+        
+        // 로그아웃(테스트용)
+        layoutView.logoutButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.changeRootViewToSignIn()
             }.disposed(by: disposeBag)
     }
 }

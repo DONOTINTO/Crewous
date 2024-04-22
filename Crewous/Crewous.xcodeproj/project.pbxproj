@@ -24,6 +24,7 @@
 		AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265112BD5050D00531BC1 /* NSObject++.swift */; };
 		AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265142BD5320D00531BC1 /* PageDelegate.swift */; };
 		AC3265172BD54B5800531BC1 /* InfoPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265162BD54B5800531BC1 /* InfoPageTableViewCell.swift */; };
+		AC3265192BD550F700531BC1 /* MemberPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265182BD550F700531BC1 /* MemberPageTableViewCell.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -112,6 +113,7 @@
 		AC3265112BD5050D00531BC1 /* NSObject++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject++.swift"; sourceTree = "<group>"; };
 		AC3265142BD5320D00531BC1 /* PageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDelegate.swift; sourceTree = "<group>"; };
 		AC3265162BD54B5800531BC1 /* InfoPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPageTableViewCell.swift; sourceTree = "<group>"; };
+		AC3265182BD550F700531BC1 /* MemberPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageTableViewCell.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				AC32650F2BD5004000531BC1 /* MemberPageViewModel.swift */,
 				AC3265052BD38F7F00531BC1 /* MemberPageViewController.swift */,
 				AC3265032BD38F7000531BC1 /* MemberPageView.swift */,
+				AC3265182BD550F700531BC1 /* MemberPageTableViewCell.swift */,
 			);
 			path = MemberPage;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				ACDF67E32BCD14A00046766B /* MyCrewView.swift in Sources */,
 				ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */,
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
+				AC3265192BD550F700531BC1 /* MemberPageTableViewCell.swift in Sources */,
 				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,
 				AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */,

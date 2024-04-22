@@ -26,6 +26,7 @@ class StatsView: BaseView {
     
     
     let withDrawButton =  UIButton()
+    let logoutButton = UIButton()
     
     let indicator = UIActivityIndicatorView(style: .medium)
     
@@ -37,7 +38,9 @@ class StatsView: BaseView {
         
         [heightLiteralLabel, heightInfoLabel, crewLiteralLabel, crewInfoLabel, weightLiteralLabel, weightInfoLabel, positionLiteralLabel, positionInfoLabel].forEach { addSubview($0) }
         
-        addSubview(withDrawButton)
+#if DEBUG
+        debug()
+#endif
     }
     
     override func configureLayout() {
@@ -123,13 +126,6 @@ class StatsView: BaseView {
             $0.leading.equalTo(self.snp.centerX)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
         }
-        
-        // TEST
-        withDrawButton.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(30)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
-            $0.height.equalTo(30)
-        }
     }
     
     override func configureView() {
@@ -155,9 +151,28 @@ class StatsView: BaseView {
         positionLiteralLabel.custom(title: "POSITION", color: .customGray, fontScale: .bold, fontSize: .small)
         positionInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
         
-        // TEST
+        indicator.hidesWhenStopped = true
+    }
+    
+    func debug() {
+        
+        addSubview(withDrawButton)
+        addSubview(logoutButton)
+        
+        withDrawButton.snp.makeConstraints {
+            $0.bottom.equalTo(logoutButton.snp.top).offset(-10)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.height.equalTo(30)
+        }
+        
+        logoutButton.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.height.equalTo(30)
+        }
+        
         withDrawButton.custom(title: "탈퇴(테스트용)", titleColor: .black, bgColor: .customGreen)
         
-        indicator.hidesWhenStopped = true
+        logoutButton.custom(title: "로그아웃(테스트용)", titleColor: .black, bgColor: .customGreen)
     }
 }
