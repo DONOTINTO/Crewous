@@ -35,6 +35,7 @@ class StatsViewModel: ViewModelType {
         input.viewWillAppearObservable
             .flatMap { _ in
                 
+                print("#### Fetch Self API Call ####")
                 return APIManager.callAPI(router: Router.fetchSelf,
                                           dataModel: FetchUserDataModel.self)
             }.subscribe(with: self) { owner, fetchSelfData in
@@ -54,6 +55,7 @@ class StatsViewModel: ViewModelType {
         fetchMyCrew
             .flatMap {
                 
+                print("#### Fetch Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
             }.subscribe(with: self) { owner, fetchMyCrewData in
                 
@@ -63,6 +65,7 @@ class StatsViewModel: ViewModelType {
                     print("#### Fetch Crew API Success ####")
                     fetchCrewSuccess.accept(data)
                 case .failure(let apiError):
+                    print("#### Fetch Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)

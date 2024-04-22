@@ -49,6 +49,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
                 
                 owner.errorHandler(apiError, calltype: .fetchSelf)
             }.disposed(by: disposeBag)
+        
     }
     
     func configureEmbedded(_ crewData: PostData?) {
@@ -61,7 +62,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
             
             vc.layoutView.frame = layoutView.containerView.bounds
             vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            vc.viewModel.data.accept(crewData)
+            vc.viewModel.postIdentifier.accept(crewData.postID)
             
             vc.didMove(toParent: self)
         } else {

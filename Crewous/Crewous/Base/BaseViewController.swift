@@ -211,6 +211,23 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
+            
+        case .fetchPost:
+            
+            switch apiError {
+            
+            case .code400, .code401, .code403:
+                
+                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToSignIn()
+                }
+                
+            default:
+                return
+            }
         }
     }
     

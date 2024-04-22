@@ -12,7 +12,6 @@ import RxCocoa
 class MyCrewViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
-    var crewUsersData: [FetchUserDataModel] = []
     
     struct Input {
         
@@ -27,52 +26,28 @@ class MyCrewViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let crewUsers = PublishRelay<[String]>()
-        
         let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
-        let fetchUserDataSuccess = PublishRelay<FetchUserDataModel>()
-        
         let fetchFailure = PublishRelay<APIError>()
-        let fetchUserDataFailure = PublishRelay<APIError>()
         
+        // view will appear 시 Fetch My Crew 호출
         input.viewWillAppearObservable
             .flatMap {
                 
+                print("#### Fetch Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
             }.subscribe(with: self) { owner, fetchMyCrewData in
                 
                 switch fetchMyCrewData {
                 case .success(let data):
                     
+                    print("#### Fetch Crew API Success ####")
                     fetchCrewSuccess.accept(data)
-                    crewUsers.accept(data.data[0].likes2)
                 case .failure(let apiError):
                     
+                    print("#### Fetch Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
-        
-        let crewUsersObservable = crewUsers.flatMap {
-            Observable.from($0)
-        }
-        
-        crewUsersObservable.flatMap {
-            
-            print("CrewUserObservable ---------Start")
-            return APIManager.callAPI(router: Router.fetchUser(userID: $0), dataModel: FetchUserDataModel.self)
-        }.subscribe(with: self) { owner, fetchUserData in
-            
-            switch fetchUserData {
-            case .success(let data):
-                print("CrewUserObservable ---------success")
-                dump(data)
-                owner.crewUsersData.append(data)
-            case .failure(let apiError):
-                print("CrewUserObservable ---------failure")
-                fetchUserDataFailure.accept(apiError)
-            }
-        }.disposed(by: disposeBag)
-        
         
         return Output(fetchCrewSuccess: fetchCrewSuccess, fetchFailure: fetchFailure)
     }

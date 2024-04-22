@@ -15,6 +15,7 @@ enum Router: RouterType {
     case fetchSelf
     case fetchMyCrew    // 좋아요2 한 포스터 정보
     case fetchUser(userID: String)
+    case fetchPost(postID: String)
     
     case uploadImage
     case makeCrew(makeCrewQuery: MakeCrewQuery)
@@ -37,7 +38,7 @@ extension Router {
         switch self {
         case .signIn, .signUp, .uploadImage, .makeCrew, .like2:
             return .post
-        case .refresh, .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser:
+        case .refresh, .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser, .fetchPost:
             return .get
         }
     }
@@ -65,6 +66,8 @@ extension Router {
             return Path.withDraw.rawValue
         case .fetchUser(let userID):
             return "/v1/users/\(userID)/profile"
+        case .fetchPost(let postID):
+            return "/v1/posts/\(postID)"
         }
     }
     
@@ -76,7 +79,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .fetchSelf, .fetchMyCrew, .like2, .withDraw, .fetchUser:
+        case .fetchSelf, .fetchMyCrew, .like2, .withDraw, .fetchUser, .fetchPost:
             return [
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken

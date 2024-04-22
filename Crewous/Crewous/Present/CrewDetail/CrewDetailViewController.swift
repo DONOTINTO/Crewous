@@ -19,24 +19,33 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
     
     override func bind() {
         
+        let input = CrewDetailViewModel.Input(postIdentifierObservable: viewModel.postIdentifier)
+        let output = viewModel.transform(input: input)
+        
         // Crew Content VC Embedded
-        viewModel.data.bind(with: self) { owner, data in
-            
-            owner.layoutView.configure(data)
-            
-            let crewContentVC = CrewContentViewController()
-            
-            self.addChild(crewContentVC)
-            owner.layoutView.containerView.addSubview(crewContentVC.layoutView)
-            
-            crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
-            crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            
-            // PostData전달
-            crewContentVC.viewModel.data.accept(data)
-            
-            crewContentVC.didMove(toParent: self)
-            
-        }.disposed(by: disposeBag)
+        output.postDataSuccess
+            .bind(with: self) { owner, data in
+                
+                owner.layoutView.configure(data)
+                
+                let crewContentVC = CrewContentViewController()
+                
+                self.addChild(crewContentVC)
+                owner.layoutView.containerView.addSubview(crewContentVC.layoutView)
+                
+                crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
+                crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+                
+                // PostData전달
+                crewContentVC.viewModel.data.accept(data)
+                
+                crewContentVC.didMove(toParent: self)
+                
+            }.disposed(by: disposeBag)
+        
+        output.postDataFailure
+            .bind(with: self) { owner, apiError in
+                self.errorHandler(apiError, calltype: .fetchPost)
+            }.disposed(by: disposeBag)
     }
 }
