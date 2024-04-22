@@ -20,9 +20,11 @@ class MemberPageViewController: BaseViewController<MemberPageView> {
 
     override func bind() {
         
-        viewModel.data
+        viewModel.userData
             .bind(with: self) { owner, data in
-                // data.likes2
+                
+                dump(data)
+                
             }.disposed(by: disposeBag)
     }
 }

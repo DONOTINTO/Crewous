@@ -23,10 +23,12 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
         let output = viewModel.transform(input: input)
         
         // Crew Content VC Embedded
-        output.postDataSuccess
+        Observable.zip(output.postDataSuccess, output.userDataSuccess)
             .bind(with: self) { owner, data in
                 
-                owner.layoutView.configure(data)
+                let (postData, userData) = data
+                
+                owner.layoutView.configure(postData)
                 
                 let crewContentVC = CrewContentViewController()
                 
@@ -36,8 +38,9 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
                 crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
                 
-                // PostData전달
-                crewContentVC.viewModel.data.accept(data)
+                // PostData / userData 전달
+                crewContentVC.viewModel.postData.accept(postData)
+                crewContentVC.viewModel.userData.accept(userData)
                 
                 crewContentVC.didMove(toParent: self)
                 

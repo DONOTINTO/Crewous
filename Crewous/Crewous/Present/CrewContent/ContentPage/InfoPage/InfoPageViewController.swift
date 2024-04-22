@@ -21,7 +21,7 @@ class InfoPageViewController: BaseViewController<InfoPageView> {
     
     override func bind() {
         
-        viewModel.data
+        viewModel.postData
             .bind(with: self) { owner, data in
                 
                 let info = [data.timeInfo, data.placeInfo, data.membershipFee, data.uniformColor]

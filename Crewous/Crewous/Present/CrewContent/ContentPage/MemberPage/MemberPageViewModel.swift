@@ -11,5 +11,5 @@ import RxCocoa
 
 class MemberPageViewModel {
     
-    var data = PublishRelay<PostData>()
+    var userData = PublishRelay<[FetchUserDataModel]>()
 }

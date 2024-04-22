@@ -11,7 +11,9 @@ import RxCocoa
 
 class CrewContentViewModel {
  
-    var data = PublishRelay<PostData>()
+    var postData = PublishRelay<PostData>()
+    var userData = PublishRelay<[FetchUserDataModel]>()
+    
     let category = BehaviorRelay(value: ["INFO", "MEMBERS"])
     var selected = 0
     

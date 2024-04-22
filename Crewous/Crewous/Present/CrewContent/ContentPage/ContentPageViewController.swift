@@ -24,33 +24,33 @@ class ContentPageViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         
-        viewModel.data
+        viewModel.postData
             .bind(with: self) { owner, data in
                 
                 owner.setViewControllers([owner.pages[0]], direction: .forward, animated: true)
                 
                 guard let infoVC = owner.pages[0] as? InfoPageViewController else { return }
                 
-                infoVC.viewModel.data.accept(data)
+                infoVC.viewModel.postData.accept(data)
                 
             }.disposed(by: disposeBag)
         
-        let observable = Observable.combineLatest(viewModel.data, viewModel.afterPagingEvent)
+        let observable = Observable.combineLatest(viewModel.postData, viewModel.userData, viewModel.afterPagingEvent)
         
         observable
             .bind(with: self) { owner, data in
                 
-                let (postData, identifier) = data
+                let (postData, userData, identifier) = data
                 
                 guard let vc = owner.pages.filter({ $0.id == identifier }).first else { return }
                 
                 if let infoVC = vc as? InfoPageViewController {
-                    infoVC.viewModel.data.accept(postData)
+                    infoVC.viewModel.postData.accept(postData)
                     owner.pageDelegate?.previousComplete(0)
                 }
                 
                 if let memberVC = vc as? MemberPageViewController {
-                    memberVC.viewModel.data.accept(postData)
+                    memberVC.viewModel.userData.accept(userData)
                     owner.pageDelegate?.nextComplete(1)
                 }
                 

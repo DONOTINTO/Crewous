@@ -14,5 +14,5 @@ class InfoPageViewModel {
     var infoTitle = ["Date", "Place", "Uniform Color", "Membership Fee"]
     
     var info = PublishRelay<[String]>()
-    var data = PublishRelay<PostData>()
+    var postData = PublishRelay<PostData>()
 }

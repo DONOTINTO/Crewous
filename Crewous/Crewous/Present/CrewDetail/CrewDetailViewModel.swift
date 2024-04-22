@@ -24,6 +24,9 @@ class CrewDetailViewModel: ViewModelType {
         
         let postDataSuccess: PublishRelay<PostData>
         let postDataFailure: PublishRelay<APIError>
+        
+        let userDataSuccess: PublishRelay<[FetchUserDataModel]>
+        let userDataFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -91,6 +94,9 @@ class CrewDetailViewModel: ViewModelType {
             
         }.disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess, postDataFailure: postDataFailure)
+        return Output(postDataSuccess: postDataSuccess,
+                      postDataFailure: postDataFailure,
+                      userDataSuccess: userDataSuccess,
+                      userDataFailure: userDataFailure)
     }
 }

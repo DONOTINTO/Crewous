@@ -11,6 +11,7 @@ import RxCocoa
 
 class ContentPageViewModel {
     
-    let data = PublishRelay<PostData>()
+    let postData = PublishRelay<PostData>()
+    let userData = PublishRelay<[FetchUserDataModel]>()
     let afterPagingEvent = PublishRelay<String>()
 }

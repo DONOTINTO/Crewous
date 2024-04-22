@@ -21,8 +21,10 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     override func bind() {
         
         // Page VC Embedded
-        viewModel.data
+        Observable.zip(viewModel.postData, viewModel.userData)
             .bind(with: self) { owner, data in
+                
+                let (postData, userData) = data
                 
                 let pageVC = ContentPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
                 
@@ -33,7 +35,8 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
                 pageVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 
                 // Post Data 전달
-                pageVC.viewModel.data.accept(data)
+                pageVC.viewModel.postData.accept(postData)
+                pageVC.viewModel.userData.accept(userData)
                 
                 // 페이지 Delegate 설정
                 pageVC.pageDelegate = self
