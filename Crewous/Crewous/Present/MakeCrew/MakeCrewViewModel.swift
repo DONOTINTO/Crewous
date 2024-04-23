@@ -82,7 +82,6 @@ class MakeCrewViewModel: ViewModelType {
         // 포스터(크루 생성) 업로드 API 호출
         createCrewObservable
             .flatMap { makeCrewQuery in
-                
                 print("#### MakeCrew API Call ####")
                 return APIManager.callAPI(router: Router.makeCrew(makeCrewQuery: makeCrewQuery), dataModel: PostData.self)
             }.subscribe(with: self) { owner, result in

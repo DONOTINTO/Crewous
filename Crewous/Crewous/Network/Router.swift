@@ -70,7 +70,7 @@ extension Router {
         case .fetchPost(let postID):
             return "/v1/posts/\(postID)"
         case .fetchCrew:
-            return Path.fetchCrew.rawValue
+            return Path.makeCrew.rawValue
         }
     }
     
