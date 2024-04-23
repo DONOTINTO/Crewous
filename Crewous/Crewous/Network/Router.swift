@@ -20,7 +20,7 @@ enum Router: RouterType {
     
     case uploadImage
     case makeCrew(makeCrewQuery: MakeCrewQuery)
-    case like2(postID: String) // '좋아요2' 적용/취소
+    case like2(postID: String, query: Like2Query) // '좋아요2' 적용/취소
     
     case withDraw
     
@@ -61,7 +61,7 @@ extension Router {
             return Path.uploadImage.rawValue
         case .makeCrew:
             return Path.makeCrew.rawValue
-        case .like2(let postID):
+        case .like2(let postID, _):
             return "/v1/posts/\(postID)/like-2"
         case .withDraw:
             return Path.withDraw.rawValue
@@ -82,7 +82,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .fetchSelf, .fetchMyCrew, .like2, .withDraw, .fetchUser, .fetchPost, .fetchCrew:
+        case .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser, .fetchPost, .fetchCrew:
             return [
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken
@@ -99,7 +99,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .makeCrew:
+        case .makeCrew, .like2:
             return [
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
@@ -111,8 +111,6 @@ extension Router {
     var parameters: Parameters? {
         
         switch self {
-        case .like2:
-            return ["like_status" : true]
         case .fetchCrew(let fetchCrewQuery):
             return ["limit" : fetchCrewQuery.limit,
                     "product_id" : fetchCrewQuery.product_id]
@@ -141,6 +139,8 @@ extension Router {
             return try? encoder.encode(signUpQuery)
         case .makeCrew(let makeCrewQuery):
             return try? encoder.encode(makeCrewQuery)
+        case .like2(_, let like2Query):
+            return try? encoder.encode(like2Query)
         default:
             return nil
         }

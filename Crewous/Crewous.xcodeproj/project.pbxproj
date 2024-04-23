@@ -32,6 +32,7 @@
 		AC3265452BD79E2300531BC1 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265442BD79E2300531BC1 /* SearchViewModel.swift */; };
 		AC3265472BD7A19400531BC1 /* FetchCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */; };
 		AC3265492BD7A2A200531BC1 /* FetchCrewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */; };
+		AC32654B2BD7C52700531BC1 /* Like2Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32654A2BD7C52700531BC1 /* Like2Query.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -128,6 +129,7 @@
 		AC3265442BD79E2300531BC1 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewQuery.swift; sourceTree = "<group>"; };
 		AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewDataModel.swift; sourceTree = "<group>"; };
+		AC32654A2BD7C52700531BC1 /* Like2Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2Query.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				ACDF67A82BC94DE60046766B /* SignUpQuery.swift */,
 				ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */,
 				AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */,
+				AC32654A2BD7C52700531BC1 /* Like2Query.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
 				AC3265412BD798F200531BC1 /* SearchResultView.swift in Sources */,
 				ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */,
+				AC32654B2BD7C52700531BC1 /* Like2Query.swift in Sources */,
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				AC3265362BD76EF100531BC1 /* SearchView.swift in Sources */,

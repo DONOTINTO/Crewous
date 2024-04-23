@@ -104,7 +104,7 @@ class MakeCrewViewModel: ViewModelType {
             .flatMap { productID in
                 
                 print("#### Like2 API Call ####")
-                return APIManager.like2APICall(router: Router.like2(postID: productID))
+                return APIManager.callAPI(router: Router.like2(postID: productID, query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
             }.subscribe(with: self) { owner, result in
                 
                 switch result {

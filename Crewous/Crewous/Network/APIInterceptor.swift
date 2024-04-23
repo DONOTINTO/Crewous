@@ -24,6 +24,7 @@ class APIInterceptor: RequestInterceptor {
         
         // 있으면 얘로 바꿔서 진행해
         var urlRequest = urlRequest
+        
         urlRequest.setValue(accessToken, forHTTPHeaderField: HTTPHeader.Key.authorization.rawValue)
         completion(.success(urlRequest))
     }
@@ -66,15 +67,3 @@ class APIInterceptor: RequestInterceptor {
         
     }
 }
-
-// Alamofire.AFError.responseSerializationFailed
-//   ▿ responseSerializationFailed: (1 element)
-//     ▿ reason: Alamofire.AFError.ResponseSerializationFailureReason.decodingFailed
-//       ▿ decodingFailed: (1 element)
-//         ▿ error: Swift.DecodingError.keyNotFound
-//           ▿ keyNotFound: (2 elements)
-//             - .0: CodingKeys(stringValue: "accessToken", intValue: nil)
-//             ▿ .1: Swift.DecodingError.Context
-//               - codingPath: 0 elements
-//               - debugDescription: "No value associated with key CodingKeys(stringValue: \"accessToken\", intValue: nil) (\"accessToken\")."
-//               - underlyingError: nil

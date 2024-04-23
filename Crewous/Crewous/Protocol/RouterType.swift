@@ -28,6 +28,7 @@ extension RouterType {
         urlRequest.httpBody = body
         
         var queryItems = [URLQueryItem]()
+        
         if let parameters {
             
             for value in parameters {

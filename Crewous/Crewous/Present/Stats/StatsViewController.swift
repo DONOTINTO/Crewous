@@ -20,7 +20,7 @@ class StatsViewController: BaseViewController<StatsView> {
         
         // let a = PublishRelay<Void>()
         // a.flatMap {
-        //     return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
+        //     return APIManager.callAPI(router: Router.like2(postID: "66210e0e438b876b25f7a8b4", query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
         // }.subscribe(with: self) { owner, result in
         //     
         //     switch result {
@@ -31,8 +31,6 @@ class StatsViewController: BaseViewController<StatsView> {
         //         print(failure)
         //     }
         // }.disposed(by: disposeBag)
-        // 
-        // print("##################################")
         // 
         // a.accept(())
         
