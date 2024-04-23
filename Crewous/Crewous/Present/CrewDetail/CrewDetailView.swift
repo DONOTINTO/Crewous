@@ -80,7 +80,7 @@ class CrewDetailView: BaseView {
         }
         
         containerView.snp.makeConstraints {
-            $0.top.equalTo(introduceScrollView.snp.bottom)
+            $0.top.equalTo(introduceScrollView.snp.bottom).offset(10)
             $0.horizontalEdges.bottom.equalTo(self)
         }
     }
@@ -97,7 +97,7 @@ class CrewDetailView: BaseView {
         crewLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
         leaderLabel.custom(title: "Crew -", color: .customGray, fontScale: .bold, fontSize: .medium)
         
-        introduceLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .small)
+        introduceLabel.custom(title: "", color: .white, fontScale: .semiBold, fontSize: .small)
         introduceLabel.textAlignment = .left
         introduceLabel.numberOfLines = 0
     }

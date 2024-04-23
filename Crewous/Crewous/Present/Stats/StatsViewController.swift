@@ -18,23 +18,23 @@ class StatsViewController: BaseViewController<StatsView> {
 
         #if DEBUG
         
-        let a = PublishRelay<Void>()
-        a.flatMap {
-            return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
-        }.subscribe(with: self) { owner, result in
-            
-            switch result {
-                
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                print(failure)
-            }
-        }.disposed(by: disposeBag)
-        
-        print("##################################")
-        
-        a.accept(())
+        // let a = PublishRelay<Void>()
+        // a.flatMap {
+        //     return APIManager.like2APICall(router: Router.like2(postID: "66210e0e438b876b25f7a8b4"))
+        // }.subscribe(with: self) { owner, result in
+        //     
+        //     switch result {
+        //         
+        //     case .success(let success):
+        //         print(success)
+        //     case .failure(let failure):
+        //         print(failure)
+        //     }
+        // }.disposed(by: disposeBag)
+        // 
+        // print("##################################")
+        // 
+        // a.accept(())
         
         #endif
     }
@@ -73,10 +73,11 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.layoutView.weightInfoLabel.text = "\(weight)KG"
                 owner.layoutView.positionInfoLabel.text = position
                 
-                guard let crewData = fetchCrewData.data.first else { return }
+                guard let crewData = fetchCrewData.data.first,
+                      let crewName = crewData.crewName else { return }
                 
-                owner.layoutView.crewLabel.text = "Crew - \(crewData.crewName)"
-                owner.layoutView.crewInfoLabel.text = crewData.crewName
+                owner.layoutView.crewLabel.text = "Crew - \(crewName)"
+                owner.layoutView.crewInfoLabel.text = crewName
                 
             }.disposed(by: disposeBag)
         

@@ -55,7 +55,8 @@ enum APIError: Int, Error {
         case makeCrew
         case like2
         case withDraw
-        
+        case fetchUser
         case fetchPost
+        case fetchCrew
     }
 }

@@ -21,7 +21,6 @@ struct APIManager {
                 
                 // AF -> API 통신
                 AF.request(urlRequest, interceptor: APIInterceptor()).responseDecodable(of: T.self) { response in
-                    // dump(response.response)
                     print("통신❗️")
                     guard let responseData = response.response else { return }
                     let statusCode = responseData.statusCode

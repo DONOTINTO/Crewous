@@ -14,13 +14,13 @@ struct FetchMyCrewDataModel: Decodable {
 
 struct PostData: Decodable {
     let postID: String
-    let product_id: String
-    let crewName: String
-    let introduce: String
-    let timeInfo: String
-    let placeInfo: String
-    let membershipFee: String
-    let uniformColor: String
+    let product_id: String?
+    let crewName: String?
+    let introduce: String?
+    let timeInfo: String?
+    let placeInfo: String?
+    let membershipFee: String?
+    let uniformColor: String?
     let content5: String?
     let createdAt: String
     let creator: Creater

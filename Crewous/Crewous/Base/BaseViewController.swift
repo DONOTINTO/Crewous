@@ -211,8 +211,9 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
-            
-        case .fetchPost:
+        
+        // MARK: 특정 포스트 조회 / 유저 조회 / 모든 포스트 조회
+        case .fetchPost, .fetchUser, .fetchCrew:
             
             switch apiError {
             

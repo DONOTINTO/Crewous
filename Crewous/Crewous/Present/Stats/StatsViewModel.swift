@@ -55,17 +55,17 @@ class StatsViewModel: ViewModelType {
         fetchMyCrew
             .flatMap {
                 
-                print("#### Fetch Crew API Call ####")
+                print("#### Fetch My Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
             }.subscribe(with: self) { owner, fetchMyCrewData in
                 
                 switch fetchMyCrewData {
                     
                 case .success(let data):
-                    print("#### Fetch Crew API Success ####")
+                    print("#### Fetch My Crew API Success ####")
                     fetchCrewSuccess.accept(data)
                 case .failure(let apiError):
-                    print("#### Fetch Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    print("#### Fetch My Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)

@@ -24,7 +24,12 @@ class InfoPageViewController: BaseViewController<InfoPageView> {
         viewModel.postData
             .bind(with: self) { owner, data in
                 
-                let info = [data.timeInfo, data.placeInfo, data.membershipFee, data.uniformColor]
+                guard let time = data.timeInfo,
+                      let place = data.placeInfo,
+                      let membershipFee = data.membershipFee,
+                      let uniformColor = data.uniformColor else { return }
+                
+                let info = [time, place, membershipFee, uniformColor]
                 owner.viewModel.info.accept(info)
             }.disposed(by: disposeBag)
         

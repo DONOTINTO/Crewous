@@ -99,10 +99,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let myCrewVC = MyCrewViewController()
         let myCrewNaviVC = UINavigationController(rootViewController: myCrewVC)
         
+        let searchVC = SearchViewController()
+        let SearchNaviVC = UINavigationController(rootViewController: searchVC)
+        
         let tabVC = UITabBarController()
-        tabVC.setViewControllers([statsNaviVC, myCrewNaviVC], animated: true)
-        tabVC.tabBar.items?[0].image = UIImage(systemName: "star.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        tabVC.tabBar.items?[1].image = UIImage(systemName: "star.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        tabVC.setViewControllers([statsNaviVC, myCrewNaviVC, SearchNaviVC], animated: true)
+        tabVC.tabBar.items?[0].image = UIImage(systemName: "house")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[0].selectedImage = UIImage(systemName: "house.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[1].image = UIImage(systemName: "person.3.fill")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[1].selectedImage = UIImage(systemName: "person.3.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[2].image = UIImage(systemName: "magnifyingglass")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[2].selectedImage = UIImage(systemName: "magnifyingglass")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         
         return tabVC
     }

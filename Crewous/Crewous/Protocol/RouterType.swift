@@ -26,6 +26,18 @@ extension RouterType {
         var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
         urlRequest.allHTTPHeaderFields = header
         urlRequest.httpBody = body
+        
+        var queryItems = [URLQueryItem]()
+        if let parameters {
+            
+            for value in parameters {
+                let queryItem = URLQueryItem(name: value.key, value: "\(value.value)")
+                queryItems.append(queryItem)
+            }
+        }
+        
+        urlRequest.url?.append(queryItems: queryItems)
+        
         return urlRequest
     }
 }
