@@ -21,8 +21,21 @@ class SearchViewController: BaseViewController<SearchView> {
     
     override func bind() {
         
-        let input = SearchViewModel.Input(searchButtonClickedObservable: layoutView.searchController.searchBar.rx.searchButtonClicked.asObservable())
+        let input = SearchViewModel.Input(searchButtonClickedObservable: layoutView.searchController.searchBar.rx.searchButtonClicked.asObservable(),
+                                          searchTextObservable: layoutView.searchController.searchBar.rx.text.orEmpty.asObservable())
         let output = viewModel.transform(input: input)
+        
+        output.searchResultObservable
+            .bind(to: layoutView.tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, data, cell in
+                
+                cell.configure(data)
+                
+            }.disposed(by: disposeBag)
+    }
+    
+    override func configure() {
+        
+        layoutView.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
     }
     
     override func configureNavigation() {

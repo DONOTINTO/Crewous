@@ -6,25 +6,36 @@
 //
 
 import UIKit
+import SnapKit
 
 class SearchView: BaseView {
 
-    let searchController = UISearchController(searchResultsController: SearchResultViewController())
+    let searchController = UISearchController()
+    
+    let tableView = UITableView()
     
     
     override func configureHierarchy() {
         
+        addSubview(tableView)
     }
     
     override func configureLayout() {
         
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self)
+        }
     }
 
     override func configureView() {
         
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        
         searchController.searchBar.backgroundColor = .customBlack
         searchController.searchBar.barStyle = .default
         searchController.searchBar.searchBarStyle = .default
+        searchController.searchBar.autocapitalizationType = .none
     }
 
 }

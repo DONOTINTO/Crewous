@@ -70,6 +70,7 @@
 		AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */; };
 		AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FC2BC813CF00395FC2 /* APIError.swift */; };
 		AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */; };
+		ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -165,6 +166,7 @@
 		AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		AC9FD0FC2BC813CF00395FC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				AC3265442BD79E2300531BC1 /* SearchViewModel.swift */,
 				AC3265332BD76ECF00531BC1 /* SearchViewController.swift */,
 				AC3265352BD76EF100531BC1 /* SearchView.swift */,
+				ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */,
 				AC32653F2BD798E000531BC1 /* SearchResult */,
 			);
 			path = Search;
@@ -648,6 +651,7 @@
 				AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */,
 				ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
+				ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */,
 				AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */,
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				AC3264F52BD3800800531BC1 /* CrewContentViewController.swift in Sources */,

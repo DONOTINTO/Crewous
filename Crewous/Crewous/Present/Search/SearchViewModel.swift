@@ -16,34 +16,60 @@ class SearchViewModel: ViewModelType {
     struct Input {
         
         let searchButtonClickedObservable: Observable<Void>
+        let searchTextObservable: Observable<String>
     }
     
     struct Output {
         
+        let searchResultObservable: PublishRelay<[PostData]>
+        let searchResultFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        input.searchButtonClickedObservable
+        let searchResultObservable = PublishRelay<[PostData]>()
+        let searchResultFailure = PublishRelay<APIError>()
+        
+        let fetchCrewData = input.searchButtonClickedObservable
             .flatMap {
                 
                 let fetchCrewQeury = FetchCrewQuery(limit: "100", product_id: ProductID.crew.rawValue)
                 print("#### Fetch Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchCrew(fetchCrewQuery: fetchCrewQeury), dataModel: FetchCrewDataModel.self)
-            }.subscribe(with: self) { owner, fetchCrewData in
+            }
+        
+        let searchTextObservable = input.searchTextObservable
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+        
+        Observable.combineLatest(fetchCrewData, searchTextObservable)
+            .subscribe(with: self) { owner, data in
+                
+                let (fetchCrewData, search) = data
                 
                 switch fetchCrewData {
                     
-                case .success(let data):
-                    print("#### Fetch Crew API Success ####")
-                    dump(data)
+                case .success(let success):
+                    
+                    let filteredData = owner.filteredPostData(success.data, search)
+                    searchResultObservable.accept(filteredData)
+                    
                 case .failure(let apiError):
-                    print("#### Fetch Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
-                    dump(apiError)
+                    
+                    searchResultFailure.accept(apiError)
                 }
-                
-            }.disposed(by: disposeBag)
+        }.disposed(by: disposeBag)
         
-        return Output()
+        return Output(searchResultObservable: searchResultObservable, searchResultFailure: searchResultFailure)
+    }
+    
+    private func filteredPostData(_ data: [PostData], _ input: String) -> [PostData] {
+        
+        return data.filter { data in
+            
+            guard let name = data.crewName else { return false }
+            
+            return name.contains(input)
+        }
     }
 }

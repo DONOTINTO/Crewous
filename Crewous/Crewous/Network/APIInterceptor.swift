@@ -25,8 +25,6 @@ class APIInterceptor: RequestInterceptor {
         // 있으면 얘로 바꿔서 진행해
         var urlRequest = urlRequest
         
-        dump(urlRequest)
-        
         urlRequest.setValue(accessToken, forHTTPHeaderField: HTTPHeader.Key.authorization.rawValue)
         completion(.success(urlRequest))
     }
