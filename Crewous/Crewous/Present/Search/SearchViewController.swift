@@ -31,6 +31,13 @@ class SearchViewController: BaseViewController<SearchView> {
                 cell.configure(data)
                 
             }.disposed(by: disposeBag)
+        
+        output.searchResultEmptyObservable
+            .bind(with: self) { owner, isExist in
+                
+                owner.layoutView.emptyImageView.isHidden = !isExist
+                owner.layoutView.emptyLabel.isHidden = !isExist
+            }.disposed(by: disposeBag)
     }
     
     override func configure() {

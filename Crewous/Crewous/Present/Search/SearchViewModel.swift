@@ -22,12 +22,14 @@ class SearchViewModel: ViewModelType {
     struct Output {
         
         let searchResultObservable: PublishRelay<[PostData]>
+        let searchResultEmptyObservable: PublishRelay<Bool>
         let searchResultFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
         let searchResultObservable = PublishRelay<[PostData]>()
+        let searchResultEmptyObservable = PublishRelay<Bool>()
         let searchResultFailure = PublishRelay<APIError>()
         
         let fetchCrewData = input.searchButtonClickedObservable
@@ -53,6 +55,7 @@ class SearchViewModel: ViewModelType {
                     
                     let filteredData = owner.filteredPostData(success.data, search)
                     searchResultObservable.accept(filteredData)
+                    searchResultEmptyObservable.accept(filteredData.isEmpty)
                     
                 case .failure(let apiError):
                     
@@ -60,7 +63,7 @@ class SearchViewModel: ViewModelType {
                 }
         }.disposed(by: disposeBag)
         
-        return Output(searchResultObservable: searchResultObservable, searchResultFailure: searchResultFailure)
+        return Output(searchResultObservable: searchResultObservable, searchResultEmptyObservable: searchResultEmptyObservable, searchResultFailure: searchResultFailure)
     }
     
     private func filteredPostData(_ data: [PostData], _ input: String) -> [PostData] {
