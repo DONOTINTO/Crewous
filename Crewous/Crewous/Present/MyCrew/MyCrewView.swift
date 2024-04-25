@@ -10,22 +10,15 @@ import SnapKit
 
 class MyCrewView: BaseView {
     
-    let myCrewLiteralLabel = UILabel()
     let containerView = UIView()
     let indicator = UIActivityIndicatorView(style: .medium)
     
     override func configureHierarchy() {
         
-        [myCrewLiteralLabel, indicator, containerView].forEach { addSubview($0) }
+        [containerView, indicator].forEach { addSubview($0) }
     }
     
     override func configureLayout() {
-        
-        myCrewLiteralLabel.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(10)
-            $0.leading.equalTo(self.safeAreaLayoutGuide).inset(30)
-            $0.trailing.equalTo(indicator.snp.leading)
-        }
         
         indicator.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(10)
@@ -33,14 +26,13 @@ class MyCrewView: BaseView {
         }
         
         containerView.snp.makeConstraints {
-            $0.top.equalTo(myCrewLiteralLabel.snp.bottom)
-            $0.horizontalEdges.bottom.equalTo(self)
+            $0.edges.equalTo(self)
+            $0.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
     
     override func configureView() {
      
-        myCrewLiteralLabel.custom(title: "My Crew", color: .customBlack, fontScale: .bold, fontSize: .large)
         indicator.hidesWhenStopped = true
     }
 }

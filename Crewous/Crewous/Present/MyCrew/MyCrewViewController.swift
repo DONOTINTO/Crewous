@@ -71,7 +71,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
             self.addChild(vc)
             layoutView.containerView.addSubview(vc.layoutView)
             
-            vc.layoutView.frame = layoutView.containerView.bounds
+            vc.layoutView.frame = layoutView.bounds
             vc.layoutView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
             vc.didMove(toParent: self)

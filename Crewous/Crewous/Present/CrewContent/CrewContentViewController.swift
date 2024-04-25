@@ -26,6 +26,8 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
                 
                 let (postData, userData) = data
                 
+                owner.layoutView.configure(postData)
+                
                 let pageVC = ContentPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
                 
                 self.addChild(pageVC)

@@ -15,6 +15,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func bind() {
@@ -30,19 +31,16 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 
                 owner.layoutView.configure(postData)
                 
-                let crewContentVC = CrewContentViewController()
+                let nextVC = CrewContentViewController()
+                let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
+                nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
+                nextVC.sheetPresentationController?.prefersGrabberVisible = true
+                nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
                 
-                self.addChild(crewContentVC)
-                owner.layoutView.containerView.addSubview(crewContentVC.layoutView)
-                
-                crewContentVC.layoutView.frame = owner.layoutView.containerView.bounds
-                crewContentVC.layoutView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                
-                // PostData / userData 전달
-                crewContentVC.viewModel.postData.accept(postData)
-                crewContentVC.viewModel.userData.accept(userData)
-                
-                crewContentVC.didMove(toParent: self)
+                self.present(nextVC, animated: true) {
+                    nextVC.viewModel.postData.accept(postData)
+                    nextVC.viewModel.userData.accept(userData)
+                }
                 
             }.disposed(by: disposeBag)
         
