@@ -36,7 +36,7 @@ class WithoutCrewView: BaseView {
     
     override func configureView() {
         
-        descriptionLabel.custom(title: "등록된 팀이 없습니다.", color: .white, fontScale: .regular, fontSize: .medium)
+        descriptionLabel.custom(title: "등록된 팀이 없습니다.", color: .customBlack, fontScale: .regular, fontSize: .medium)
         
         makeCrewButton.custom(title: "MAKE CREW", titleColor: .black, bgColor: .customGreen)
     }

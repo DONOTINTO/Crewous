@@ -65,7 +65,7 @@ extension WithoutCrewViewController: PHPickerViewControllerDelegate {
                 
                 let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
                 picker.navigationItem.backBarButtonItem = backButton
-                picker.navigationItem.backBarButtonItem?.tintColor = .white
+                picker.navigationItem.backBarButtonItem?.tintColor = .customBlack
                 picker.navigationController?.pushViewController(nextVC, animated: true)
             }
         }

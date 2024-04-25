@@ -88,16 +88,17 @@ class CrewDetailView: BaseView {
     override func configureView() {
         
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        // imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         
         let image = UIImage.profile
         profileImageView.image = image
         profileImageView.backgroundColor = .clear
         
-        crewLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        crewLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         leaderLabel.custom(title: "Crew -", color: .customGray, fontScale: .bold, fontSize: .medium)
         
-        introduceLabel.custom(title: "", color: .white, fontScale: .semiBold, fontSize: .small)
+        introduceLabel.custom(title: "", color: .customBlack, fontScale: .semiBold, fontSize: .small)
         introduceLabel.textAlignment = .left
         introduceLabel.numberOfLines = 0
     }
@@ -105,7 +106,6 @@ class CrewDetailView: BaseView {
     func configure(_ data: PostData) {
         
         introduceLabel.text = data.introduce
-        introduceLabel.text = "ㅁㅇㄹㅁㄴㅇㄹ\n asdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\nasdfasdfasdf\n"
         crewLabel.text = data.crewName
         
         let nick = data.creator.nick.split(separator: "/")[0]

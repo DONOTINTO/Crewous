@@ -12,6 +12,7 @@ import RxCocoa
 class SearchViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
+    // let like2ButtonClicked = PublishRelay
     
     struct Input {
         

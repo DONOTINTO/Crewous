@@ -53,8 +53,8 @@ class MemberPageTableViewCell: UITableViewCell {
         
         let image = UIImage.profile
         profileImageView.image = image
-        nickLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .medium)
-        positionLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .medium)
+        nickLabel.custom(title: "", color: .customBlack, fontScale: .regular, fontSize: .medium)
+        positionLabel.custom(title: "", color: .customBlack, fontScale: .regular, fontSize: .medium)
     }
     
     func configure(nick: String, position: String) {

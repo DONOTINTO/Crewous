@@ -38,7 +38,7 @@ class InfoPageTableViewCell: UITableViewCell {
         contentLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(3)
             $0.horizontalEdges.equalTo(contentView).inset(10)
-            $0.bottom.equalTo(contentView).inset(30)
+            $0.bottom.equalTo(contentView).inset(10)
         }
     }
     
@@ -46,7 +46,7 @@ class InfoPageTableViewCell: UITableViewCell {
     func configureView() {
         
         titleLabel.custom(title: "", color: .customGray, fontScale: .semiBold, fontSize: .small)
-        contentLabel.custom(title: "", color: .white, fontScale: .regular, fontSize: .regular)
+        contentLabel.custom(title: "", color: .customBlack, fontScale: .regular, fontSize: .regular)
     }
     
     func configure(title: String, content: String) {

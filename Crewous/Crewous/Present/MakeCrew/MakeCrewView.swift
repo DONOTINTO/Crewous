@@ -171,10 +171,10 @@ class MakeCrewView: BaseView {
         introduceTextView.layer.cornerRadius = 10
         introduceTextView.layer.borderWidth = 0.5
         introduceTextView.layer.borderColor = UIColor.customGray.cgColor
-        introduceTextView.backgroundColor = .customBlack
+        introduceTextView.backgroundColor = .white
         introduceTextView.text = "농구 크루원을 모집하는 내용을 상세히 작성해주세요.\n\n모집과 관련되지 않은 상업적인 내용은 삭제될 수 있습니다."
         
-        bottomLayoutView.backgroundColor = .customBlack
+        bottomLayoutView.backgroundColor = .white
         createCrewButton.custom(title: "CREATE CREW", titleColor: .black, bgColor: .customGreen)
     }
     

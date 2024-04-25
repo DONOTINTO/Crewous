@@ -16,9 +16,9 @@ extension UITextField {
         self.leftViewMode = .always
         self.leftView = customPaddingImageView
         self.textColor = .white
-        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.customGray])
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.white])
         self.placeholder = placeholder
-        self.backgroundColor = .customBlue
+        self.backgroundColor = .customGray
         self.font = .systemFont(ofSize: 15, weight: .regular)
         
         self.layer.cornerRadius = 20
@@ -28,7 +28,7 @@ extension UITextField {
     
     func custom(placeholder: String, fontSize: FontManager.FontSize) {
         
-        self.textColor = .white
+        self.textColor = .customBlack
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.customGray])
         self.placeholder = placeholder
         self.font = .systemFont(ofSize: fontSize.rawValue, weight: .regular)
@@ -45,7 +45,7 @@ extension UITextField {
         
         // 커스텀 이미지 생성
         let configuration = UIImage.SymbolConfiguration(scale: .large)
-        guard let customImage = UIImage(systemName: imageStr)?.withTintColor(.customGray, renderingMode: .alwaysOriginal).withConfiguration(configuration) else {
+        guard let customImage = UIImage(systemName: imageStr)?.withTintColor(.white, renderingMode: .alwaysOriginal).withConfiguration(configuration) else {
             return nil
         }
         

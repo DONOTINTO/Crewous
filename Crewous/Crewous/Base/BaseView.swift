@@ -12,7 +12,7 @@ class BaseView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.customBlack
+        backgroundColor = UIColor.white
         
         configureHierarchy()
         configureLayout()

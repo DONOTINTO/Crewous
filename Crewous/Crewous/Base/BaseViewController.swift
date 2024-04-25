@@ -49,7 +49,7 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     private func makeBackBarButton() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
-        navigationItem.backBarButtonItem?.tintColor = .white
+        navigationItem.backBarButtonItem?.tintColor = .customBlack
     }
     
     func errorHandler(_ apiError: APIError, calltype: APIError.CallType, completionHandler: @escaping (() -> Void) = { }) {

@@ -40,15 +40,15 @@ class CrewContentCollectionViewCell: UICollectionViewCell {
     
     func configureView() {
         
-        titleLabel.custom(title: "TEST", color: .white, fontScale: .semiBold, fontSize: .medium)
+        titleLabel.custom(title: "TEST", color: .customBlack, fontScale: .semiBold, fontSize: .medium)
         titleLabel.textAlignment = .center
         
-        lineView.backgroundColor = .white
+        lineView.backgroundColor = .customBlack
     }
     
     func configure(isSelected: Bool) {
         
-        titleLabel.textColor = isSelected ? .white : .customGray
+        titleLabel.textColor = isSelected ? .customBlack : .customGray
         
         lineView.isHidden = !isSelected
     }

@@ -110,7 +110,7 @@ class MakeCrewViewController: BaseViewController<MakeCrewView> {
 extension MakeCrewViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.white.cgColor
+        textField.layer.borderColor = UIColor.customBlack.cgColor
         textField.layer.borderWidth = 1
     }
     
@@ -135,10 +135,10 @@ extension MakeCrewViewController: UITextViewDelegate {
         
         if textView.text == "농구 크루원을 모집하는 내용을 상세히 작성해주세요.\n\n모집과 관련되지 않은 상업적인 내용은 삭제될 수 있습니다." {
             textView.text = ""
-            textView.textColor = .white
+            textView.textColor = .customBlack
         }
         
-        textView.layer.borderColor = UIColor.white.cgColor
+        textView.layer.borderColor = UIColor.customBlack.cgColor
         textView.layer.borderWidth = 1
     }
     
@@ -148,7 +148,7 @@ extension MakeCrewViewController: UITextViewDelegate {
             textView.text = "농구 크루원을 모집하는 내용을 상세히 작성해주세요.\n\n모집과 관련되지 않은 상업적인 내용은 삭제될 수 있습니다."
             textView.textColor = .customGray
         } else {
-            textView.textColor = .white
+            textView.textColor = .customBlack
         }
         
         textView.layer.borderColor = UIColor.customGray.cgColor

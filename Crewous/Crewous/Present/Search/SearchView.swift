@@ -12,19 +12,19 @@ class SearchView: BaseView {
 
     let searchController = UISearchController()
     
-    let tableView = UITableView()
+    let searchTableView = UITableView()
     let emptyImageView = UIImageView()
     let emptyLabel = UILabel()
     
     
     override func configureHierarchy() {
         
-        [emptyImageView, emptyLabel, tableView].forEach { addSubview($0) }
+        [emptyImageView, emptyLabel, searchTableView].forEach { addSubview($0) }
     }
     
     override func configureLayout() {
         
-        tableView.snp.makeConstraints {
+        searchTableView.snp.makeConstraints {
             $0.edges.equalTo(self)
         }
         
@@ -41,17 +41,17 @@ class SearchView: BaseView {
 
     override func configureView() {
         
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+        searchTableView.backgroundColor = .clear
+        searchTableView.separatorStyle = .none
         
-        searchController.searchBar.backgroundColor = .customBlack
+        searchController.searchBar.backgroundColor = .white
         searchController.searchBar.barStyle = .default
         searchController.searchBar.searchBarStyle = .default
         searchController.searchBar.autocapitalizationType = .none
         
         emptyImageView.image = UIImage.ball
         
-        emptyLabel.custom(title: "THERE IS NO SEARCH RESULTS", color: .customGray.withAlphaComponent(0.5), fontScale: .bold, fontSize: .medium)
+        emptyLabel.custom(title: "THERE IS NO SEARCH RESULT", color: .customGray.withAlphaComponent(0.5), fontScale: .bold, fontSize: .medium)
         emptyLabel.textAlignment = .center
     }
 

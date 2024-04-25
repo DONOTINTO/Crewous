@@ -40,7 +40,7 @@ class MyCrewView: BaseView {
     
     override func configureView() {
      
-        myCrewLiteralLabel.custom(title: "My Crew", color: .white, fontScale: .bold, fontSize: .large)
+        myCrewLiteralLabel.custom(title: "My Crew", color: .customBlack, fontScale: .bold, fontSize: .large)
         indicator.hidesWhenStopped = true
     }
 }

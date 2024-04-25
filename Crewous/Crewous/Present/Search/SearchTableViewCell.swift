@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class SearchTableViewCell: UITableViewCell {
     
@@ -16,15 +18,28 @@ class SearchTableViewCell: UITableViewCell {
     let detailButton = UIButton()
     let applyButton = UIButton()
 
+    var disposeBag = DisposeBag()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        bind()
         configureLayout()
         configureView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
+    func bind() {
+        
     }
 
     func configureLayout() {
@@ -59,29 +74,31 @@ class SearchTableViewCell: UITableViewCell {
         crewLabel.snp.makeConstraints {
             $0.top.equalTo(crewImageView.snp.bottom)
             $0.horizontalEdges.equalTo(crewImageView)
+            $0.bottom.equalTo(contentView).inset(10)
         }
     }
     
 
     func configureView() {
         
-        contentView.backgroundColor = .customBlack
+        contentView.backgroundColor = .white
         
         crewImageView.contentMode = .scaleAspectFill
-        crewImageView.layer.cornerRadius = 10
+        crewImageView.layer.cornerRadius = 20
         crewImageView.layer.masksToBounds = true
+        crewImageView.clipsToBounds = true
         
         crewLabel.font = FontManager.getFont(scale: .bold, size: .medium)
-        crewLabel.textColor = .white
+        crewLabel.textColor = .customBlack
         
         blurLayoutView.backgroundColor = .customGray.withAlphaComponent(0.1)
-        blurLayoutView.effect = UIBlurEffect(style: .dark)
+        blurLayoutView.effect = UIBlurEffect(style: .light)
         blurLayoutView.layer.cornerRadius = 10
         blurLayoutView.layer.masksToBounds = true
         
-        detailButton.custom(title: "SHOW DETAIL", titleColor: .white, bgColor: .customGray.withAlphaComponent(0.2))
+        detailButton.custom(title: "SHOW DETAIL", titleColor: .customBlack, bgColor: .white.withAlphaComponent(0.2))
         detailButton.configuration?.attributedTitle?.font = FontManager.getFont(scale: .bold, size: .small)
-        applyButton.custom(title: "APPLY", titleColor: .black, bgColor: .customGreen)
+        applyButton.custom(title: "APPLY", titleColor: .customBlack, bgColor: .customGreen)
         applyButton.configuration?.attributedTitle?.font = FontManager.getFont(scale: .bold, size: .small)
         
     }

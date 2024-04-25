@@ -36,6 +36,6 @@ class CrewContentView: BaseView {
     
     override func configureView() {
         
-        contentCollectionView.backgroundColor = .customBlack
+        contentCollectionView.backgroundColor = .white
     }
 }

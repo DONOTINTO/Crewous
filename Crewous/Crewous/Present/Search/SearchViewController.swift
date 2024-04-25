@@ -26,9 +26,31 @@ class SearchViewController: BaseViewController<SearchView> {
         let output = viewModel.transform(input: input)
         
         output.searchResultObservable
-            .bind(to: layoutView.tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, data, cell in
+            .bind(to: layoutView.searchTableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { [weak self] index, data, cell in
+                
+                guard let self else { return }
                 
                 cell.configure(data)
+                
+                // Crew Detail 뷰 켜기 -> Post ID 넘겨줘야 함
+                cell.detailButton.rx.tap
+                    .bind(with: self) { owner, _ in
+                        
+                        let nextVC = CrewDetailViewController()
+                        nextVC.sheetPresentationController?.detents = [.medium(), .large()]
+                        
+                        self.present(nextVC, animated: true) {
+                            nextVC.viewModel.postIdentifier.accept(data.postID)
+                        }
+                        
+                    }.disposed(by: cell.disposeBag)
+                
+                
+                // Like2 적용하기
+                cell.applyButton.rx.tap
+                    .bind(with: self) { owner, _ in
+                        
+                    }.disposed(by: cell.disposeBag)
                 
             }.disposed(by: disposeBag)
         
@@ -42,7 +64,7 @@ class SearchViewController: BaseViewController<SearchView> {
     
     override func configure() {
         
-        layoutView.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        layoutView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
     }
     
     override func configureNavigation() {
@@ -51,28 +73,3 @@ class SearchViewController: BaseViewController<SearchView> {
     }
 
 }
-// let results = searchBar.rx.text.orEmpty
-//     .asDriver()
-//     .throttle(.milliseconds(300))
-//     .distinctUntilChanged()
-//     .flatMapLatest { query in
-//         API.getSearchResults(query)
-//             .retry(3)
-//             .retryOnBecomesReachable([], reachabilityService: Dependencies.sharedDependencies.reachabilityService)
-//             .startWith([]) // clears results on new search term
-//             .asDriver(onErrorJustReturn: [])
-//     }
-//     .map { results in
-//         results.map(SearchResultViewModel.init)
-//     }
-// 
-// results
-//     .drive(resultsTableView.rx.items(cellIdentifier: "WikipediaSearchCell", cellType: WikipediaSearchCell.self)) { (_, viewModel, cell) in
-//         cell.viewModel = viewModel
-//     }
-//     .disposed(by: disposeBag)
-// 
-// results
-//     .map { $0.count != 0 }
-//     .drive(self.emptyView.rx.isHidden)
-//     .disposed(by: disposeBag)

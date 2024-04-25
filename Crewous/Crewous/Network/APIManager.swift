@@ -39,6 +39,7 @@ struct APIManager {
                         
                     case .failure(let error):
                         print("failure - \(statusCode)")
+                        
                         // Custom API Error로 Error 코드 구분
                         guard let error = APIError(rawValue: statusCode) else {
                             print("정의되지 않은 error code 입니다")

@@ -140,16 +140,16 @@ class StatsView: BaseView {
         
         // STATS
         heightLiteralLabel.custom(title: "HEIGHT", color: .customGray, fontScale: .bold, fontSize: .small)
-        heightInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        heightInfoLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         
         crewLiteralLabel.custom(title: "CREW", color: .customGray, fontScale: .bold, fontSize: .small)
-        crewInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        crewInfoLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         
         weightLiteralLabel.custom(title: "WEIGHT", color: .customGray, fontScale: .bold, fontSize: .small)
-        weightInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        weightInfoLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         
         positionLiteralLabel.custom(title: "POSITION", color: .customGray, fontScale: .bold, fontSize: .small)
-        positionInfoLabel.custom(title: "-", color: .white, fontScale: .bold, fontSize: .large)
+        positionInfoLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         
         indicator.hidesWhenStopped = true
     }
