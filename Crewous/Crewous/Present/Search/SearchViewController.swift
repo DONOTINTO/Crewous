@@ -45,13 +45,6 @@ class SearchViewController: BaseViewController<SearchView> {
                         
                     }.disposed(by: cell.disposeBag)
                 
-                
-                // Like2 적용하기
-                cell.applyButton.rx.tap
-                    .bind(with: self) { owner, _ in
-                        
-                    }.disposed(by: cell.disposeBag)
-                
             }.disposed(by: disposeBag)
         
         output.searchResultEmptyObservable

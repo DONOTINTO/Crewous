@@ -16,7 +16,6 @@ class SearchTableViewCell: UITableViewCell {
     let crewLabel = UILabel()
     let blurLayoutView = UIVisualEffectView()
     let detailButton = UIButton()
-    let applyButton = UIButton()
 
     var disposeBag = DisposeBag()
     
@@ -44,7 +43,7 @@ class SearchTableViewCell: UITableViewCell {
 
     func configureLayout() {
         
-        [crewImageView, crewLabel, blurLayoutView, detailButton, applyButton].forEach { contentView.addSubview($0) }
+        [crewImageView, crewLabel, blurLayoutView, detailButton].forEach { contentView.addSubview($0) }
      
         crewImageView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(contentView).inset(20)
@@ -58,15 +57,7 @@ class SearchTableViewCell: UITableViewCell {
         }
         
         detailButton.snp.makeConstraints {
-            $0.leading.equalTo(blurLayoutView).inset(10)
-            $0.trailing.equalTo(blurLayoutView.snp.centerX).inset(10)
-            $0.height.equalTo(40)
-            $0.bottom.equalTo(blurLayoutView).inset(10)
-        }
-        
-        applyButton.snp.makeConstraints {
-            $0.leading.equalTo(blurLayoutView.snp.centerX).offset(10)
-            $0.trailing.equalTo(blurLayoutView).inset(10)
+            $0.horizontalEdges.equalTo(blurLayoutView).inset(10)
             $0.height.equalTo(40)
             $0.bottom.equalTo(blurLayoutView).inset(10)
         }
@@ -98,9 +89,6 @@ class SearchTableViewCell: UITableViewCell {
         
         detailButton.custom(title: "SHOW DETAIL", titleColor: .customBlack, bgColor: .white.withAlphaComponent(0.2))
         detailButton.configuration?.attributedTitle?.font = FontManager.getFont(scale: .bold, size: .small)
-        applyButton.custom(title: "APPLY", titleColor: .customBlack, bgColor: .customGreen)
-        applyButton.configuration?.attributedTitle?.font = FontManager.getFont(scale: .bold, size: .small)
-        
     }
     
     func configure(_ data: PostData) {

@@ -13,16 +13,19 @@ class CrewDetailView: BaseView {
     
     let imageView = UIImageView()
     let menuStackView = UIStackView()
+    let crewLayerView = UIView()
+    let crewLabel = UILabel()
     
     let detailButton = UIButton()
     let applyButton = UIButton()
     let commentButton = UIButton()
+    let resignButton = UIButton()
 
     override func configureHierarchy() {
         
-        [imageView, menuStackView].forEach { addSubview($0) }
+        [imageView, menuStackView, resignButton, crewLayerView, crewLabel].forEach { addSubview($0) }
         
-        [detailButton, commentButton, applyButton].forEach {
+        [detailButton, commentButton, applyButton, resignButton].forEach {
             menuStackView.addArrangedSubview($0)
         }
     }
@@ -35,7 +38,16 @@ class CrewDetailView: BaseView {
         
         menuStackView.snp.makeConstraints {
             $0.top.leading.equalTo(imageView.safeAreaLayoutGuide).inset(10)
-            // $0.trailing.greaterThanOrEqualTo(imageView.safeAreaLayoutGuide).inset(30)
+        }
+        
+        crewLayerView.snp.makeConstraints {
+            $0.bottom.horizontalEdges.equalTo(imageView)
+            $0.height.equalTo(50)
+        }
+        
+        crewLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalTo(crewLayerView).inset(10)
+            $0.centerY.equalTo(crewLayerView)
         }
         
         detailButton.snp.makeConstraints {
@@ -52,6 +64,11 @@ class CrewDetailView: BaseView {
             $0.width.equalTo(UIScreen.main.bounds.width / 4)
             $0.height.equalTo(40)
         }
+        
+        resignButton.snp.makeConstraints {
+            $0.width.equalTo(UIScreen.main.bounds.width / 4)
+            $0.height.equalTo(40)
+        }
     }
     
     override func configureView() {
@@ -61,15 +78,23 @@ class CrewDetailView: BaseView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         
+        crewLayerView.backgroundColor = .customBlack.withAlphaComponent(0.5)
+        
         applyButton.custom(title: "APPLY", titleColor: .white, bgColor: .customGreen)
         detailButton.custom(title: "DETAIL", titleColor: .white, bgColor: .customBlack)
         commentButton.custom(title: "COMMENT", titleColor: .white, bgColor: .customBlack)
+        resignButton.custom(title: "RESIGN", titleColor: .white, bgColor: .systemRed)
     }
     
     func configure(_ data: PostData) {
         
-        let imageData = data.files[0]
+        guard let crewName = data.crewName,
+              let imageData = data.files.first else { return }
+        
         let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
         imageView.loadImage(from: imageURL)
+        
+        
+        crewLabel.custom(title: crewName, color: .white, fontScale: .bold, fontSize: .large)
     }
 }

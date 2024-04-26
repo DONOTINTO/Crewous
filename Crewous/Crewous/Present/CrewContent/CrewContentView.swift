@@ -104,5 +104,12 @@ class CrewContentView: BaseView {
         
         let nick = data.creator.nick.split(separator: "/")[0]
         leaderLabel.text = String(nick)
+        
+        let imageData = data.files[0]
+        let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
+        profileImageView.layer.cornerRadius = 10
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.masksToBounds = true
+        profileImageView.loadImage(from: imageURL)
     }
 }

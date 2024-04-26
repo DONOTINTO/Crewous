@@ -22,9 +22,7 @@ class MemberPageViewController: BaseViewController<MemberPageView> {
         
         viewModel.userData
             .bind(to: layoutView.tableView.rx.items(cellIdentifier: MemberPageTableViewCell.identifier,
-                                                    cellType: MemberPageTableViewCell.self)) { [weak self] index, data, cell in
-                
-                guard let self else { return }
+                                                    cellType: MemberPageTableViewCell.self)) { index, data, cell in
                 
                 let mappingData: [String] = data.nick.split(separator: "/").map { String($0) }
                 let nick = mappingData[0]
