@@ -20,6 +20,29 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
     
     override func bind() {
         
+        // CrewContent VC 띄우기
+        layoutView.detailButton.rx.tap.bind(with: self) { owner, _ in
+            
+            guard let postData = owner.viewModel.postData,
+                  let userData = owner.viewModel.userData else { return }
+            
+            let nextVC = CrewContentViewController()
+            let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
+            nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
+            nextVC.sheetPresentationController?.prefersGrabberVisible = true
+            nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+            
+            self.present(nextVC, animated: true) {
+                nextVC.viewModel.postData.accept(postData)
+                nextVC.viewModel.userData.accept(userData)
+            }
+            
+        }.disposed(by: disposeBag)
+        
+        
+        
+        
+        
         let input = CrewDetailViewModel.Input(postIdentifierObservable: viewModel.postIdentifier)
         let output = viewModel.transform(input: input)
         

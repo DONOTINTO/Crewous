@@ -15,6 +15,9 @@ class CrewDetailViewModel: ViewModelType {
     
     let postIdentifier = PublishRelay<String>()
     
+    var postData: PostData?
+    var userData: [FetchUserDataModel]?
+    
     struct Input {
         
         let postIdentifierObservable: PublishRelay<String>
@@ -52,6 +55,7 @@ class CrewDetailViewModel: ViewModelType {
             case .success(let postData):
                 
                 print("#### Fetch Post Data API Success ####")
+                owner.postData = postData
                 postDataSuccess.accept(postData)
                 
                 Observable.from(postData.likes2)
@@ -67,6 +71,7 @@ class CrewDetailViewModel: ViewModelType {
                                 
                                 return firstNick.count < secondNick.count
                             }
+                            owner.userData = usersData
                             userDataSuccess.accept(usersData)
                         }
                     }.disposed(by: owner.disposeBag)

@@ -27,8 +27,6 @@
 		AC3265192BD550F700531BC1 /* MemberPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265182BD550F700531BC1 /* MemberPageTableViewCell.swift */; };
 		AC3265342BD76ECF00531BC1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265332BD76ECF00531BC1 /* SearchViewController.swift */; };
 		AC3265362BD76EF100531BC1 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265352BD76EF100531BC1 /* SearchView.swift */; };
-		AC3265412BD798F200531BC1 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265402BD798F200531BC1 /* SearchResultView.swift */; };
-		AC3265432BD798FD00531BC1 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265422BD798FD00531BC1 /* SearchResultViewController.swift */; };
 		AC3265452BD79E2300531BC1 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265442BD79E2300531BC1 /* SearchViewModel.swift */; };
 		AC3265472BD7A19400531BC1 /* FetchCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */; };
 		AC3265492BD7A2A200531BC1 /* FetchCrewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */; };
@@ -125,8 +123,6 @@
 		AC3265182BD550F700531BC1 /* MemberPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPageTableViewCell.swift; sourceTree = "<group>"; };
 		AC3265332BD76ECF00531BC1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AC3265352BD76EF100531BC1 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		AC3265402BD798F200531BC1 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
-		AC3265422BD798FD00531BC1 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		AC3265442BD79E2300531BC1 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewQuery.swift; sourceTree = "<group>"; };
 		AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewDataModel.swift; sourceTree = "<group>"; };
@@ -275,18 +271,8 @@
 				AC3265332BD76ECF00531BC1 /* SearchViewController.swift */,
 				AC3265352BD76EF100531BC1 /* SearchView.swift */,
 				ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */,
-				AC32653F2BD798E000531BC1 /* SearchResult */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		AC32653F2BD798E000531BC1 /* SearchResult */ = {
-			isa = PBXGroup;
-			children = (
-				AC3265422BD798FD00531BC1 /* SearchResultViewController.swift */,
-				AC3265402BD798F200531BC1 /* SearchResultView.swift */,
-			);
-			path = SearchResult;
 			sourceTree = "<group>";
 		};
 		AC9FD0912BC79AFB00395FC2 = {
@@ -658,7 +644,6 @@
 				AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
-				AC3265412BD798F200531BC1 /* SearchResultView.swift in Sources */,
 				ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */,
 				AC32654B2BD7C52700531BC1 /* Like2Query.swift in Sources */,
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
@@ -668,7 +653,6 @@
 				AC3264F32BD37FF300531BC1 /* CrewContentView.swift in Sources */,
 				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,
 				AC32650A2BD4F82000531BC1 /* CrewContentViewModel.swift in Sources */,
-				AC3265432BD798FD00531BC1 /* SearchResultViewController.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,

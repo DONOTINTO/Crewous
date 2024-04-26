@@ -37,7 +37,7 @@ class SearchViewController: BaseViewController<SearchView> {
                     .bind(with: self) { owner, _ in
                         
                         let nextVC = CrewDetailViewController()
-                        nextVC.sheetPresentationController?.detents = [.medium(), .large()]
+                        nextVC.modalPresentationStyle = .pageSheet
                         
                         self.present(nextVC, animated: true) {
                             nextVC.viewModel.postIdentifier.accept(data.postID)
