@@ -25,6 +25,9 @@ class CommentViewModel: ViewModelType {
      
         let postDataSuccess: PublishRelay<[CrewComment]>
         let postDataFailure: PublishRelay<APIError>
+        
+        let commentSuccess: PublishRelay<Int>
+        let commentFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -34,6 +37,7 @@ class CommentViewModel: ViewModelType {
         
         let postDataSuccess = PublishRelay<[CrewComment]>()
         let postDataFailure = PublishRelay<APIError>()
+        let commentSuccess = PublishRelay<Int>()
         let commentFailure = PublishRelay<APIError>()
         
         input.postIdentifier
@@ -46,7 +50,9 @@ class CommentViewModel: ViewModelType {
                 case .success(let postData):
                     
                     crewComments = postData.comments
-                    postDataSuccess.accept(postData.comments)
+                    crewComments.sort { $0.createdAt < $1.createdAt }
+                    
+                    postDataSuccess.accept(crewComments)
                 case .failure(let apiError):
                     
                     postDataFailure.accept(apiError)
@@ -56,7 +62,6 @@ class CommentViewModel: ViewModelType {
         input.commentInputObservable
             .flatMap {
                 
-                print("123")
                 let commentQuery = CommentQuery(content: $0)
              
                 return APIManager.callAPI(router: Router.comment(postID: self.postIdentifier, query: commentQuery), dataModel: CrewComment.self)
@@ -67,7 +72,10 @@ class CommentViewModel: ViewModelType {
                 case .success(let crewComment):
                     
                     crewComments.append(crewComment)
+                    crewComments.sort { $0.createdAt < $1.createdAt }
+                    
                     postDataSuccess.accept(crewComments)
+                    commentSuccess.accept(crewComments.endIndex)
                     
                 case .failure(let apiError):
                     commentFailure.accept(apiError)
@@ -76,6 +84,8 @@ class CommentViewModel: ViewModelType {
             
         
         return Output(postDataSuccess: postDataSuccess,
-                      postDataFailure: postDataFailure)
+                      postDataFailure: postDataFailure,
+                      commentSuccess: commentSuccess,
+                      commentFailure: commentFailure)
     }
 }
