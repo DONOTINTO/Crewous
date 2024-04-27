@@ -20,6 +20,13 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     
     override func bind() {
         
+        layoutView.expandButton.rx.tap
+            .bind(with: self) { owner, _ in
+                
+                owner.layoutView.expandScrollView()
+                owner.layoutView.expandButton.isHidden = true
+            }.disposed(by: disposeBag)
+        
         // Page VC Embedded
         Observable.zip(viewModel.postData, viewModel.userData)
             .bind(with: self) { owner, data in

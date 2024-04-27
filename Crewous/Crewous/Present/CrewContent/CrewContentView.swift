@@ -18,13 +18,15 @@ class CrewContentView: BaseView {
     let contentView = UIView()
     let introduceLabel = UILabel()
     
+    let expandButton = UIButton()
+    
     let contentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CrewContentCompositional.create())
     
     let containerView = UIView()
     
     override func configureHierarchy() {
         
-        [profileImageView, crewLabel, leaderLabel, introduceScrollView].forEach { addSubview($0) }
+        [profileImageView, crewLabel, leaderLabel, introduceScrollView, expandButton].forEach { addSubview($0) }
         [contentCollectionView, containerView].forEach { addSubview($0) }
         
         introduceScrollView.addSubview(contentView)
@@ -68,8 +70,13 @@ class CrewContentView: BaseView {
             $0.edges.equalTo(contentView).inset(10)
         }
         
+        expandButton.snp.makeConstraints {
+            $0.top.equalTo(introduceScrollView.snp.bottom)
+            $0.horizontalEdges.equalTo(self)
+        }
+        
         contentCollectionView.snp.makeConstraints {
-            $0.top.equalTo(introduceScrollView.snp.bottom).inset(10)
+            $0.top.equalTo(expandButton.snp.bottom)
             $0.horizontalEdges.equalTo(self)
             $0.height.equalTo(30)
         }
@@ -92,6 +99,9 @@ class CrewContentView: BaseView {
         crewLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         leaderLabel.custom(title: "Crew -", color: .customGray, fontScale: .bold, fontSize: .medium)
         
+        let expandImage = UIImage(systemName: "chevron.down")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
+        expandButton.setImage(expandImage, for: .normal)
+        
         introduceLabel.custom(title: "", color: .customBlack, fontScale: .semiBold, fontSize: .small)
         introduceLabel.textAlignment = .left
         introduceLabel.numberOfLines = 0
@@ -111,5 +121,20 @@ class CrewContentView: BaseView {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
         profileImageView.loadImage(from: imageURL)
+    }
+    
+    func expandScrollView() {
+        
+        introduceScrollView.snp.remakeConstraints {
+            $0.top.equalTo(profileImageView.snp.bottom).offset(10)
+            $0.horizontalEdges.equalTo(self)
+            $0.height.equalTo(200)
+        }
+        
+        contentCollectionView.snp.remakeConstraints {
+            $0.top.equalTo(introduceScrollView.snp.bottom)
+            $0.horizontalEdges.equalTo(self)
+            $0.height.equalTo(30)
+        }
     }
 }
