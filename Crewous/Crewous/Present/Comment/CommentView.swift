@@ -41,15 +41,16 @@ class CommentView: BaseView {
         }
         
         userInputTextField.snp.makeConstraints {
-            $0.horizontalEdges.equalTo(self).inset(20)
-            $0.bottom.equalTo(keyboardLayoutGuide.snp.top)
+            $0.leading.equalTo(self).inset(20)
+            $0.bottom.greaterThanOrEqualTo(keyboardLayoutGuide.snp.top)
             $0.height.equalTo(44)
         }
         
         inputButton.snp.makeConstraints {
-            $0.verticalEdges.equalTo(userInputTextField)
-            $0.trailing.equalTo(userInputTextField).inset(10)
-            $0.width.equalTo(inputButton.snp.height)
+            $0.width.height.equalTo(44)
+            $0.leading.equalTo(userInputTextField.snp.trailing)
+            $0.trailing.equalTo(self).inset(10)
+            $0.bottom.equalTo(keyboardLayoutGuide.snp.top)
         }
     }
     
@@ -64,7 +65,9 @@ class CommentView: BaseView {
         
         userInputTextField.custom(placeholder: "Input Comment Here", fontSize: .small)
         
-        let inputImage = UIImage(systemName: "arrow.up.circle")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold, scale: .large)
+        
+        let inputImage = UIImage(systemName: "paperplane")?.withTintColor(.customGreen, renderingMode: .alwaysOriginal).withConfiguration(imageConfiguration)
         inputButton.setImage(inputImage, for: .normal)
     }
 

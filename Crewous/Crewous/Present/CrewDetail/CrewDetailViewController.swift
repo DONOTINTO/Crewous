@@ -49,6 +49,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
             nextVC.sheetPresentationController?.prefersGrabberVisible = true
             nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
             
+            nextVC.viewModel.postIdentifier = postData.postID
             owner.present(nextVC, animated: true)
         }.disposed(by: disposeBag)
         
@@ -135,6 +136,8 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 parentVC.viewWillAppear(true)
                 
             }.disposed(by: disposeBag)
+        
+        // output.applyOrResignFailure
     }
     
     private func refresh() {

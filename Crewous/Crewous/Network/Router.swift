@@ -21,6 +21,7 @@ enum Router: RouterType {
     case uploadImage
     case makeCrew(makeCrewQuery: MakeCrewQuery)
     case like2(postID: String, query: Like2Query) // '좋아요2' 적용/취소
+    case comment(postID: String, query: CommentQuery) // 댓글 달기
     
     case withDraw
     
@@ -37,7 +38,7 @@ extension Router {
     var method: HTTPMethod {
         
         switch self {
-        case .signIn, .signUp, .uploadImage, .makeCrew, .like2:
+        case .signIn, .signUp, .uploadImage, .makeCrew, .like2, .comment:
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser, .fetchPost, .fetchCrew:
             return .get
@@ -71,6 +72,8 @@ extension Router {
             return "/v1/posts/\(postID)"
         case .fetchCrew:
             return Path.makeCrew.rawValue
+        case .comment(let postID, _):
+            return "/v1/posts/\(postID)/comments"
         }
     }
     
@@ -99,7 +102,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .makeCrew, .like2:
+        case .makeCrew, .like2, .comment:
             return [
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
@@ -141,6 +144,8 @@ extension Router {
             return try? encoder.encode(makeCrewQuery)
         case .like2(_, let like2Query):
             return try? encoder.encode(like2Query)
+        case .comment(let postID, let commentQuery):
+            return try? encoder.encode(commentQuery)
         default:
             return nil
         }

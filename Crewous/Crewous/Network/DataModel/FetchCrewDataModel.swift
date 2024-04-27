@@ -7,6 +7,7 @@
 
 import Foundation
 
+// DataModel = CrewComment
 struct FetchCrewDataModel: Decodable {
     
     let data: [PostData]

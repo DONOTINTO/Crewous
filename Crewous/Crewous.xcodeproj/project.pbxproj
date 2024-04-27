@@ -71,6 +71,9 @@
 		ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */; };
 		ACBD68342BDC04B10077C6FC /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68332BDC04B10077C6FC /* CommentViewController.swift */; };
 		ACBD68362BDC04BA0077C6FC /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68352BDC04BA0077C6FC /* CommentView.swift */; };
+		ACBD68382BDCC2D10077C6FC /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68372BDCC2D10077C6FC /* CommentViewModel.swift */; };
+		ACBD683A2BDCC85C0077C6FC /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68392BDCC85C0077C6FC /* CommentTableViewCell.swift */; };
+		ACBD683C2BDCD00F0077C6FC /* CommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -167,6 +170,9 @@
 		ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		ACBD68332BDC04B10077C6FC /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		ACBD68352BDC04BA0077C6FC /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		ACBD68372BDCC2D10077C6FC /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		ACBD68392BDCC85C0077C6FC /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -441,6 +447,7 @@
 				ACDF680B2BCE980B0046766B /* MakeCrewQuery.swift */,
 				AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */,
 				AC32654A2BD7C52700531BC1 /* Like2Query.swift */,
+				ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -472,8 +479,10 @@
 		ACBD68322BDC04880077C6FC /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				ACBD68372BDCC2D10077C6FC /* CommentViewModel.swift */,
 				ACBD68332BDC04B10077C6FC /* CommentViewController.swift */,
 				ACBD68352BDC04BA0077C6FC /* CommentView.swift */,
+				ACBD68392BDCC85C0077C6FC /* CommentTableViewCell.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -657,6 +666,7 @@
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				AC3264F52BD3800800531BC1 /* CrewContentViewController.swift in Sources */,
 				AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */,
+				ACBD683A2BDCC85C0077C6FC /* CommentTableViewCell.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
 				ACF18F632BD14860002C0548 /* ImageView++.swift in Sources */,
@@ -679,6 +689,7 @@
 				ACDF67E92BCD34790046766B /* FetchMyCrewDataModel.swift in Sources */,
 				AC9FD0E72BC7E51900395FC2 /* Util.swift in Sources */,
 				AC9FD0F82BC805C700395FC2 /* APIManager.swift in Sources */,
+				ACBD683C2BDCD00F0077C6FC /* CommentQuery.swift in Sources */,
 				AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */,
 				AC9FD0DF2BC7D43C00395FC2 /* Button++.swift in Sources */,
 				AC3265042BD38F7000531BC1 /* MemberPageView.swift in Sources */,
@@ -700,6 +711,7 @@
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
+				ACBD68382BDCC2D10077C6FC /* CommentViewModel.swift in Sources */,
 				ACDF67E72BCD166B0046766B /* WithoutCrewView.swift in Sources */,
 				AC3265492BD7A2A200531BC1 /* FetchCrewDataModel.swift in Sources */,
 				AC3265002BD38F3A00531BC1 /* InfoPageViewController.swift in Sources */,
