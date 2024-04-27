@@ -26,7 +26,7 @@ class MyCrewView: BaseView {
         }
         
         containerView.snp.makeConstraints {
-            $0.edges.equalTo(self)
+            $0.top.equalTo(self)
             $0.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }

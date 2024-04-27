@@ -69,6 +69,8 @@
 		AC9FD0FD2BC813CF00395FC2 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FC2BC813CF00395FC2 /* APIError.swift */; };
 		AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */; };
 		ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */; };
+		ACBD68342BDC04B10077C6FC /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68332BDC04B10077C6FC /* CommentViewController.swift */; };
+		ACBD68362BDC04BA0077C6FC /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68352BDC04BA0077C6FC /* CommentView.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -163,6 +165,8 @@
 		AC9FD0FC2BC813CF00395FC2 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		ACBD68332BDC04B10077C6FC /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		ACBD68352BDC04BA0077C6FC /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 		AC9FD0C12BC79D2F00395FC2 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				ACBD68322BDC04880077C6FC /* Comment */,
 				AC3265322BD76EB900531BC1 /* Search */,
 				AC3264F12BD37FA300531BC1 /* CrewContent */,
 				ACDF67EA2BCD6A5B0046766B /* CrewDetail */,
@@ -462,6 +467,15 @@
 				AC9FD0FF2BC8222A00395FC2 /* UserDefaultsManager.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		ACBD68322BDC04880077C6FC /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				ACBD68332BDC04B10077C6FC /* CommentViewController.swift */,
+				ACBD68352BDC04BA0077C6FC /* CommentView.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		ACDF67AC2BCA9F5B0046766B /* Stats */ = {
@@ -637,6 +651,7 @@
 				AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */,
 				ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
+				ACBD68342BDC04B10077C6FC /* CommentViewController.swift in Sources */,
 				ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */,
 				AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */,
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
@@ -681,6 +696,7 @@
 				ACDF67E52BCD165F0046766B /* WithoutCrewViewController.swift in Sources */,
 				ACDF681A2BD015700046766B /* WithDrawDataModel.swift in Sources */,
 				AC3265122BD5050D00531BC1 /* NSObject++.swift in Sources */,
+				ACBD68362BDC04BA0077C6FC /* CommentView.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,

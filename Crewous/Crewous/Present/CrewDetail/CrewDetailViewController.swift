@@ -32,11 +32,24 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
             nextVC.sheetPresentationController?.prefersGrabberVisible = true
             nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
             
-            self.present(nextVC, animated: true) {
+            owner.present(nextVC, animated: true) {
                 nextVC.viewModel.postData.accept(postData)
                 nextVC.viewModel.userData.accept(userData)
             }
             
+        }.disposed(by: disposeBag)
+        
+        layoutView.commentButton.rx.tap.bind(with: self) { owner, _ in
+            
+            guard let postData = owner.viewModel.postData else { return }
+            
+            let nextVC = CommentViewController()
+            let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
+            nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
+            nextVC.sheetPresentationController?.prefersGrabberVisible = true
+            nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+            
+            owner.present(nextVC, animated: true)
         }.disposed(by: disposeBag)
         
         let input = CrewDetailViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear,
