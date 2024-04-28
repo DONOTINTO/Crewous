@@ -45,24 +45,23 @@ class CommentTableViewCell: UITableViewCell {
         [userProfileImageView, nickLabel, commentLabel].forEach { contentView.addSubview($0) }
      
         userProfileImageView.snp.makeConstraints {
-            $0.verticalEdges.equalTo(contentView).inset(10)
+            $0.top.greaterThanOrEqualTo(contentView).inset(10)
             $0.width.height.equalTo(40)
             $0.leading.equalTo(contentView).inset(10)
+            $0.bottom.greaterThanOrEqualTo(contentView).inset(10)
         }
         
         nickLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView).inset(10)
-            $0.height.equalTo(15)
+            $0.top.greaterThanOrEqualTo(contentView).inset(10)
             $0.leading.equalTo(userProfileImageView.snp.trailing).offset(10)
             $0.trailing.equalTo(contentView).inset(10)
         }
         
         commentLabel.snp.makeConstraints {
             $0.top.equalTo(nickLabel.snp.bottom).offset(5)
-            $0.height.equalTo(20)
             $0.leading.equalTo(userProfileImageView.snp.trailing).offset(10)
             $0.trailing.equalTo(contentView).inset(10)
-            $0.bottom.equalTo(contentView).inset(10)
+            $0.bottom.lessThanOrEqualTo(contentView).inset(10)
         }
     }
     
