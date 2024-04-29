@@ -147,6 +147,7 @@ class StatsView: BaseView {
         
         profileView.clipsToBounds = true
         profileView.layer.cornerRadius = 25
+        profileView.isUserInteractionEnabled = true
         
         profileEditLabel.custom(title: "edit", color: .white, fontSize: 15)
         profileEditLabel.backgroundColor = .customBlack.withAlphaComponent(0.5)

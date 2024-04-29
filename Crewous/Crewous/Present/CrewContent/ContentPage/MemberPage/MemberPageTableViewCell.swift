@@ -28,6 +28,9 @@ class MemberPageTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        profileImageView.image = nil
+        nickLabel.text = ""
+        positionLabel.text = ""
     }
     
     func configureLayout() {
@@ -58,6 +61,11 @@ class MemberPageTableViewCell: UITableViewCell {
         
         let image = UIImage.profile
         profileImageView.image = image
+        profileImageView.layer.cornerRadius = 15
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.customGreen.cgColor
+        profileImageView.layer.borderWidth = 2
+        
         nickLabel.custom(title: "", color: .customBlack, fontScale: .regular, fontSize: .medium)
         positionLabel.custom(title: "", color: .customBlack, fontScale: .regular, fontSize: .medium)
     }

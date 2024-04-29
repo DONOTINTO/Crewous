@@ -88,5 +88,9 @@ class CommentTableViewCell: UITableViewCell {
         let imageData = profileImage
         let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
         userProfileImageView.loadImage(from: imageURL)
+        userProfileImageView.layer.cornerRadius = 20
+        userProfileImageView.clipsToBounds = true
+        userProfileImageView.layer.borderColor = UIColor.customGreen.cgColor
+        userProfileImageView.layer.borderWidth = 2
     }
 }

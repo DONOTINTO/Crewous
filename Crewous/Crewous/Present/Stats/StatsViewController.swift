@@ -17,26 +17,26 @@ class StatsViewController: BaseViewController<StatsView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        #if DEBUG
+        
+#if DEBUG
         
         // let a = PublishRelay<Void>()
         // a.flatMap {
         //     return APIManager.callAPI(router: Router.like2(postID: "66210e0e438b876b25f7a8b4", query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
         // }.subscribe(with: self) { owner, result in
-        //     
+        //
         //     switch result {
-        //         
+        //
         //     case .success(let success):
         //         print(success)
         //     case .failure(let failure):
         //         print(failure)
         //     }
         // }.disposed(by: disposeBag)
-        // 
+        //
         // a.accept(())
         
-        #endif
+#endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +49,18 @@ class StatsViewController: BaseViewController<StatsView> {
         
         let profileChangeObservable = PublishRelay<Data>()
         
+        let profileTapGesture = UITapGestureRecognizer()
+        layoutView.profileView.addGestureRecognizer(profileTapGesture)
+        profileTapGesture.rx.event.bind(with: self) { owner, _ in
+            owner.present(owner.picker, animated: true)
+        }.disposed(by: disposeBag)
+        
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto,
                let imageData = photo.image.compressedJPEGData {
                 
                 let alert = UIAlertController(title: "", message: "save the new profile Image", preferredStyle: .alert)
-                let confirmAction = UIAlertAction(title: "YES", style: .default) {_ in 
+                let confirmAction = UIAlertAction(title: "YES", style: .default) {_ in
                     profileChangeObservable.accept(imageData)
                     picker.dismiss(animated: true, completion: nil)
                 }
@@ -67,14 +73,9 @@ class StatsViewController: BaseViewController<StatsView> {
             }
         }
         
-        layoutView.testButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.present(owner.picker, animated: true)
-            }.disposed(by: disposeBag)
-        
         let viewWillAppearObservable = self.rx.viewWillAppear
         
-        let input = StatsViewModel.Input(viewWillAppearObservable: viewWillAppearObservable, 
+        let input = StatsViewModel.Input(viewWillAppearObservable: viewWillAppearObservable,
                                          profileChangeObservable: profileChangeObservable)
         let output = viewModel.transform(input: input)
         
@@ -104,6 +105,13 @@ class StatsViewController: BaseViewController<StatsView> {
                 owner.layoutView.crewLabel.text = "Crew - \(crewName)"
                 owner.layoutView.crewInfoLabel.text = crewName
                 
+                if let image = fetchSelfData.profileImage,
+                   let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) {
+                   
+                   owner.layoutView.profileImageView.loadImage(from: url)
+                }
+                
+                
             }.disposed(by: disposeBag)
         
         // 유저 정보 불러오기 실패
@@ -114,6 +122,16 @@ class StatsViewController: BaseViewController<StatsView> {
             // 재호출
             owner.errorHandler(apiError, calltype: .fetchSelf)
         }.disposed(by: disposeBag)
+        
+        output.updateProfileSuccess
+            .bind(with: self) { owner, data in
+                
+                guard let image = data.profileImage,
+                let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) else { return }
+                
+                owner.layoutView.profileImageView.loadImage(from: url)
+                
+            }.disposed(by: disposeBag)
         
         
         

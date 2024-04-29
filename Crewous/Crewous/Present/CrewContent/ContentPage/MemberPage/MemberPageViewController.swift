@@ -32,6 +32,12 @@ class MemberPageViewController: BaseViewController<MemberPageView> {
                 cell.selectionStyle = .none
                 cell.configure(nick: nick, position: position)
                 
+                if let image = data.profileImage,
+                   let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) {
+                    
+                    cell.profileImageView.loadImage(from: url)
+                }
+                
             }.disposed(by: disposeBag)
     }
     

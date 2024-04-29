@@ -24,6 +24,8 @@ class StatsViewModel: ViewModelType {
         let fetchSelfSuccess: PublishRelay<FetchUserDataModel>
         let fetchCrewSuccess: PublishRelay<FetchMyCrewDataModel>
         let fetchFailure: PublishRelay<APIError>
+        let updateProfileSuccess: PublishRelay<FetchUserDataModel>
+        let updateProfileFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -32,6 +34,8 @@ class StatsViewModel: ViewModelType {
         let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
         let fetchFailure = PublishRelay<APIError>()
         let fetchMyCrew = PublishRelay<Void>()
+        let updateProfileSuccess = PublishRelay<FetchUserDataModel>()
+        let updateProfileFailure = PublishRelay<APIError>()
         
         input.viewWillAppearObservable
             .flatMap { _ in
@@ -81,14 +85,16 @@ class StatsViewModel: ViewModelType {
                 switch result {
                     
                 case .success(let success):
-                    dump(success)
+                    updateProfileSuccess.accept(success)
                 case .failure(let apiError):
-                    print(apiError)
+                    updateProfileFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
         
         return Output(fetchSelfSuccess: fetchSelfSuccess,
                       fetchCrewSuccess: fetchCrewSuccess,
-                      fetchFailure: fetchFailure)
+                      fetchFailure: fetchFailure,
+                      updateProfileSuccess: updateProfileSuccess,
+                      updateProfileFailure: updateProfileFailure)
     }
 }
