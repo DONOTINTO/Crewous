@@ -26,8 +26,8 @@ struct APIManager {
                     let statusCode = responseData.statusCode
                     
                     switch response.result {
-                    
-                    // 모든 통신 결과는 Single의 success로 반환
+                        
+                        // 모든 통신 결과는 Single의 success로 반환
                     case .success(let success):
                         
                         print("success")
@@ -73,13 +73,19 @@ struct APIManager {
         return Single<Result<T, APIError>>.create { single in
             AF.upload(multipartFormData: { multiPartFormData in
                 
-                multiPartFormData.append(
-                    image,
-                    withName: "files",
-                    fileName: "goods99j.jpeg",
-                    mimeType: "image/jpeg")
+                if let parameters = router.parameters {
+                    for (key, value) in parameters {
+                        
+                        multiPartFormData.append(
+                            value as! Data,
+                            withName: key,
+                            fileName: "goods99j.jpeg",
+                            mimeType: "image/jpeg"
+                        )
+                    }
+                }
                 
-            }, to: url, headers: header)
+            }, to: url, method: router.method ,headers: header)
             .responseDecodable(of: dataModel.self) { response in
                 
                 guard let responseData = response.response else { return }

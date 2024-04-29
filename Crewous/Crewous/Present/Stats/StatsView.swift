@@ -10,7 +10,9 @@ import SnapKit
 
 class StatsView: BaseView {
     
+    let profileView = UIView()
     let profileImageView = UIImageView()
+    let profileEditLabel = UILabel()
     let nickLabel = UILabel()
     let crewLabel = UILabel()
     let lineView = UIView()
@@ -24,7 +26,7 @@ class StatsView: BaseView {
     let positionLiteralLabel = UILabel()
     let positionInfoLabel = UILabel()
     
-    
+    let testButton = UIButton()
     let withDrawButton =  UIButton()
     let logoutButton = UIButton()
     
@@ -34,7 +36,9 @@ class StatsView: BaseView {
         
         addSubview(indicator)
         
-        [profileImageView, nickLabel, crewLabel, lineView].forEach { addSubview($0) }
+        [profileView, nickLabel, crewLabel, lineView].forEach { addSubview($0) }
+        
+        [profileImageView, profileEditLabel].forEach { profileView.addSubview($0) }
         
         [heightLiteralLabel, heightInfoLabel, crewLiteralLabel, crewInfoLabel, weightLiteralLabel, weightInfoLabel, positionLiteralLabel, positionInfoLabel].forEach { addSubview($0) }
         
@@ -45,11 +49,22 @@ class StatsView: BaseView {
     
     override func configureLayout() {
         
-        profileImageView.snp.makeConstraints {
+        profileView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).inset(10)
             $0.leading.equalTo(safeAreaLayoutGuide).inset(30)
             $0.height.width.equalTo(50)
         }
+        
+        profileImageView.snp.makeConstraints {
+            $0.edges.equalTo(profileView)
+        }
+        
+        profileEditLabel.snp.makeConstraints {
+            $0.bottom.equalTo(profileView)
+            $0.horizontalEdges.equalTo(profileView)
+            $0.height.equalTo(15)
+        }
+        
         
         nickLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView)
@@ -130,6 +145,13 @@ class StatsView: BaseView {
     
     override func configureView() {
         
+        profileView.clipsToBounds = true
+        profileView.layer.cornerRadius = 25
+        
+        profileEditLabel.custom(title: "edit", color: .white, fontSize: 15)
+        profileEditLabel.backgroundColor = .customBlack.withAlphaComponent(0.5)
+        profileEditLabel.textAlignment = .center
+        
         let image = UIImage.profile
         profileImageView.image = image
         profileImageView.backgroundColor = .clear
@@ -156,8 +178,15 @@ class StatsView: BaseView {
     
     func debug() {
         
+        addSubview(testButton)
         addSubview(withDrawButton)
         addSubview(logoutButton)
+        
+        testButton.snp.makeConstraints {
+            $0.bottom.equalTo(withDrawButton.snp.top).offset(-10)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
+            $0.height.equalTo(30)
+        }
         
         withDrawButton.snp.makeConstraints {
             $0.bottom.equalTo(logoutButton.snp.top).offset(-10)
@@ -170,6 +199,8 @@ class StatsView: BaseView {
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
             $0.height.equalTo(30)
         }
+        
+        testButton.custom(title: "사진첩 테스트", titleColor: .black, bgColor: .customGreen)
         
         withDrawButton.custom(title: "탈퇴(테스트용)", titleColor: .black, bgColor: .customGreen)
         

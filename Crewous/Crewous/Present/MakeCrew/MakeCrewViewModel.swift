@@ -48,7 +48,8 @@ class MakeCrewViewModel: ViewModelType {
             .flatMap { 
                 
                 print("#### UploadImage API Call ####")
-                return APIManager.uploadImage(router: Router.uploadImage, dataModel: UploadImageDataModel.self, image: self.imageData)
+                let query = UploadImageQuery(files: self.imageData)
+                return APIManager.uploadImage(router: Router.uploadImage(uploadImageQuery: query), dataModel: UploadImageDataModel.self, image: self.imageData)
             }.subscribe(with: self) { owner, result in
                 
                 switch result {

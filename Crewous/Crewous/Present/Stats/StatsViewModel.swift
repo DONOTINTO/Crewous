@@ -16,6 +16,7 @@ class StatsViewModel: ViewModelType {
     struct Input {
         
         let viewWillAppearObservable: Observable<Void>
+        let profileChangeObservable: PublishRelay<Data>
     }
     
     struct Output {
@@ -67,6 +68,22 @@ class StatsViewModel: ViewModelType {
                 case .failure(let apiError):
                     print("#### Fetch My Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
+                }
+            }.disposed(by: disposeBag)
+        
+        input.profileChangeObservable
+            .flatMap { data in
+                
+                let query = UpdateProfileQuery(profile: data)
+                return APIManager.uploadImage(router: Router.updateProfile(query: query), dataModel: FetchUserDataModel.self, image: data)
+            }.subscribe(with: self) { owner, result in
+                
+                switch result {
+                    
+                case .success(let success):
+                    dump(success)
+                case .failure(let apiError):
+                    print(apiError)
                 }
             }.disposed(by: disposeBag)
         

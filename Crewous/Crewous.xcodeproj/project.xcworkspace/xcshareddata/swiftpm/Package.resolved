@@ -1,5 +1,5 @@
 {
-  "originHash" : "74b11e765834e0f5e8e629081bbb33b9f98a7d9477caf47489d3b98d525f6fa9",
+  "originHash" : "cefb39e7bc998c370733c45fdba7f62402c06035430bdd22d20fc1e586a9cbf6",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -20,6 +20,15 @@
       }
     },
     {
+      "identity" : "prynttrimmerview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HHK1/PryntTrimmerView",
+      "state" : {
+        "revision" : "ac1b60a22c7e6a6514de7a66d2f3d5b537c956d5",
+        "version" : "4.0.2"
+      }
+    },
+    {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
@@ -35,6 +44,24 @@
       "state" : {
         "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
         "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "stevia",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/freshOS/Stevia",
+      "state" : {
+        "revision" : "cfb1a1d2159277bb553c3dc46f3f742c0275566d",
+        "version" : "5.1.2"
+      }
+    },
+    {
+      "identity" : "ypimagepicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Yummypets/YPImagePicker.git",
+      "state" : {
+        "revision" : "2db04eb020e3ef03828d3207d85250e110fa5919",
+        "version" : "5.2.2"
       }
     }
   ],

@@ -18,10 +18,12 @@ enum Router: RouterType {
     case fetchPost(postID: String) // 특정 포스트 조회
     case fetchCrew(fetchCrewQuery: FetchCrewQuery)
     
-    case uploadImage
+    case uploadImage(uploadImageQuery: UploadImageQuery)
     case makeCrew(makeCrewQuery: MakeCrewQuery)
     case like2(postID: String, query: Like2Query) // '좋아요2' 적용/취소
     case comment(postID: String, query: CommentQuery) // 댓글 달기
+    
+    case updateProfile(query: UpdateProfileQuery)
     
     case withDraw
     
@@ -42,6 +44,8 @@ extension Router {
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser, .fetchPost, .fetchCrew:
             return .get
+        case .updateProfile:
+            return .put
         }
     }
     
@@ -52,7 +56,7 @@ extension Router {
             return Path.signIn.rawValue
         case .signUp:
             return Path.signUp.rawValue
-        case .fetchSelf:
+        case .fetchSelf, .updateProfile:
             return Path.fetchSelf.rawValue
         case .refresh:
             return Path.refresh.rawValue
@@ -96,7 +100,7 @@ extension Router {
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                 HTTPHeader.Key.refresh.rawValue: UDManager.refreshToken
             ]
-        case .uploadImage:
+        case .uploadImage, .updateProfile:
             return [
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
@@ -117,6 +121,10 @@ extension Router {
         case .fetchCrew(let fetchCrewQuery):
             return ["limit" : fetchCrewQuery.limit,
                     "product_id" : fetchCrewQuery.product_id]
+        case .updateProfile(let updateProfileQuery):
+            return ["profile" : updateProfileQuery.profile]
+        case .uploadImage(let uploadImageQuery):
+            return ["files" : uploadImageQuery.files]
         default:
             return nil
         }
@@ -144,7 +152,7 @@ extension Router {
             return try? encoder.encode(makeCrewQuery)
         case .like2(_, let like2Query):
             return try? encoder.encode(like2Query)
-        case .comment(let postID, let commentQuery):
+        case .comment(_, let commentQuery):
             return try? encoder.encode(commentQuery)
         default:
             return nil

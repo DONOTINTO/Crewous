@@ -74,6 +74,9 @@
 		ACBD68382BDCC2D10077C6FC /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68372BDCC2D10077C6FC /* CommentViewModel.swift */; };
 		ACBD683A2BDCC85C0077C6FC /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68392BDCC85C0077C6FC /* CommentTableViewCell.swift */; };
 		ACBD683C2BDCD00F0077C6FC /* CommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */; };
+		ACBD683F2BDE9D030077C6FC /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = ACBD683E2BDE9D030077C6FC /* YPImagePicker */; };
+		ACBD68A82BDF6F7C0077C6FC /* UpdateProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */; };
+		ACBD68AA2BDF828E0077C6FC /* UploadImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -82,7 +85,7 @@
 		ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67AF2BCAAD140046766B /* StatsView.swift */; };
 		ACDF67B52BCB238B0046766B /* Label++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B42BCB238B0046766B /* Label++.swift */; };
 		ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B62BCB26410046766B /* StatsViewModel.swift */; };
-		ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */; };
+		ACDF67B92BCB2A570046766B /* FetchUserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67B82BCB2A570046766B /* FetchUserDataModel.swift */; };
 		ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67BA2BCB2E100046766B /* RxSwift++.swift */; };
 		ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */; };
 		ACDF67E12BCD14920046766B /* MyCrewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67E02BCD14920046766B /* MyCrewViewController.swift */; };
@@ -173,6 +176,8 @@
 		ACBD68372BDCC2D10077C6FC /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		ACBD68392BDCC85C0077C6FC /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
+		ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileQuery.swift; sourceTree = "<group>"; };
+		ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageQuery.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -181,7 +186,7 @@
 		ACDF67AF2BCAAD140046766B /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		ACDF67B42BCB238B0046766B /* Label++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label++.swift"; sourceTree = "<group>"; };
 		ACDF67B62BCB26410046766B /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
-		ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSelfDataModel.swift; sourceTree = "<group>"; };
+		ACDF67B82BCB2A570046766B /* FetchUserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserDataModel.swift; sourceTree = "<group>"; };
 		ACDF67BA2BCB2E100046766B /* RxSwift++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift++.swift"; sourceTree = "<group>"; };
 		ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataModel.swift; sourceTree = "<group>"; };
 		ACDF67E02BCD14920046766B /* MyCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCrewViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC9FD0B82BC79B6100395FC2 /* RxSwift in Frameworks */,
+				ACBD683F2BDE9D030077C6FC /* YPImagePicker in Frameworks */,
 				AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */,
 				AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */,
 				AC9FD0B32BC79B4500395FC2 /* Alamofire in Frameworks */,
@@ -448,6 +454,8 @@
 				AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */,
 				AC32654A2BD7C52700531BC1 /* Like2Query.swift */,
 				ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */,
+				ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */,
+				ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -457,7 +465,7 @@
 			children = (
 				AC9FD0FA2BC80AE300395FC2 /* SignInDataModel.swift */,
 				ACDF67AA2BCA31540046766B /* SignUpDataModel.swift */,
-				ACDF67B82BCB2A570046766B /* FetchSelfDataModel.swift */,
+				ACDF67B82BCB2A570046766B /* FetchUserDataModel.swift */,
 				ACDF67BC2BCBE7040046766B /* RefreshDataModel.swift */,
 				ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */,
 				ACDF68072BCE81960046766B /* UploadImageDataModel.swift */,
@@ -568,6 +576,7 @@
 				AC9FD0B72BC79B6100395FC2 /* RxSwift */,
 				AC9FD0BA2BC79B7700395FC2 /* SnapKit */,
 				ACF18F602BD13F94002C0548 /* Kingfisher */,
+				ACBD683E2BDE9D030077C6FC /* YPImagePicker */,
 			);
 			productName = Crewous;
 			productReference = AC9FD09A2BC79AFB00395FC2 /* Crewous.app */;
@@ -602,6 +611,7 @@
 				AC9FD0B42BC79B6100395FC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				ACBD683D2BDE9D030077C6FC /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = AC9FD09B2BC79AFB00395FC2 /* Products */;
 			projectDirPath = "";
@@ -654,7 +664,7 @@
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
 				AC3265472BD7A19400531BC1 /* FetchCrewQuery.swift in Sources */,
 				AC3264FC2BD38B1800531BC1 /* CrewContentCollectionViewCell.swift in Sources */,
-				ACDF67B92BCB2A570046766B /* FetchSelfDataModel.swift in Sources */,
+				ACDF67B92BCB2A570046766B /* FetchUserDataModel.swift in Sources */,
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				ACDF680A2BCE96440046766B /* Image++.swift in Sources */,
 				AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */,
@@ -699,9 +709,11 @@
 				ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */,
 				AC3265342BD76ECF00531BC1 /* SearchViewController.swift in Sources */,
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
+				ACBD68AA2BDF828E0077C6FC /* UploadImageQuery.swift in Sources */,
 				AC3265192BD550F700531BC1 /* MemberPageTableViewCell.swift in Sources */,
 				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,
+				ACBD68A82BDF6F7C0077C6FC /* UpdateProfileQuery.swift in Sources */,
 				AC3265152BD5320D00531BC1 /* PageDelegate.swift in Sources */,
 				ACDF67EC2BCD6A750046766B /* CrewDetailView.swift in Sources */,
 				ACDF67E52BCD165F0046766B /* WithoutCrewViewController.swift in Sources */,
@@ -1076,6 +1088,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		ACBD683D2BDE9D030077C6FC /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 		ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1106,6 +1126,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		ACBD683E2BDE9D030077C6FC /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACBD683D2BDE9D030077C6FC /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
 		};
 		ACF18F602BD13F94002C0548 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

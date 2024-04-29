@@ -8,10 +8,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import YPImagePicker
 
 class StatsViewController: BaseViewController<StatsView> {
     
     let viewModel = StatsViewModel()
+    let picker = YPImagePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +46,36 @@ class StatsViewController: BaseViewController<StatsView> {
     }
     
     override func bind() {
-        super.bind()
+        
+        let profileChangeObservable = PublishRelay<Data>()
+        
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto,
+               let imageData = photo.image.compressedJPEGData {
+                
+                let alert = UIAlertController(title: "", message: "save the new profile Image", preferredStyle: .alert)
+                let confirmAction = UIAlertAction(title: "YES", style: .default) {_ in 
+                    profileChangeObservable.accept(imageData)
+                    picker.dismiss(animated: true, completion: nil)
+                }
+                let cancelAction = UIAlertAction(title: "NO", style: .cancel)
+                
+                alert.addAction(confirmAction)
+                alert.addAction(cancelAction)
+                
+                picker.present(alert, animated: true)
+            }
+        }
+        
+        layoutView.testButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.present(owner.picker, animated: true)
+            }.disposed(by: disposeBag)
         
         let viewWillAppearObservable = self.rx.viewWillAppear
         
-        let input = StatsViewModel.Input(viewWillAppearObservable: viewWillAppearObservable)
+        let input = StatsViewModel.Input(viewWillAppearObservable: viewWillAppearObservable, 
+                                         profileChangeObservable: profileChangeObservable)
         let output = viewModel.transform(input: input)
         
         // 유저 정보 불러오기 성공
