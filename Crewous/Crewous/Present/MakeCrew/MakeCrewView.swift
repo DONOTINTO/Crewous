@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MakeCrewView: BaseView {
+final class MakeCrewView: BaseView {
     
     let scrollView = UIScrollView()
     let contentView = UIView()

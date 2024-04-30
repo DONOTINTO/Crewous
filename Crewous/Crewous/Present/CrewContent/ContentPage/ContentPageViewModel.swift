@@ -9,9 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ContentPageViewModel {
+final class ContentPageViewModel {
     
     let postData = PublishRelay<PostData>()
     let userData = PublishRelay<[FetchUserDataModel]>()
+    let selectedPage = PublishRelay<Int>()
     let afterPagingEvent = PublishRelay<String>()
 }

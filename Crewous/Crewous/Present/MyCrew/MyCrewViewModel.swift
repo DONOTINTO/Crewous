@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MyCrewViewModel: ViewModelType {
+final class MyCrewViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
@@ -33,18 +33,15 @@ class MyCrewViewModel: ViewModelType {
         input.viewWillAppearObservable
             .flatMap {
                 
-                print("#### Fetch Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
             }.subscribe(with: self) { owner, fetchMyCrewData in
                 
                 switch fetchMyCrewData {
                 case .success(let data):
                     
-                    print("#### Fetch Crew API Success ####")
                     fetchCrewSuccess.accept(data)
                 case .failure(let apiError):
                     
-                    print("#### Fetch Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
                     fetchFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)

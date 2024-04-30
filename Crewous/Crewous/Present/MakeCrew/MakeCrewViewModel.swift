@@ -9,13 +9,18 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MakeCrewViewModel: ViewModelType {
+final class MakeCrewViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
+    // 이미지 데이터
     var imageData: Data!
-    var crewID: String = ""
-    var imageFiles: [String] = []
+    
+    // 포스트 생성 후 Like2 실패시 재시도 용도
+    var postID: String = ""
+    
+    //이미지 업로드 후 리턴 값 임시 저장
+    private var imageFiles: [String] = []
     
     struct Input {
         
@@ -47,7 +52,6 @@ class MakeCrewViewModel: ViewModelType {
         input.createButtonObservable
             .flatMap { 
                 
-                print("#### UploadImage API Call ####")
                 let query = UploadImageQuery(files: self.imageData)
                 return APIManager.uploadImage(router: Router.uploadImage(uploadImageQuery: query), dataModel: UploadImageDataModel.self, image: self.imageData)
             }.subscribe(with: self) { owner, result in
@@ -55,12 +59,10 @@ class MakeCrewViewModel: ViewModelType {
                 switch result {
                 case .success(let data):
                     
-                    print("#### UploadImage API Success ####")
                     owner.imageFiles = data.files
                     uploadImageSuccess.accept(data)
                 case .failure(let apiError):
                     
-                    print("#### UploadImage API Fail - ErrorCode = \(apiError.rawValue) ####")
                     uploadImageFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
@@ -83,42 +85,40 @@ class MakeCrewViewModel: ViewModelType {
         // 포스터(크루 생성) 업로드 API 호출
         createCrewObservable
             .flatMap { makeCrewQuery in
-                print("#### MakeCrew API Call ####")
+                
                 return APIManager.callAPI(router: Router.makeCrew(makeCrewQuery: makeCrewQuery), dataModel: PostData.self)
             }.subscribe(with: self) { owner, result in
                 
                 switch result {
                     
                 case .success(let data):
-                    print("#### Make Crew API Success ####")
-                    owner.crewID = data.postID
+                    
+                    owner.postID = data.postID
                     makeCrewSuccess.accept(data)
                 case .failure(let apiError):
-                    print("#### Make Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    
                     makeCrewFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
         
         // 생성된 포스터 like2 API 호출
         input.like2Observable
-            .flatMap { productID in
+            .flatMap { postID in
                 
-                print("#### Like2 API Call ####")
-                return APIManager.callAPI(router: Router.like2(postID: productID, query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
+                return APIManager.callAPI(router: Router.like2(postID: postID, query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
             }.subscribe(with: self) { owner, result in
                 
                 switch result {
                     
                 case .success(_):
-                    print("#### Like2 API Success ####")
+                    
                     like2Success.accept(())
                 case .failure(let apiError):
-                    print("#### Like2 API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    
                     like2Failure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
             
-        
         return Output(makeCrewSuccess: makeCrewSuccess,
                       like2Success: like2Success,
                       uploadImageFailure: uploadImageFailure,

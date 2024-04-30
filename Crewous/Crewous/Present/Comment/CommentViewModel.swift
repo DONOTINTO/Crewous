@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CommentViewModel: ViewModelType {
+final class CommentViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     

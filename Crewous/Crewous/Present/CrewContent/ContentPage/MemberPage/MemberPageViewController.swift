@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MemberPageViewController: BaseViewController<MemberPageView> {
+final class MemberPageViewController: BaseViewController<MemberPageView> {
     
     let viewModel = MemberPageViewModel()
     
@@ -32,10 +32,9 @@ class MemberPageViewController: BaseViewController<MemberPageView> {
                 cell.selectionStyle = .none
                 cell.configure(nick: nick, position: position)
                 
-                if let image = data.profileImage,
-                   let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) {
+                if let image = data.profileImage {
                     
-                    cell.profileImageView.loadImage(from: url)
+                    cell.profileImageView.loadImage(from: image)
                 }
                 
             }.disposed(by: disposeBag)

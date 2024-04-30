@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CrewContentCollectionViewCell: UICollectionViewCell {
+final class CrewContentCollectionViewCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
     let lineView = UIView()
@@ -51,5 +51,9 @@ class CrewContentCollectionViewCell: UICollectionViewCell {
         titleLabel.textColor = isSelected ? .customBlack : .customGray
         
         lineView.isHidden = !isSelected
+    }
+    
+    func setTitle(_ title: String) {
+        titleLabel.text = title
     }
 }

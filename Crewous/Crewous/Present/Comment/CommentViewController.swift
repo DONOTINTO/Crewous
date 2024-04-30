@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CommentViewController: BaseViewController<CommentView> {
+final class CommentViewController: BaseViewController<CommentView> {
     
     let viewModel = CommentViewModel()
     

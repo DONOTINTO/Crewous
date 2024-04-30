@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InfoPageViewController: BaseViewController<InfoPageView> {
+final class InfoPageViewController: BaseViewController<InfoPageView> {
     
     let viewModel = InfoPageViewModel()
 

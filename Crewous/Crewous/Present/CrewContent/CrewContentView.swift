@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CrewContentView: BaseView {
+final class CrewContentView: BaseView {
     
     let profileImageView = UIImageView()
     let crewLabel = UILabel()
@@ -22,6 +22,7 @@ class CrewContentView: BaseView {
     
     let contentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: CrewContentCompositional.create())
     
+    // ContentPage - Info Page / Member Page
     let containerView = UIView()
     
     override func configureHierarchy() {
@@ -116,11 +117,10 @@ class CrewContentView: BaseView {
         leaderLabel.text = String(nick)
         
         let imageData = data.files[0]
-        let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
         profileImageView.layer.cornerRadius = 10
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.masksToBounds = true
-        profileImageView.loadImage(from: imageURL)
+        profileImageView.loadImage(from: imageData)
     }
     
     func expandScrollView() {
@@ -136,5 +136,10 @@ class CrewContentView: BaseView {
             $0.horizontalEdges.equalTo(self)
             $0.height.equalTo(30)
         }
+    }
+    
+    func setExpandScrollView(isHidden: Bool) {
+        
+        expandButton.isHidden = isHidden
     }
 }

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
     
     let crewImageView = UIImageView()
     let crewLabel = UILabel()
@@ -96,8 +96,7 @@ class SearchTableViewCell: UITableViewCell {
         guard let crewName = data.crewName else { return }
         
         let imageData = data.files[0]
-        let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
-        crewImageView.loadImage(from: imageURL)
+        crewImageView.loadImage(from: imageData)
         
         crewLabel.text = "@" + crewName
     }

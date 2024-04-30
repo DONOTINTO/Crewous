@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MemberPageView: BaseView {
+final class MemberPageView: BaseView {
     
     let tableView = UITableView()
     

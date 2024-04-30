@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MemberPageViewModel {
+final class MemberPageViewModel {
     
     var userData = PublishRelay<[FetchUserDataModel]>()
 }

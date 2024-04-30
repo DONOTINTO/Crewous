@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CrewContentViewController: BaseViewController<CrewContentView> {
+final class CrewContentViewController: BaseViewController<CrewContentView> {
     
     let viewModel = CrewContentViewModel()
     
@@ -20,11 +20,13 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
     
     override func bind() {
         
+        // introduce 확장 버튼 클릭
         layoutView.expandButton.rx.tap
             .bind(with: self) { owner, _ in
                 
                 owner.layoutView.expandScrollView()
-                owner.layoutView.expandButton.isHidden = true
+                owner.layoutView.setExpandScrollView(isHidden: true)
+                
             }.disposed(by: disposeBag)
         
         // Page VC Embedded
@@ -59,8 +61,8 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
                                                                 cellType: CrewContentCollectionViewCell.self)) { [weak self] index, data, cell in
                 
                 guard let self else { return }
-                cell.titleLabel.text = data
                 
+                cell.setTitle(data)
                 cell.configure(isSelected: index == self.viewModel.selected)
                 
             }.disposed(by: disposeBag)
@@ -84,6 +86,7 @@ class CrewContentViewController: BaseViewController<CrewContentView> {
                 pageVC.setViewControllers([selectedVC],
                                           direction: isNext ? .forward : .reverse,
                                           animated: true)
+                pageVC.viewModel.selectedPage.accept(selected)
                 
                 owner.layoutView.contentCollectionView.reloadData()
                 

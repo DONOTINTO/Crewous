@@ -9,12 +9,12 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class CrewDetailView: BaseView {
+final class CrewDetailView: BaseView {
     
-    let imageView = UIImageView()
-    let menuStackView = UIStackView()
-    let crewLayerView = UIView()
-    let crewLabel = UILabel()
+    private let imageView = UIImageView()
+    private let menuStackView = UIStackView()
+    private let crewLayerView = UIView()
+    private let crewLabel = UILabel()
     
     let detailButton = UIButton()
     let applyButton = UIButton()
@@ -91,10 +91,18 @@ class CrewDetailView: BaseView {
         guard let crewName = data.crewName,
               let imageData = data.files.first else { return }
         
-        let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
-        imageView.loadImage(from: imageURL)
-        
+        imageView.loadImage(from: imageData)
         
         crewLabel.custom(title: crewName, color: .white, fontScale: .bold, fontSize: .large)
+    }
+    
+    func setApplyButton(isHidden: Bool) {
+        
+        applyButton.isHidden = isHidden
+    }
+    
+    func setResignButton(isHidden: Bool) {
+        
+        resignButton.isHidden = isHidden
     }
 }

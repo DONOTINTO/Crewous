@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class InfoPageViewModel {
+final class InfoPageViewModel {
     
     var infoTitle = ["Date", "Place", "Uniform Color", "Membership Fee"]
     

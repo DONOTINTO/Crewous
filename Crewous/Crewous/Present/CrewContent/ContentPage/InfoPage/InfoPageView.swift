@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InfoPageView: BaseView {
+final class InfoPageView: BaseView {
     
     let tableView = UITableView()
 

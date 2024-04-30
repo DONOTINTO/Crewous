@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InfoPageTableViewCell: UITableViewCell {
+final class InfoPageTableViewCell: UITableViewCell {
     
     let titleLabel = UILabel()
     let contentLabel = UILabel()

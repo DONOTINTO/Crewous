@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: BaseViewController<SearchView> {
+final class SearchViewController: BaseViewController<SearchView> {
     
     let viewModel = SearchViewModel()
 

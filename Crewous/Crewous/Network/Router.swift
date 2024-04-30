@@ -46,6 +46,40 @@ enum Router: RouterType {
 
 extension Router {
     
+    var apiType: String {
+        
+        switch self {
+        case .signIn:
+            return "로그인"
+        case .signUp:
+            return "회원가입"
+        case .fetchSelf:
+            return "내 프로필 조회"
+        case .fetchMyCrew:
+            return "좋아요2 한 포스트 조회 - 내가 가입한 크루"
+        case .fetchUser:
+            return "다른 유저 프로필 조회"
+        case .fetchPost:
+            return "특정 포스트 조회 - 특정 크루 조회"
+        case .fetchCrew:
+            return "포스트 조회 - 크루 조회"
+        case .uploadImage:
+            return "이미지 업로드"
+        case .makeCrew:
+            return "포스트 작성 - 크루 생성"
+        case .like2:
+            return "포스트 좋아요2 - 크루 가입"
+        case .comment:
+            return "댓글 작성"
+        case .updateProfile:
+            return "내 프로필 수정"
+        case .withDraw:
+            return "탈퇴"
+        case .refresh:
+            return "엑세스 토큰 갱신"
+        }
+    }
+    
     var baseURL: String {
         
         return APIKey.baseURL.rawValue

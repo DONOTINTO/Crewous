@@ -42,7 +42,6 @@ final class MakeCrewViewController: BaseViewController<MakeCrewView> {
         }.disposed(by: disposeBag)
         
         // MARK: View Model
-        
         let crewName = layoutView.crewNameTextField.rx.text.orEmpty.asObservable()
         let introduce = layoutView.introduceTextView.rx.text.orEmpty.asObservable()
         let time = layoutView.timeTextField.rx.text.orEmpty.asObservable()
@@ -90,7 +89,7 @@ final class MakeCrewViewController: BaseViewController<MakeCrewView> {
             .bind(with: self) { owner, apiError in
                 
                 owner.errorHandler(apiError, calltype: .like2) {
-                    like2Observable.accept(owner.viewModel.crewID)
+                    like2Observable.accept(owner.viewModel.postID)
                 }
             }.disposed(by: disposeBag)
     }

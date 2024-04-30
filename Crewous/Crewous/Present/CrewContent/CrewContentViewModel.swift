@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CrewContentViewModel {
+final class CrewContentViewModel {
  
     var postData = PublishRelay<PostData>()
     var userData = PublishRelay<[FetchUserDataModel]>()

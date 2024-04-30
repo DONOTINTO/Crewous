@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MyCrewView: BaseView {
+final class MyCrewView: BaseView {
     
     let containerView = UIView()
     let indicator = UIActivityIndicatorView(style: .medium)

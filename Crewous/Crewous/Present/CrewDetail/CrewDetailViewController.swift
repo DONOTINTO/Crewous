@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CrewDetailViewController: BaseViewController<CrewDetailView> {
+final class CrewDetailViewController: BaseViewController<CrewDetailView> {
     
     let viewModel = CrewDetailViewModel()
     
@@ -27,10 +27,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                   let userData = owner.viewModel.userData else { return }
             
             let nextVC = CrewContentViewController()
-            let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
-            nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
-            nextVC.sheetPresentationController?.prefersGrabberVisible = true
-            nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+            nextVC.setDetent()
             
             owner.present(nextVC, animated: true) {
                 nextVC.viewModel.postData.accept(postData)
@@ -39,26 +36,26 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
             
         }.disposed(by: disposeBag)
         
+        // Comment VC 띄우기
         layoutView.commentButton.rx.tap.bind(with: self) { owner, _ in
             
             guard let postData = owner.viewModel.postData else { return }
             
             let nextVC = CommentViewController()
-            let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
-            nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
-            nextVC.sheetPresentationController?.prefersGrabberVisible = true
-            nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+            nextVC.setDetent()
             
             nextVC.viewModel.postIdentifier = postData.postID
             owner.present(nextVC, animated: true)
+            
         }.disposed(by: disposeBag)
         
+        // MARK: View Model
         let input = CrewDetailViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear,
                                               postIdentifierObservable: viewModel.postIdentifier,
                                               crewApplyButtonTapObservable: layoutView.applyButton.rx.tap.asObservable(), crewResignButtonTapObservable: layoutView.resignButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
-        // 크루 정보 및 크루원 정보 -> Content VC로 전달
+        // 크루 정보 및 크루원 정보 -> CrewContent VC로 전달
         Observable.zip(output.postDataSuccess, output.userDataSuccess)
             .bind(with: self) { owner, data in
                 
@@ -67,10 +64,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 owner.layoutView.configure(postData)
                 
                 let nextVC = CrewContentViewController()
-                let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
-                nextVC.sheetPresentationController?.detents = [fraction, .medium(), .large()]
-                nextVC.sheetPresentationController?.prefersGrabberVisible = true
-                nextVC.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+                nextVC.setDetent()
                 
                 self.present(nextVC, animated: true) {
                     nextVC.viewModel.postData.accept(postData)
@@ -82,6 +76,7 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
         // 크루 정보 호출 실패
         output.postDataFailure
             .bind(with: self) { owner, apiError in
+                
                 self.errorHandler(apiError, calltype: .fetchPost)
             }.disposed(by: disposeBag)
         
@@ -96,8 +91,8 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
         output.notRegistObservable
             .bind(with: self) { owner, _ in
                 
-                owner.layoutView.applyButton.isHidden = false
-                owner.layoutView.resignButton.isHidden = true
+                owner.layoutView.setApplyButton(isHidden: false)
+                owner.layoutView.setResignButton(isHidden: true)
                 
             }.disposed(by: disposeBag)
         
@@ -106,10 +101,10 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
             .bind(with: self) { owner, isMyCrew in
                 
                 // Apply는 무조건 숨김
-                owner.layoutView.applyButton.isHidden = true
+                owner.layoutView.setApplyButton(isHidden: true)
                 
                 // Resign은 내 크루일 경우에만 노출
-                owner.layoutView.resignButton.isHidden = !isMyCrew
+                owner.layoutView.setResignButton(isHidden: !isMyCrew)
                 
             }.disposed(by: disposeBag)
         
@@ -137,7 +132,12 @@ class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 
             }.disposed(by: disposeBag)
         
-        // output.applyOrResignFailure
+        // 크루 가입 실패
+        output.applyOrResignFailure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .like2)
+            }.disposed(by: disposeBag)
     }
     
     private func refresh() {

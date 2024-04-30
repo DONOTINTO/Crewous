@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ContentPageViewController: UIPageViewController {
+final class ContentPageViewController: UIPageViewController {
     
     let viewModel = ContentPageViewModel()
     var pages = [InfoPageViewController(), MemberPageViewController()]
@@ -24,20 +24,39 @@ class ContentPageViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         
-        viewModel.postData
+        // post Data, user Data 넘겨받았을 때
+        Observable.zip(viewModel.postData, viewModel.userData)
             .bind(with: self) { owner, data in
+                
+                let (postData, userData) = data
                 
                 owner.setViewControllers([owner.pages[0]], direction: .forward, animated: true)
                 
                 guard let infoVC = owner.pages[0] as? InfoPageViewController else { return }
                 
-                infoVC.viewModel.postData.accept(data)
+                infoVC.viewModel.postData.accept(postData)
                 
             }.disposed(by: disposeBag)
         
-        let observable = Observable.combineLatest(viewModel.postData, viewModel.userData, viewModel.afterPagingEvent)
+        // CrewContent에서 cell을 클릭하여 페이지 변경하였을 때 -> 셀에서 이미 변경된 정보를 알기 때문에 Delegate로 변경된 정보 전달할 필요 없음
+        Observable.combineLatest(viewModel.postData, viewModel.userData, viewModel.selectedPage)
+            .bind(with: self) { owner, data in
+                
+                let (postData, userData, seleted) = data
+                
+                let vc = owner.pages[seleted]
+                
+                if let infoVC = vc as? InfoPageViewController {
+                    infoVC.viewModel.postData.accept(postData)
+                }
+                
+                if let memberVC = vc as? MemberPageViewController {
+                    memberVC.viewModel.userData.accept(userData)
+                }
+            }.disposed(by: disposeBag)
         
-        observable
+        // PageVC에서 스와이프로 페이지 변경했을 때 -> Delegate로 변경된 정보 전달해야함
+        Observable.combineLatest(viewModel.postData, viewModel.userData, viewModel.afterPagingEvent)
             .bind(with: self) { owner, data in
                 
                 let (postData, userData, identifier) = data

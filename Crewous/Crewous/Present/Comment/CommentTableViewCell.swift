@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class CommentTableViewCell: UITableViewCell {
+final class CommentTableViewCell: UITableViewCell {
     
     let userProfileImageView = UIImageView()
     let nickLabel = UILabel()
@@ -86,8 +86,7 @@ class CommentTableViewCell: UITableViewCell {
         guard let profileImage = data.creator.profileImage else { return }
         
         let imageData = profileImage
-        let imageURL = URL(string: "http://lslp.sesac.kr:31222/v1/" + imageData)!
-        userProfileImageView.loadImage(from: imageURL)
+        userProfileImageView.loadImage(from: imageData)
         userProfileImageView.layer.cornerRadius = 20
         userProfileImageView.clipsToBounds = true
         userProfileImageView.layer.borderColor = UIColor.customGreen.cgColor

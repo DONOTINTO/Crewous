@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import PhotosUI
 
-class WithoutCrewViewController: BaseViewController<WithoutCrewView> {
+final class WithoutCrewViewController: BaseViewController<WithoutCrewView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,6 @@ class WithoutCrewViewController: BaseViewController<WithoutCrewView> {
         
         layoutView.makeCrewButton.rx.tap
             .bind(with: self) { owner, _ in
-                
-                owner.layoutView.makeCrewButton.animate()
                 
                 var config = PHPickerConfiguration(photoLibrary: .shared())
                 config.filter = PHPickerFilter.any(of: [.images])

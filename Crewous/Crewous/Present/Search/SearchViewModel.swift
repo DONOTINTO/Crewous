@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SearchViewModel: ViewModelType {
+final class SearchViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     // let like2ButtonClicked = PublishRelay
@@ -37,7 +37,6 @@ class SearchViewModel: ViewModelType {
             .flatMap {
                 
                 let fetchCrewQeury = FetchCrewQuery(limit: "100", product_id: ProductID.crew.rawValue)
-                print("#### Fetch Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchCrew(fetchCrewQuery: fetchCrewQeury), dataModel: FetchCrewDataModel.self)
             }
         

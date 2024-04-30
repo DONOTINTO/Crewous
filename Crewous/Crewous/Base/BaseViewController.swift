@@ -220,4 +220,12 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         sceneDelegate.window?.rootViewController = tabVC
         sceneDelegate.window?.makeKeyAndVisible()
     }
+    
+    func setDetent() {
+        
+        let fraction = UISheetPresentationController.Detent.custom { _ in 300 }
+        self.sheetPresentationController?.detents = [fraction, .medium(), .large()]
+        self.sheetPresentationController?.prefersGrabberVisible = true
+        self.sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = false
+    }
 }

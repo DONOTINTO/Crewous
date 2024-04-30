@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WithoutCrewView: BaseView {
+final class WithoutCrewView: BaseView {
 
     let descriptionLabel = UILabel()
     let makeCrewButton = UIButton()

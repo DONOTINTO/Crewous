@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyCrewViewController: BaseViewController<MyCrewView> {
+final class MyCrewViewController: BaseViewController<MyCrewView> {
     
     let viewModel = MyCrewViewModel()
 
@@ -52,7 +52,7 @@ class MyCrewViewController: BaseViewController<MyCrewView> {
         
     }
     
-    func configureEmbedded(_ crewData: PostData?) {
+    private func configureEmbedded(_ crewData: PostData?) {
         
         if let crewData {
             let vc = CrewDetailViewController()

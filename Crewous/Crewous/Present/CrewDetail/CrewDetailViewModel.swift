@@ -9,10 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CrewDetailViewModel: ViewModelType {
+final class CrewDetailViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
+    // My Crew VC, Search VC에서 전달받음
     let postIdentifier = PublishRelay<String>()
     
     var postData: PostData?
@@ -49,6 +50,7 @@ class CrewDetailViewModel: ViewModelType {
         let dispatchGroup = DispatchGroup()
         // 크루원 유저 정보 임시 저장소
         var usersData = [FetchUserDataModel]()
+        
         // 크루원(개개인) 유저 정보
         let fetchUserIdentifier = PublishRelay<String>()
         // 내가 가입한 크루인지 체크용
@@ -87,14 +89,11 @@ class CrewDetailViewModel: ViewModelType {
         // Post Data(크루 정보) 호출
         input.postIdentifierObservable.flatMap {
             
-            print("#### Fetch Post Data API Call ####")
             return APIManager.callAPI(router: Router.fetchPost(postID: $0), dataModel: PostData.self)
         }.subscribe(with: self) { owner, fetchPost in
             
             switch fetchPost {
             case .success(let postData):
-                
-                print("#### Fetch Post Data API Success ####")
                 
                 // Search로 들어갔을 때 대응
                 owner.postData = postData
@@ -123,7 +122,6 @@ class CrewDetailViewModel: ViewModelType {
                 
             case .failure(let apiError):
                 
-                print("#### Fetch Post Data API Fail - ErrorCode = \(apiError.rawValue) ####")
                 postDataFailure.accept(apiError)
             }
         }.disposed(by: disposeBag)
@@ -132,7 +130,6 @@ class CrewDetailViewModel: ViewModelType {
         fetchUserIdentifier.flatMap {
             
             dispatchGroup.enter()
-            print("#### Fetch User Data API Call ####")
             return APIManager.callAPI(router: Router.fetchUser(userID: $0), dataModel: FetchUserDataModel.self)
         }.subscribe(with: self) { owner, fetchUserData in
             
@@ -140,7 +137,6 @@ class CrewDetailViewModel: ViewModelType {
                 
             case .success(let userData):
                 
-                print("#### Fetch User Data API Success ####")
                 usersData.append(userData)
                 
             case .failure(let apiError):

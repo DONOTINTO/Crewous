@@ -21,7 +21,7 @@ struct APIManager {
                 
                 // AF -> API 통신
                 AF.request(urlRequest, interceptor: APIInterceptor()).responseDecodable(of: T.self) { response in
-                    print("통신❗️")
+                    
                     guard let responseData = response.response else { return }
                     let statusCode = responseData.statusCode
                     
@@ -30,7 +30,7 @@ struct APIManager {
                         // 모든 통신 결과는 Single의 success로 반환
                     case .success(let success):
                         
-                        print("success")
+                        print("success - \(router.apiType)")
                         
                         // Signle<Result<success, fail>, fail>
                         // -> Result<success, fail>
@@ -38,7 +38,7 @@ struct APIManager {
                         single(.success(.success(success)))
                         
                     case .failure(_):
-                        print("failure - \(statusCode)")
+                        print("failure - \(router.apiType)\(statusCode)")
                         
                         // Custom API Error로 Error 코드 구분
                         guard let error = APIError(rawValue: statusCode) else {
