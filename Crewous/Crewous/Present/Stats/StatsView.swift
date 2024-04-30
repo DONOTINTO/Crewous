@@ -8,29 +8,30 @@
 import UIKit
 import SnapKit
 
-class StatsView: BaseView {
+final class StatsView: BaseView {
+    
+    // let collectionView = UICollectionView()
     
     let profileView = UIView()
-    let profileImageView = UIImageView()
-    let profileEditLabel = UILabel()
-    let nickLabel = UILabel()
-    let crewLabel = UILabel()
-    let lineView = UIView()
+    private let profileImageView = UIImageView()
+    private let profileEditLabel = UILabel()
+    private let nickLabel = UILabel()
+    private let crewLabel = UILabel()
+    private let lineView = UIView()
     
-    let heightLiteralLabel = UILabel()
-    let heightInfoLabel = UILabel()
-    let crewLiteralLabel = UILabel()
-    let crewInfoLabel = UILabel()
-    let weightLiteralLabel = UILabel()
-    let weightInfoLabel = UILabel()
-    let positionLiteralLabel = UILabel()
-    let positionInfoLabel = UILabel()
+    private let heightLiteralLabel = UILabel()
+    private let heightInfoLabel = UILabel()
+    private let crewLiteralLabel = UILabel()
+    private let crewInfoLabel = UILabel()
+    private let weightLiteralLabel = UILabel()
+    private let weightInfoLabel = UILabel()
+    private let positionLiteralLabel = UILabel()
+    private let positionInfoLabel = UILabel()
     
-    let testButton = UIButton()
     let withDrawButton =  UIButton()
     let logoutButton = UIButton()
     
-    let indicator = UIActivityIndicatorView(style: .medium)
+    private let indicator = UIActivityIndicatorView(style: .medium)
     
     override func configureHierarchy() {
         
@@ -42,9 +43,9 @@ class StatsView: BaseView {
         
         [heightLiteralLabel, heightInfoLabel, crewLiteralLabel, crewInfoLabel, weightLiteralLabel, weightInfoLabel, positionLiteralLabel, positionInfoLabel].forEach { addSubview($0) }
         
-#if DEBUG
+    #if DEBUG
         debug()
-#endif
+    #endif
     }
     
     override func configureLayout() {
@@ -177,17 +178,51 @@ class StatsView: BaseView {
         indicator.hidesWhenStopped = true
     }
     
+    func configure(fetchSelfData: FetchUserDataModel, fetchMyCrewData: FetchMyCrewDataModel) {
+        
+        let mappingData: [String] = fetchSelfData.nick.split(separator: "/").map { String($0) }
+        let nick = mappingData[0]
+        let height = mappingData[1]
+        let weight = mappingData[2]
+        let position = mappingData[3]
+        
+        nickLabel.text = nick
+        heightInfoLabel.text = "\(height)CM"
+        weightInfoLabel.text = "\(weight)KG"
+        positionInfoLabel.text = position
+    
+        guard let crewData = fetchMyCrewData.data.first,
+              let crewName = crewData.crewName else { return }
+        
+        crewLabel.text = "Crew - \(crewName)"
+        crewInfoLabel.text = crewName
+        
+        if let image = fetchSelfData.profileImage {
+           profileImageView.loadImage(from: image)
+        }
+    }
+    
+    func updateProfileImage(image: String) {
+        
+        profileImageView.loadImage(from: image)
+    }
+    
+    func indicatorStatus(isStart: Bool) {
+        
+        indicator.isHidden = !isStart
+        isStart ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+    
+    func profileViewAddTapGesture(_ gesture: UITapGestureRecognizer) {
+        
+        profileView.addGestureRecognizer(gesture)
+    }
+    
+    // TEST
     func debug() {
         
-        addSubview(testButton)
         addSubview(withDrawButton)
         addSubview(logoutButton)
-        
-        testButton.snp.makeConstraints {
-            $0.bottom.equalTo(withDrawButton.snp.top).offset(-10)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
-            $0.height.equalTo(30)
-        }
         
         withDrawButton.snp.makeConstraints {
             $0.bottom.equalTo(logoutButton.snp.top).offset(-10)
@@ -200,8 +235,6 @@ class StatsView: BaseView {
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
             $0.height.equalTo(30)
         }
-        
-        testButton.custom(title: "사진첩 테스트", titleColor: .black, bgColor: .customGreen)
         
         withDrawButton.custom(title: "탈퇴(테스트용)", titleColor: .black, bgColor: .customGreen)
         

@@ -18,49 +18,38 @@ class StatsViewController: BaseViewController<StatsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-#if DEBUG
-        
-        // let a = PublishRelay<Void>()
-        // a.flatMap {
-        //     return APIManager.callAPI(router: Router.like2(postID: "66210e0e438b876b25f7a8b4", query: Like2Query(like_status: true)), dataModel: Like2DataModel.self)
-        // }.subscribe(with: self) { owner, result in
-        //
-        //     switch result {
-        //
-        //     case .success(let success):
-        //         print(success)
-        //     case .failure(let failure):
-        //         print(failure)
-        //     }
-        // }.disposed(by: disposeBag)
-        //
-        // a.accept(())
-        
-#endif
+        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        layoutView.indicator.startAnimating()
+        layoutView.indicatorStatus(isStart: true)
     }
     
     override func bind() {
         
+        // MARK: Gesture Event
         let profileChangeObservable = PublishRelay<Data>()
         
         let profileTapGesture = UITapGestureRecognizer()
-        layoutView.profileView.addGestureRecognizer(profileTapGesture)
+        layoutView.profileViewAddTapGesture(profileTapGesture)
+        
+        // YP Image Picker 실행
         profileTapGesture.rx.event.bind(with: self) { owner, _ in
+            
             owner.present(owner.picker, animated: true)
         }.disposed(by: disposeBag)
         
+        // YP Image Picker 선택 / 종료
         picker.didFinishPicking { [unowned picker] items, _ in
+            
             if let photo = items.singlePhoto,
                let imageData = photo.image.compressedJPEGData {
                 
                 let alert = UIAlertController(title: "", message: "save the new profile Image", preferredStyle: .alert)
-                let confirmAction = UIAlertAction(title: "YES", style: .default) {_ in
+                let confirmAction = UIAlertAction(title: "YES", style: .default) { _ in
+                    
                     profileChangeObservable.accept(imageData)
                     picker.dismiss(animated: true, completion: nil)
                 }
@@ -70,70 +59,50 @@ class StatsViewController: BaseViewController<StatsView> {
                 alert.addAction(cancelAction)
                 
                 picker.present(alert, animated: true)
+            } else {
+                picker.dismiss(animated: true)
             }
         }
         
-        let viewWillAppearObservable = self.rx.viewWillAppear
-        
-        let input = StatsViewModel.Input(viewWillAppearObservable: viewWillAppearObservable,
+        // MARK: 유저 
+        let input = StatsViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear,
                                          profileChangeObservable: profileChangeObservable)
         let output = viewModel.transform(input: input)
         
         // 유저 정보 불러오기 성공
-        
         Observable.zip(output.fetchSelfSuccess, output.fetchCrewSuccess)
             .bind(with: self) { owner, datas in
                 
-                owner.layoutView.indicator.stopAnimating()
+                let (fetchSelfData, fetchMyCrewData) = datas
                 
-                let (fetchSelfData, fetchCrewData) = datas
-                
-                let mappingData: [String] = fetchSelfData.nick.split(separator: "/").map { String($0) }
-                let nick = mappingData[0]
-                let height = mappingData[1]
-                let weight = mappingData[2]
-                let position = mappingData[3]
-                
-                owner.layoutView.nickLabel.text = nick
-                owner.layoutView.heightInfoLabel.text = "\(height)CM"
-                owner.layoutView.weightInfoLabel.text = "\(weight)KG"
-                owner.layoutView.positionInfoLabel.text = position
-                
-                guard let crewData = fetchCrewData.data.first,
-                      let crewName = crewData.crewName else { return }
-                
-                owner.layoutView.crewLabel.text = "Crew - \(crewName)"
-                owner.layoutView.crewInfoLabel.text = crewName
-                
-                if let image = fetchSelfData.profileImage,
-                   let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) {
-                   
-                   owner.layoutView.profileImageView.loadImage(from: url)
-                }
-                
+                owner.layoutView.indicatorStatus(isStart: false)
+                owner.layoutView.configure(fetchSelfData: fetchSelfData, fetchMyCrewData: fetchMyCrewData)
                 
             }.disposed(by: disposeBag)
         
         // 유저 정보 불러오기 실패
         output.fetchFailure.bind(with: self) { owner, apiError in
             
-            owner.layoutView.indicator.stopAnimating()
-            
+            owner.layoutView.indicatorStatus(isStart: false)
             // 재호출
             owner.errorHandler(apiError, calltype: .fetchSelf)
         }.disposed(by: disposeBag)
         
+        // 유저 프로필 업데이트
         output.updateProfileSuccess
             .bind(with: self) { owner, data in
                 
-                guard let image = data.profileImage,
-                let url = URL(string: "http://lslp.sesac.kr:31222/v1/" + image) else { return }
-                
-                owner.layoutView.profileImageView.loadImage(from: url)
+                if let image = data.profileImage {
+                    owner.layoutView.updateProfileImage(image: image)
+                }
                 
             }.disposed(by: disposeBag)
-        
-        
+    }
+}
+
+extension StatsViewController {
+    
+    func testCode() {
         
         // 탈퇴(테스트)
         layoutView.withDrawButton.rx.tap
