@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SignUpViewModel: ViewModelType {
+final class SignUpViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
 
@@ -109,7 +109,7 @@ class SignUpViewModel: ViewModelType {
             }.disposed(by: disposeBag)
         
         // SignUpQuery 생성
-        let signUpObservable = Observable.combineLatest(input.emailText, input.passwordText, input.nickText, input.heightText, input.weightText, input.positionText)
+        let signUpQuery = Observable.combineLatest(input.emailText, input.passwordText, input.nickText, input.heightText, input.weightText, input.positionText)
             .map { signUpData in
                 
                 let (email, password, nick, height, weight, position) = signUpData
@@ -119,30 +119,23 @@ class SignUpViewModel: ViewModelType {
                 return SignUpQuery(email: email, password: password, nick: proxy)
             }
         
-        // 회원가입 TODO: 회원가입 API 콜 및 처리
+        // 회원가입
         input.signUpButtonTap
-            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
-            .withLatestFrom(signUpObservable)
-            .debug()
+            .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+            .withLatestFrom(signUpQuery)
             .flatMap { signUpQuery in
                 
-                print("#### Sign In API Call ####")
                 return APIManager.callAPI(
                     router: Router.signUp(signUpQuery: signUpQuery),
                     dataModel: SignUpDataModel.self)
             }.subscribe(with: self) { owner, signUpData in
                 
-                // 200 - 성공
-                // 400 - 필수값 미입력 (미입력 방지 처리 완료)
-                // 409 - 이미 가입한 이메일 (이메일 중복체크 필요 없을듯)
                 switch signUpData {
                 case .success:
                     
-                    print("#### Sign In API Success ####")
                     signUpSuccess.accept(())
                 case .failure(let apiError):
                     
-                    print("#### Sign In API Fail - ErrorCode = \(apiError.rawValue) ####")
                     signUpFailure.accept(apiError)
                 }
                 

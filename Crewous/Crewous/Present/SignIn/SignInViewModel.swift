@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SignInViewModel: ViewModelType {
+final class SignInViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
 
@@ -34,7 +34,7 @@ class SignInViewModel: ViewModelType {
         let signInFailure = PublishRelay<APIError>()
         
         // Sign In Query로 변환
-        let signInObservable = Observable.combineLatest(input.emailText, input.passwordText)
+        let signInQuery = Observable.combineLatest(input.emailText, input.passwordText)
             .map { signInData in
                 
                 let (email, password) = signInData
@@ -43,38 +43,30 @@ class SignInViewModel: ViewModelType {
             }
         
         // 이메일 비밀번호 입력 체크
-        signInObservable.subscribe(with: self) { owner, signInData in
+        signInQuery.subscribe(with: self) { owner, signInData in
             
             let email = signInData.email, password = signInData.password
             
             // 이메일, 패스워드 모두 입력했으면 Sign In Button 활성화
             signInTouchEnabled.accept((!email.isEmpty && !password.isEmpty))
-            
-            return
         }.disposed(by: disposeBag)
         
         // 로그인 API 호출
         input.signInButtonTap
-            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
-            .withLatestFrom(signInObservable)
-            .debug()
+            .throttle(.milliseconds(300), latest: false, scheduler: MainScheduler.instance)
+            .withLatestFrom(signInQuery)
             .flatMap { signInQuery in
                 
                 signInButtonTap.accept(())
                 
-                print("#### Sign In API Call ####")
                 return APIManager.callAPI(
                     router: Router.signIn(signInQuery: signInQuery),
                     dataModel: SignInDataModel.self)
             }.subscribe(with: self) { owner, signInData in
                 
-                // 200 - 성공
-                // 400 - 필수값 미입력 (미입력 방지 처리 완료)
-                // 401 - 미가입 or 비밀번호 오류
                 switch signInData {
                 case .success(let data):
                     
-                    print("#### Sign In API Success ####")
                     //데이터 저장 (accessToken / refreshToken / isLogin)
                     UDManager.accessToken = data.accessToken
                     UDManager.refreshToken = data.refreshToken
@@ -83,7 +75,6 @@ class SignInViewModel: ViewModelType {
                     signInSuccess.accept(())
                 case .failure(let apiError):
                     
-                    print("#### Sign In API Fail - ErrorCode = \(apiError.rawValue) ####")
                     signInFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)

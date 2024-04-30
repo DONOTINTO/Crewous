@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SignUpViewController: BaseViewController<SignUpView> {
+final class SignUpViewController: BaseViewController<SignUpView> {
     
-    let viewModel = SignUpViewModel()
+    private let viewModel = SignUpViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,11 @@ class SignUpViewController: BaseViewController<SignUpView> {
         
         // MARK: Tap Gesture
         let tapGesture = UITapGestureRecognizer()
-        layoutView.scrollView.addGestureRecognizer(tapGesture)
+        layoutView.scrollViewAddTapGesture(tapGesture)
         
         tapGesture.rx.event.subscribe(with: self) { owner, _ in
             
-            owner.layoutView.scrollView.endEditing(true)
+            owner.layoutView.scrollViewEndEditing()
         }.disposed(by: disposeBag)
         
         // MARK: View Model
@@ -46,11 +46,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.emailValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.emailValidLabel.isHidden = isValid
-                
-                if owner.layoutView.emailTextField.text == "" {
-                    owner.layoutView.emailValidLabel.isHidden = true
-                }
+                owner.layoutView.hideEmailValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -58,11 +54,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.passwordValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.passwordValidLabel.isHidden = isValid
-                
-                if owner.layoutView.passwordTextField.text == "" {
-                    owner.layoutView.passwordValidLabel.isHidden = true
-                }
+                owner.layoutView.hidePasswordValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -70,11 +62,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.nickValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.nickValidLabel.isHidden = isValid
-                
-                if owner.layoutView.nickTextField.text == "" {
-                    owner.layoutView.nickValidLabel.isHidden = true
-                }
+                owner.layoutView.hideNickValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -82,11 +70,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.heightValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.heightValidLabel.isHidden = isValid
-                
-                if owner.layoutView.heightTextField.text == "" {
-                    owner.layoutView.heightValidLabel.isHidden = true
-                }
+                owner.layoutView.hideHeightValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -94,11 +78,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.weightValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.weightValidLabel.isHidden = isValid
-                
-                if owner.layoutView.weightTextField.text == "" {
-                    owner.layoutView.weightValidLabel.isHidden = true
-                }
+                owner.layoutView.hideWeightValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -106,11 +86,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.positionValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.positionValidLabel.isHidden = isValid
-                
-                if owner.layoutView.positionTextField.text == "" {
-                    owner.layoutView.positionValidLabel.isHidden = true
-                }
+                owner.layoutView.hidePositionValidLabel(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -118,7 +94,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.signUpButtonValidation
             .drive(with: self) { owner, isValid in
                 
-                owner.layoutView.signUpButton.isEnabled = isValid
+                owner.layoutView.signUpButtonEnabled(isValid)
                 
             }.disposed(by: disposeBag)
         
@@ -126,14 +102,14 @@ class SignUpViewController: BaseViewController<SignUpView> {
         output.signUpButtonTap
             .drive(with: self) { owner, _ in
                 
-                owner.layoutView.indicator.startAnimating()
-                owner.layoutView.signUpButton.animate()
+                owner.layoutView.indicatorStatus(isStart: true)
+                
             }.disposed(by: disposeBag)
         
         // 회원가입 성공
         output.signUpSuccess.drive(with: self) { owner, _ in
             
-            owner.layoutView.indicator.stopAnimating()
+            owner.layoutView.indicatorStatus(isStart: false)
             
             // 가입 완료 안내 alert 띄우기
             owner.makeAlert(msg: "SignUp") { _ in
@@ -145,7 +121,7 @@ class SignUpViewController: BaseViewController<SignUpView> {
         // 회원가입 실패
         output.signUpFailure.drive(with: self) { owner, apiError in
             
-            owner.layoutView.indicator.stopAnimating()
+            owner.layoutView.indicatorStatus(isStart: false)
             owner.errorHandler(apiError, calltype: .signUp)
             
         }.disposed(by: disposeBag)

@@ -8,15 +8,16 @@
 import UIKit
 import SnapKit
 
-class SignInView: BaseView {
+final class SignInView: BaseView {
     
     let emailTextField = UITextField()
-    let emailValidLabel = UILabel()
     let passwordTextField = UITextField()
-    let signInValidLabel = UILabel()
     let signInButton = UIButton()
-    let createLabel = UILabel()
-    let indicator = UIActivityIndicatorView(style: .medium)
+    
+    private let emailValidLabel = UILabel()
+    private let signInValidLabel = UILabel()
+    private let createLabel = UILabel()
+    private let indicator = UIActivityIndicatorView(style: .medium)
 
     override func configureHierarchy() {
         
@@ -49,7 +50,7 @@ class SignInView: BaseView {
         
         indicator.snp.makeConstraints {
             $0.bottom.equalTo(signInButton.snp.top).offset(-10)
-            $0.leading.equalTo(signInButton).offset(10)
+            $0.trailing.equalTo(signInButton).inset(10)
         }
         
         signInButton.snp.makeConstraints {
@@ -83,6 +84,7 @@ class SignInView: BaseView {
         signInValidLabel.isHidden = true
         
         indicator.hidesWhenStopped = true
+        indicator.tintColor = .customBlack
         
         #if DEBUG
         
@@ -90,5 +92,21 @@ class SignInView: BaseView {
         passwordTextField.text = "a123123@"
         
         #endif
+    }
+    
+    func addTapGesture(_ gesture: UITapGestureRecognizer) {
+        
+        self.createLabel.addGestureRecognizer(gesture)
+    }
+    
+    func indicatorStatus(isStart: Bool) {
+        
+        indicator.isHidden = !isStart
+        isStart ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+    
+    func signInvalidLabelStatus(isHidden: Bool) {
+        
+        self.signInValidLabel.isHidden = isHidden
     }
 }

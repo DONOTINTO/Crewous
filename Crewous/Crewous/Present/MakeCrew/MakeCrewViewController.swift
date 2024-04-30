@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MakeCrewViewController: BaseViewController<MakeCrewView> {
+final class MakeCrewViewController: BaseViewController<MakeCrewView> {
     
     let viewModel = MakeCrewViewModel()
     

@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SignInViewController: BaseViewController<SignInView> {
+final class SignInViewController: BaseViewController<SignInView> {
 
-    let viewModel = SignInViewModel()
+    private let viewModel = SignInViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,9 @@ class SignInViewController: BaseViewController<SignInView> {
         
         // MARK: Tap Gesture
         let tapGesture = UITapGestureRecognizer()
-        layoutView.createLabel.addGestureRecognizer(tapGesture)
+        layoutView.addTapGesture(tapGesture)
         
-        // SignUP VC로 이동
+        // SignUP(회원가입) 이동
         tapGesture.rx.event.bind(with: self) { owner, _ in
             
             let nextVC = SignUpViewController()
@@ -37,24 +37,24 @@ class SignInViewController: BaseViewController<SignInView> {
             emailText: layoutView.emailTextField.rx.text.orEmpty.asObservable(),
             passwordText: layoutView.passwordTextField.rx.text.orEmpty.asObservable(),
             signInButtonTap: layoutView.signInButton.rx.tap.asObservable())
-        
         let output = viewModel.transform(input: input)
         
-        // SignIn 버튼 터치 가능 여부 판단
+        // SignIn(로그인) 버튼 터치 가능 여부 판단
         output.signInTouchEnabled.drive(layoutView.signInButton.rx.isEnabled).disposed(by: disposeBag)
         
-        // SignIn 버튼 클릭 직후 애니메이션
+        // SignIn(로그인) 버튼 클릭 직후 애니메이션
         output.signInButtonTap.drive(with: self) { owner, _ in
             
-            owner.layoutView.indicator.startAnimating()
-            owner.layoutView.signInButton.animate()
+            owner.layoutView.indicatorStatus(isStart: true)
         }.disposed(by: disposeBag)
         
         // SignIn 성공
         output.signInSuccess.drive(with: self) { owner, _ in
-            owner.layoutView.indicator.stopAnimating()
-            owner.layoutView.signInValidLabel.isHidden = true
-            // 로그인 -> 다음 화면 넘어가기
+            
+            owner.layoutView.indicatorStatus(isStart: false)
+            owner.layoutView.signInvalidLabelStatus(isHidden: true)
+            
+            // 로그인 -> Stats 화면으로 이동
             owner.makeAlert(msg: "SignIn") { _ in
                 
                 owner.changeRootViewToStats()
@@ -65,7 +65,9 @@ class SignInViewController: BaseViewController<SignInView> {
         // SignIn 실패
         output.signInFailure.drive(with: self) { owner, apiError in
             
-            owner.layoutView.indicator.stopAnimating()
+            owner.layoutView.indicatorStatus(isStart: false)
+            owner.layoutView.signInvalidLabelStatus(isHidden: false)
+            
             owner.errorHandler(apiError, calltype: .signIn)
             
         }.disposed(by: disposeBag)

@@ -10,23 +10,37 @@ import Alamofire
 
 enum Router: RouterType {
     
+    /// 로그인
     case signIn(signInQuery: SignInQuery)
+    /// 회원가입
     case signUp(signUpQuery: SignUpQuery)
+    /// 내 프로필 조회
     case fetchSelf
-    case fetchMyCrew    // 좋아요2 한 포스터 정보
+    /// 좋아요2 한 포스트 조회
+    case fetchMyCrew
+    /// 다른 유저 프로필 조회
     case fetchUser(userID: String)
-    case fetchPost(postID: String) // 특정 포스트 조회
+    /// 특정 포스트 조회
+    case fetchPost(postID: String)
+    /// 포스트 조회
     case fetchCrew(fetchCrewQuery: FetchCrewQuery)
     
+    /// 포스트 이미지 업로드
     case uploadImage(uploadImageQuery: UploadImageQuery)
+    /// 포스트 작성
     case makeCrew(makeCrewQuery: MakeCrewQuery)
+    /// 포스트 좋아요2
     case like2(postID: String, query: Like2Query) // '좋아요2' 적용/취소
+    /// 댓글 작성
     case comment(postID: String, query: CommentQuery) // 댓글 달기
     
+    /// 내 프로필 수정
     case updateProfile(query: UpdateProfileQuery)
     
+    /// 탈퇴
     case withDraw
     
+    /// 엑세스 토큰 갱신
     case refresh
 }
 

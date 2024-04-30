@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class StatsViewModel: ViewModelType {
+final class StatsViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
@@ -24,6 +24,7 @@ class StatsViewModel: ViewModelType {
         let fetchSelfSuccess: PublishRelay<FetchUserDataModel>
         let fetchCrewSuccess: PublishRelay<FetchMyCrewDataModel>
         let fetchFailure: PublishRelay<APIError>
+        
         let updateProfileSuccess: PublishRelay<FetchUserDataModel>
         let updateProfileFailure: PublishRelay<APIError>
     }
@@ -33,48 +34,51 @@ class StatsViewModel: ViewModelType {
         let fetchSelfSuccess = PublishRelay<FetchUserDataModel>()
         let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
         let fetchFailure = PublishRelay<APIError>()
+        
         let fetchMyCrew = PublishRelay<Void>()
         let updateProfileSuccess = PublishRelay<FetchUserDataModel>()
         let updateProfileFailure = PublishRelay<APIError>()
         
+        // 내 정보 가져오기 (200 / 401 / 403 / 409)
         input.viewWillAppearObservable
             .flatMap { _ in
                 
-                print("#### Fetch Self API Call ####")
                 return APIManager.callAPI(router: Router.fetchSelf,
                                           dataModel: FetchUserDataModel.self)
             }.subscribe(with: self) { owner, fetchSelfData in
                 
                 switch fetchSelfData {
                 case .success(let data):
-                    print("#### Fetch Self API Success ####")
+                    
                     fetchSelfSuccess.accept(data)
+                    // 내 정보를 가져왔으면 크루 정보 가져오기
                     fetchMyCrew.accept(())
                 case .failure(let apiError):
-                    print("#### Fetch Self API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    
                     fetchFailure.accept(apiError)
                 }
                 
             }.disposed(by: disposeBag)
         
+        // 좋아요2를 누른 포스트(내가 가입한 크루) 정보 가져오기 (200 / 400 / 401 / 403 / 410 / 419)
         fetchMyCrew
             .flatMap {
                 
-                print("#### Fetch My Crew API Call ####")
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
             }.subscribe(with: self) { owner, fetchMyCrewData in
                 
                 switch fetchMyCrewData {
                     
                 case .success(let data):
-                    print("#### Fetch My Crew API Success ####")
+                    
                     fetchCrewSuccess.accept(data)
                 case .failure(let apiError):
-                    print("#### Fetch My Crew API Fail - ErrorCode = \(apiError.rawValue) ####")
+                    
                     fetchFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)
         
+        // 프로필 변경
         input.profileChangeObservable
             .flatMap { data in
                 
@@ -85,8 +89,10 @@ class StatsViewModel: ViewModelType {
                 switch result {
                     
                 case .success(let success):
+                    
                     updateProfileSuccess.accept(success)
                 case .failure(let apiError):
+                    
                     updateProfileFailure.accept(apiError)
                 }
             }.disposed(by: disposeBag)

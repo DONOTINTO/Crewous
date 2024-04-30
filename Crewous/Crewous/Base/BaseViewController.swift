@@ -65,9 +65,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
         }
         
         switch calltype {
-        // MARK: Sign IN
+            // MARK: Sign IN
         case .signIn:
-            
             switch apiError {
             case .code400:
                 self.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
@@ -77,9 +76,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: Sign In
+            // MARK: Sign In
         case .signUp:
-            
             switch apiError {
             case .code400:
                 self.makeAlert(msg: "이메일, 비밀번호를 입력해주세요.")
@@ -89,11 +87,10 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: Fetch Self
-        case .fetchSelf:
-            
+            // MARK: Fetch Self, Fetch My Crew ( Like2를 누른 Post 정보 가져오기), Upload Image, 회원탈퇴, 특정 포스트 조회, 유저 조회, 모든 포스트 조회
+        case .fetchSelf, .fetchMyCrew, .uploadImage, .withDraw, .fetchPost, .fetchUser, .fetchCrew:
             switch apiError {
-            case .code401, .code403:
+            case .code400, .code401, .code403:
                 // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
                 makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
                     
@@ -106,9 +103,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: Refresh
+            // MARK: Refresh
         case .refresh:
-            
             switch apiError {
             case .code401, .code403, .code418:
                 // 유효하지 않은 엑세스 토큰, 접근권한 없음, 리프레시 토큰 만료 -> 로그인 화면으로 이동
@@ -123,44 +119,8 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: Fetch My Crew ( Like2를 누른 Post 정보 가져오기)
-        case .fetchMyCrew:
-            
-            switch apiError {
-            case .code400, .code401, .code403:
-                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
-                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
-                    
-                    guard let self else { return }
-                    
-                    self.changeRootViewToSignIn()
-                }
-                
-            default:
-                return
-            }
-            
-        // MARK: Upload Image
-        case .uploadImage:
-            
-            switch apiError {
-            case .code400, .code401, .code403:
-                
-                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
-                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
-                    
-                    guard let self else { return }
-                    
-                    self.changeRootViewToSignIn()
-                }
-                
-            default:
-                return
-            }
-            
-        // MARK: Make Crew
+            // MARK: Make Crew
         case .makeCrew:
-            
             switch apiError {
             case .code401, .code403:
                 
@@ -182,50 +142,14 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
                 return
             }
             
-        // MARK: 크루 가입(Post Like-2)
+            // MARK: 크루 가입(Post Like-2)
         case .like2:
-            
             switch apiError {
             case .code400, .code401, .code403, .code410:
                 
                 makeAlert(msg: "크루 생성 실패하여 재시도합니다", buttonTitle: "Retry") { _ in
                     completionHandler()
                 }
-            default:
-                return
-            }
-        
-        // MARK: 회원 탈퇴(With Draw)
-        case .withDraw:
-            
-            switch apiError {
-            case .code401, .code403:
-                
-                // 유효하지 않은 엑세스 토큰 -> 로그인 화면으로 이동
-                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
-                    
-                    guard let self else { return }
-                    
-                    self.changeRootViewToSignIn()
-                }
-            default:
-                return
-            }
-        
-        // MARK: 특정 포스트 조회 / 유저 조회 / 모든 포스트 조회
-        case .fetchPost, .fetchUser, .fetchCrew:
-            
-            switch apiError {
-            
-            case .code400, .code401, .code403:
-                
-                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
-                    
-                    guard let self else { return }
-                    
-                    self.changeRootViewToSignIn()
-                }
-                
             default:
                 return
             }

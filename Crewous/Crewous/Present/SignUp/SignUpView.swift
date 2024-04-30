@@ -10,28 +10,28 @@ import SnapKit
 
 class SignUpView: BaseView {
     
-    let scrollView = UIScrollView()
-    let contentView = UIView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     
     let emailTextField = UITextField()
-    let emailValidLabel = UILabel()
+    private let emailValidLabel = UILabel()
     
     let passwordTextField = UITextField()
-    let passwordValidLabel = UILabel()
+    private let passwordValidLabel = UILabel()
     
     let nickTextField = UITextField()
-    let nickValidLabel = UILabel()
+    private let nickValidLabel = UILabel()
     
     let heightTextField = UITextField()
-    let heightValidLabel = UILabel()
+    private let heightValidLabel = UILabel()
     
     let weightTextField = UITextField()
-    let weightValidLabel = UILabel()
+    private let weightValidLabel = UILabel()
     
     let positionTextField = UITextField()
-    let positionValidLabel = UILabel()
+    private let positionValidLabel = UILabel()
     
-    let indicator = UIActivityIndicatorView(style: .medium)
+    private let indicator = UIActivityIndicatorView(style: .medium)
     let signUpButton = UIButton()
     
     override func configureHierarchy() {
@@ -182,5 +182,80 @@ class SignUpView: BaseView {
         positionTextField.text = "PG"
         
         #endif
+    }
+    
+    func scrollViewAddTapGesture(_ gesture: UITapGestureRecognizer) {
+        
+        scrollView.addGestureRecognizer(gesture)
+    }
+    
+    func scrollViewEndEditing() {
+        
+        scrollView.endEditing(true)
+    }
+    
+    func hideEmailValidLabel(_ isValid: Bool) {
+        
+        emailValidLabel.isHidden = isValid
+        
+        if emailTextField.text == "" {
+            emailValidLabel.isHidden = true
+        }
+    }
+    
+    func hidePasswordValidLabel(_ isValid: Bool) {
+        
+        passwordValidLabel.isHidden = isValid
+        
+        if passwordTextField.text == "" {
+            passwordValidLabel.isHidden = true
+        }
+    }
+    
+    func hideNickValidLabel(_ isValid: Bool) {
+        
+        nickValidLabel.isHidden = isValid
+        
+        if nickTextField.text == "" {
+            nickValidLabel.isHidden = true
+        }
+    }
+    
+    func hideHeightValidLabel(_ isValid: Bool) {
+        
+        heightValidLabel.isHidden = isValid
+        
+        if heightTextField.text == "" {
+            heightValidLabel.isHidden = true
+        }
+    }
+    
+    func hideWeightValidLabel(_ isValid: Bool) {
+        
+        weightValidLabel.isHidden = isValid
+        
+        if weightTextField.text == "" {
+            weightValidLabel.isHidden = true
+        }
+    }
+    
+    func hidePositionValidLabel(_ isValid: Bool) {
+        
+        positionValidLabel.isHidden = isValid
+        
+        if positionTextField.text == "" {
+            positionValidLabel.isHidden = true
+        }
+    }
+    
+    func signUpButtonEnabled(_ isValid: Bool) {
+        
+        signUpButton.isEnabled = isValid
+    }
+    
+    func indicatorStatus(isStart: Bool) {
+        
+        indicator.isHidden = !isStart
+        isStart ? indicator.startAnimating() : indicator.stopAnimating()
     }
 }
