@@ -64,7 +64,7 @@ class StatsViewController: BaseViewController<StatsView> {
             }
         }
         
-        // MARK: 유저 
+        // MARK: 유저
         let input = StatsViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear,
                                          profileChangeObservable: profileChangeObservable)
         let output = viewModel.transform(input: input)
@@ -113,11 +113,9 @@ extension StatsViewController {
                 
                 switch result {
                     
-                case .success(let data):
+                case .success(_):
                     
-                    owner.makeAlert(msg: "탈퇴 완료") { [weak self] _ in
-                        
-                        guard let self else { return }
+                    owner.makeAlert(msg: "탈퇴 완료") { _ in
                         
                         owner.changeRootViewToSignIn()
                     }

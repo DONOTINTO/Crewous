@@ -58,5 +58,6 @@ enum APIError: Int, Error {
         case fetchUser
         case fetchPost
         case fetchCrew
+        case paymentValidation
     }
 }

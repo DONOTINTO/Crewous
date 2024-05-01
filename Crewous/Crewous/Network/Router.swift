@@ -42,6 +42,9 @@ enum Router: RouterType {
     
     /// 엑세스 토큰 갱신
     case refresh
+    
+    /// 결제 영수증 검증
+    case paymentsValidation(query: PaymentValidationQuery)
 }
 
 extension Router {
@@ -77,6 +80,8 @@ extension Router {
             return "탈퇴"
         case .refresh:
             return "엑세스 토큰 갱신"
+        case .paymentsValidation:
+            return "결제 영수증 검증"
         }
     }
     
@@ -88,7 +93,7 @@ extension Router {
     var method: HTTPMethod {
         
         switch self {
-        case .signIn, .signUp, .uploadImage, .makeCrew, .like2, .comment:
+        case .signIn, .signUp, .uploadImage, .makeCrew, .like2, .comment, .paymentsValidation:
             return .post
         case .refresh, .fetchSelf, .fetchMyCrew, .withDraw, .fetchUser, .fetchPost, .fetchCrew:
             return .get
@@ -126,6 +131,8 @@ extension Router {
             return Path.makeCrew.rawValue
         case .comment(let postID, _):
             return "/v1/posts/\(postID)/comments"
+        case .paymentsValidation:
+            return Path.paymentValidation.rawValue
         }
     }
     
@@ -154,7 +161,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .makeCrew, .like2, .comment:
+        case .makeCrew, .like2, .comment, .paymentsValidation:
             return [
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,
@@ -202,6 +209,8 @@ extension Router {
             return try? encoder.encode(like2Query)
         case .comment(_, let commentQuery):
             return try? encoder.encode(commentQuery)
+        case .paymentsValidation(let paymentValidationQuery):
+            return try? encoder.encode(paymentValidationQuery)
         default:
             return nil
         }

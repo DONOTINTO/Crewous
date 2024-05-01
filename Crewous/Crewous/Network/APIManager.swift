@@ -29,7 +29,7 @@ struct APIManager {
                         
                         // 모든 통신 결과는 Single의 success로 반환
                     case .success(let success):
-                        
+                        dump(success)
                         print("success - \(router.apiType)")
                         
                         // Signle<Result<success, fail>, fail>
@@ -37,7 +37,8 @@ struct APIManager {
                         // -> success
                         single(.success(.success(success)))
                         
-                    case .failure(_):
+                    case .failure(let error):
+                        
                         print("failure - \(router.apiType)\(statusCode)")
                         
                         // Custom API Error로 Error 코드 구분

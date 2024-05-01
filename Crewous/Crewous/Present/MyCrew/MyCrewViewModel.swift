@@ -13,6 +13,8 @@ final class MyCrewViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
+    let refreshObservable = PublishRelay<Void>()
+    
     struct Input {
         
         let viewWillAppearObservable: Observable<Void>
@@ -31,6 +33,22 @@ final class MyCrewViewModel: ViewModelType {
         
         // view will appear 시 Fetch My Crew 호출
         input.viewWillAppearObservable
+            .flatMap {
+                
+                return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)
+            }.subscribe(with: self) { owner, fetchMyCrewData in
+                
+                switch fetchMyCrewData {
+                case .success(let data):
+                    
+                    fetchCrewSuccess.accept(data)
+                case .failure(let apiError):
+                    
+                    fetchFailure.accept(apiError)
+                }
+            }.disposed(by: disposeBag)
+        
+        refreshObservable
             .flatMap {
                 
                 return APIManager.callAPI(router: Router.fetchMyCrew, dataModel: FetchMyCrewDataModel.self)

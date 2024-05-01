@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import iamport_ios
 
 final class CrewDetailViewController: BaseViewController<CrewDetailView> {
     
@@ -50,7 +51,8 @@ final class CrewDetailViewController: BaseViewController<CrewDetailView> {
         }.disposed(by: disposeBag)
         
         // MARK: View Model
-        let input = CrewDetailViewModel.Input(viewWillAppearObservable: self.rx.viewWillAppear,
+        let input = CrewDetailViewModel.Input(paymentSuccess: self.viewModel.paymentSuccess,
+                                              viewWillAppearObservable: self.rx.viewWillAppear,
                                               postIdentifierObservable: viewModel.postIdentifier,
                                               crewApplyButtonTapObservable: layoutView.applyButton.rx.tap.asObservable(), crewResignButtonTapObservable: layoutView.resignButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
@@ -123,12 +125,10 @@ final class CrewDetailViewController: BaseViewController<CrewDetailView> {
                 guard let parent = owner.parent,
                       let parentVC = parent as? MyCrewViewController else {
                     
-                    owner.refresh()
-                    
                     return
                 }
                 
-                parentVC.viewWillAppear(true)
+                parentVC.viewModel.refreshObservable.accept(())
                 
             }.disposed(by: disposeBag)
         
@@ -137,6 +137,33 @@ final class CrewDetailViewController: BaseViewController<CrewDetailView> {
             .bind(with: self) { owner, apiError in
                 
                 owner.errorHandler(apiError, calltype: .like2)
+            }.disposed(by: disposeBag)
+        
+        // 결제창 이동
+        layoutView.applyButton.rx.tap.asObservable()
+            .bind(with: self) { owner, _ in
+                
+                print("⚠️⚠️ 결제창 이동⚠️⚠️")
+                guard let postData = owner.viewModel.postData else { return }
+                
+                let nextVC = PayViewController()
+                nextVC.payDelegate = self
+                
+                owner.present(nextVC, animated: true) {
+                    
+                    guard let title = postData.crewName,
+                          let amount = postData.membershipFee else { return }
+                    
+                    nextVC.viewModel.postTitleObservable.accept(title)
+                    nextVC.viewModel.amountObservable.accept(amount)
+                }
+            }.disposed(by: disposeBag)
+        
+        // 결제 검증 실패
+        output.validationFailure
+            .bind(with: self) { owner, apiError in
+                
+                owner.errorHandler(apiError, calltype: .paymentValidation)
             }.disposed(by: disposeBag)
     }
     
@@ -148,5 +175,14 @@ final class CrewDetailViewController: BaseViewController<CrewDetailView> {
             self.viewWillAppear(true)
             viewModel.postIdentifier.accept(postData.postID)
         }
+    }
+}
+
+extension CrewDetailViewController: PayDelegate {
+    
+    func payComplete(response: iamport_ios.IamportResponse) {
+        
+        print("⚠️⚠️ response 전달 ⚠️⚠️")
+        self.viewModel.paymentSuccess.accept(response)
     }
 }

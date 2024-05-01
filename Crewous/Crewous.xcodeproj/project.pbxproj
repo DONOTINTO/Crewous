@@ -31,6 +31,16 @@
 		AC3265472BD7A19400531BC1 /* FetchCrewQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */; };
 		AC3265492BD7A2A200531BC1 /* FetchCrewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */; };
 		AC32654B2BD7C52700531BC1 /* Like2Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32654A2BD7C52700531BC1 /* Like2Query.swift */; };
+		AC5A7A9F2BE0A67D00A13991 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = AC5A7A9E2BE0A67D00A13991 /* Differentiator */; };
+		AC5A7AA12BE0A67D00A13991 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = AC5A7AA02BE0A67D00A13991 /* RxDataSources */; };
+		AC5A7AB42BE21D0200A13991 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = AC5A7AB32BE21D0200A13991 /* iamport-ios */; };
+		AC5A7AB62BE21F6600A13991 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AB52BE21F6600A13991 /* PaymentManager.swift */; };
+		AC5A7ABB2BE230EC00A13991 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ABA2BE230EC00A13991 /* PayViewController.swift */; };
+		AC5A7ABD2BE2310300A13991 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ABC2BE2310300A13991 /* PayView.swift */; };
+		AC5A7ABF2BE2393200A13991 /* PayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ABE2BE2393200A13991 /* PayViewModel.swift */; };
+		AC5A7AC12BE23C3700A13991 /* PayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */; };
+		AC5A7AC32BE2416300A13991 /* PaymentValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */; };
+		AC5A7AC52BE241B900A13991 /* PaymentValidationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -77,6 +87,9 @@
 		ACBD683F2BDE9D030077C6FC /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = ACBD683E2BDE9D030077C6FC /* YPImagePicker */; };
 		ACBD68A82BDF6F7C0077C6FC /* UpdateProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */; };
 		ACBD68AA2BDF828E0077C6FC /* UploadImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */; };
+		ACBD68AD2BDFC87D0077C6FC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */; };
+		ACBD68AF2BDFC8850077C6FC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68AE2BDFC8850077C6FC /* SettingView.swift */; };
+		ACBD68B12BDFD5F70077C6FC /* HomeCompositional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -95,7 +108,6 @@
 		ACDF67E92BCD34790046766B /* FetchMyCrewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */; };
 		ACDF67EC2BCD6A750046766B /* CrewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67EB2BCD6A750046766B /* CrewDetailView.swift */; };
 		ACDF67EE2BCD6A860046766B /* CrewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67ED2BCD6A860046766B /* CrewDetailViewController.swift */; };
-		ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67EF2BCD6DE30046766B /* WithoutViewModel.swift */; };
 		ACDF67F42BCD74700046766B /* MakeCrewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F32BCD74700046766B /* MakeCrewViewController.swift */; };
 		ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F52BCD74790046766B /* MakeCrewView.swift */; };
 		ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */; };
@@ -135,6 +147,13 @@
 		AC3265462BD7A19400531BC1 /* FetchCrewQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewQuery.swift; sourceTree = "<group>"; };
 		AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCrewDataModel.swift; sourceTree = "<group>"; };
 		AC32654A2BD7C52700531BC1 /* Like2Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like2Query.swift; sourceTree = "<group>"; };
+		AC5A7AB52BE21F6600A13991 /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
+		AC5A7ABA2BE230EC00A13991 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		AC5A7ABC2BE2310300A13991 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		AC5A7ABE2BE2393200A13991 /* PayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewModel.swift; sourceTree = "<group>"; };
+		AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayDelegate.swift; sourceTree = "<group>"; };
+		AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationQuery.swift; sourceTree = "<group>"; };
+		AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationDataModel.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +197,9 @@
 		ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
 		ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileQuery.swift; sourceTree = "<group>"; };
 		ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageQuery.swift; sourceTree = "<group>"; };
+		ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		ACBD68AE2BDFC8850077C6FC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCompositional.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -196,7 +218,6 @@
 		ACDF67E82BCD34790046766B /* FetchMyCrewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMyCrewDataModel.swift; sourceTree = "<group>"; };
 		ACDF67EB2BCD6A750046766B /* CrewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewDetailView.swift; sourceTree = "<group>"; };
 		ACDF67ED2BCD6A860046766B /* CrewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewDetailViewController.swift; sourceTree = "<group>"; };
-		ACDF67EF2BCD6DE30046766B /* WithoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutViewModel.swift; sourceTree = "<group>"; };
 		ACDF67F32BCD74700046766B /* MakeCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewViewController.swift; sourceTree = "<group>"; };
 		ACDF67F52BCD74790046766B /* MakeCrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewView.swift; sourceTree = "<group>"; };
 		ACDF67F72BCD74990046766B /* MakeCrewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCrewViewModel.swift; sourceTree = "<group>"; };
@@ -215,10 +236,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5A7AB42BE21D0200A13991 /* iamport-ios in Frameworks */,
+				AC5A7A9F2BE0A67D00A13991 /* Differentiator in Frameworks */,
 				AC9FD0B82BC79B6100395FC2 /* RxSwift in Frameworks */,
 				ACBD683F2BDE9D030077C6FC /* YPImagePicker in Frameworks */,
 				AC9FD0BB2BC79B7700395FC2 /* SnapKit in Frameworks */,
 				AC9FD0B62BC79B6100395FC2 /* RxCocoa in Frameworks */,
+				AC5A7AA12BE0A67D00A13991 /* RxDataSources in Frameworks */,
 				AC9FD0B32BC79B4500395FC2 /* Alamofire in Frameworks */,
 				ACF18F612BD13F94002C0548 /* Kingfisher in Frameworks */,
 			);
@@ -276,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3265142BD5320D00531BC1 /* PageDelegate.swift */,
+				AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -289,6 +314,23 @@
 				ACA194902BD9319C006CFBE3 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		AC5A7AA22BE0A6C900A13991 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		AC5A7AB92BE230CB00A13991 /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				AC5A7ABE2BE2393200A13991 /* PayViewModel.swift */,
+				AC5A7ABA2BE230EC00A13991 /* PayViewController.swift */,
+				AC5A7ABC2BE2310300A13991 /* PayView.swift */,
+			);
+			path = Pay;
 			sourceTree = "<group>";
 		};
 		AC9FD0912BC79AFB00395FC2 = {
@@ -310,6 +352,7 @@
 		AC9FD09C2BC79AFB00395FC2 /* Crewous */ = {
 			isa = PBXGroup;
 			children = (
+				AC5A7AA22BE0A6C900A13991 /* DataSource */,
 				AC3265132BD531FF00531BC1 /* Delegate */,
 				ACDF67B12BCAB4D30046766B /* Layout */,
 				AC9FD0FE2BC8221900395FC2 /* Storage */,
@@ -342,6 +385,8 @@
 		AC9FD0C12BC79D2F00395FC2 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				AC5A7AB92BE230CB00A13991 /* Pay */,
+				ACBD68AB2BDFC84E0077C6FC /* Setting */,
 				ACBD68322BDC04880077C6FC /* Comment */,
 				AC3265322BD76EB900531BC1 /* Search */,
 				AC3264F12BD37FA300531BC1 /* CrewContent */,
@@ -435,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9FD0F72BC805C700395FC2 /* APIManager.swift */,
+				AC5A7AB52BE21F6600A13991 /* PaymentManager.swift */,
 				ACDF68292BD0FCD60046766B /* APIInterceptor.swift */,
 				AC9FD0EC2BC7F8C100395FC2 /* APIKey.swift */,
 				AC9FD0FC2BC813CF00395FC2 /* APIError.swift */,
@@ -456,6 +502,7 @@
 				ACBD683B2BDCD00F0077C6FC /* CommentQuery.swift */,
 				ACBD68A72BDF6F7C0077C6FC /* UpdateProfileQuery.swift */,
 				ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */,
+				AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */,
 			);
 			path = QueryModel;
 			sourceTree = "<group>";
@@ -472,6 +519,7 @@
 				ACDF68172BD001620046766B /* Like2DataModel.swift */,
 				ACDF68192BD015700046766B /* WithDrawDataModel.swift */,
 				AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */,
+				AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -495,6 +543,15 @@
 			path = Comment;
 			sourceTree = "<group>";
 		};
+		ACBD68AB2BDFC84E0077C6FC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */,
+				ACBD68AE2BDFC8850077C6FC /* SettingView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		ACDF67AC2BCA9F5B0046766B /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3264F62BD3813000531BC1 /* CrewContentCompositional.swift */,
+				ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -527,7 +585,6 @@
 		ACDF67DF2BCD13EB0046766B /* WithoutCrew */ = {
 			isa = PBXGroup;
 			children = (
-				ACDF67EF2BCD6DE30046766B /* WithoutViewModel.swift */,
 				ACDF67E42BCD165F0046766B /* WithoutCrewViewController.swift */,
 				ACDF67E62BCD166B0046766B /* WithoutCrewView.swift */,
 			);
@@ -577,6 +634,9 @@
 				AC9FD0BA2BC79B7700395FC2 /* SnapKit */,
 				ACF18F602BD13F94002C0548 /* Kingfisher */,
 				ACBD683E2BDE9D030077C6FC /* YPImagePicker */,
+				AC5A7A9E2BE0A67D00A13991 /* Differentiator */,
+				AC5A7AA02BE0A67D00A13991 /* RxDataSources */,
+				AC5A7AB32BE21D0200A13991 /* iamport-ios */,
 			);
 			productName = Crewous;
 			productReference = AC9FD09A2BC79AFB00395FC2 /* Crewous.app */;
@@ -612,6 +672,8 @@
 				AC9FD0B92BC79B7700395FC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				ACF18F5F2BD13F94002C0548 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				ACBD683D2BDE9D030077C6FC /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				AC5A7A9D2BE0A67D00A13991 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				AC5A7AB22BE21D0200A13991 /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = AC9FD09B2BC79AFB00395FC2 /* Products */;
 			projectDirPath = "";
@@ -657,8 +719,10 @@
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
 				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
 				AC3264FA2BD389CD00531BC1 /* ContentPageViewController.swift in Sources */,
+				ACBD68B12BDFD5F70077C6FC /* HomeCompositional.swift in Sources */,
 				AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */,
 				ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */,
+				AC5A7ABF2BE2393200A13991 /* PayViewModel.swift in Sources */,
 				AC9FD0C42BC79D5000395FC2 /* SignInView.swift in Sources */,
 				AC3265172BD54B5800531BC1 /* InfoPageTableViewCell.swift in Sources */,
 				AC9FD0C02BC79C1C00395FC2 /* BaseViewController.swift in Sources */,
@@ -668,13 +732,13 @@
 				AC9FD0DA2BC7BFE200395FC2 /* FontManager.swift in Sources */,
 				ACDF680A2BCE96440046766B /* Image++.swift in Sources */,
 				AC3265062BD38F7F00531BC1 /* MemberPageViewController.swift in Sources */,
-				ACDF67F02BCD6DE30046766B /* WithoutViewModel.swift in Sources */,
 				ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */,
 				ACBD68342BDC04B10077C6FC /* CommentViewController.swift in Sources */,
 				ACA194912BD9319C006CFBE3 /* SearchTableViewCell.swift in Sources */,
 				AC3265102BD5004000531BC1 /* MemberPageViewModel.swift in Sources */,
 				ACDF68082BCE81960046766B /* UploadImageDataModel.swift in Sources */,
 				AC3264F52BD3800800531BC1 /* CrewContentViewController.swift in Sources */,
+				ACBD68AF2BDFC8850077C6FC /* SettingView.swift in Sources */,
 				AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */,
 				ACBD683A2BDCC85C0077C6FC /* CommentTableViewCell.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
@@ -684,10 +748,12 @@
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				AC3265362BD76EF100531BC1 /* SearchView.swift in Sources */,
+				AC5A7AB62BE21F6600A13991 /* PaymentManager.swift in Sources */,
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
 				AC3264F32BD37FF300531BC1 /* CrewContentView.swift in Sources */,
 				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,
 				AC32650A2BD4F82000531BC1 /* CrewContentViewModel.swift in Sources */,
+				AC5A7AC52BE241B900A13991 /* PaymentValidationDataModel.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
@@ -696,6 +762,7 @@
 				AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */,
 				AC9FD0ED2BC7F8C100395FC2 /* APIKey.swift in Sources */,
 				ACDF67F42BCD74700046766B /* MakeCrewViewController.swift in Sources */,
+				ACBD68AD2BDFC87D0077C6FC /* SettingViewController.swift in Sources */,
 				ACDF67E92BCD34790046766B /* FetchMyCrewDataModel.swift in Sources */,
 				AC9FD0E72BC7E51900395FC2 /* Util.swift in Sources */,
 				AC9FD0F82BC805C700395FC2 /* APIManager.swift in Sources */,
@@ -706,10 +773,13 @@
 				AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */,
 				AC3265022BD38F4600531BC1 /* InfoPageView.swift in Sources */,
 				ACDF67E32BCD14A00046766B /* MyCrewView.swift in Sources */,
+				AC5A7AC12BE23C3700A13991 /* PayDelegate.swift in Sources */,
 				ACDF68182BD001620046766B /* Like2DataModel.swift in Sources */,
 				AC3265342BD76ECF00531BC1 /* SearchViewController.swift in Sources */,
 				ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */,
 				ACBD68AA2BDF828E0077C6FC /* UploadImageQuery.swift in Sources */,
+				AC5A7ABB2BE230EC00A13991 /* PayViewController.swift in Sources */,
+				AC5A7AC32BE2416300A13991 /* PaymentValidationQuery.swift in Sources */,
 				AC3265192BD550F700531BC1 /* MemberPageTableViewCell.swift in Sources */,
 				ACDF67AB2BCA31540046766B /* SignUpDataModel.swift in Sources */,
 				ACDF67F82BCD74990046766B /* MakeCrewViewModel.swift in Sources */,
@@ -722,6 +792,7 @@
 				ACBD68362BDC04BA0077C6FC /* CommentView.swift in Sources */,
 				AC9FD0FB2BC80AE300395FC2 /* SignInDataModel.swift in Sources */,
 				AC9FD1002BC8222A00395FC2 /* UserDefaultsManager.swift in Sources */,
+				AC5A7ABD2BE2310300A13991 /* PayView.swift in Sources */,
 				AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */,
 				ACBD68382BDCC2D10077C6FC /* CommentViewModel.swift in Sources */,
 				ACDF67E72BCD166B0046766B /* WithoutCrewView.swift in Sources */,
@@ -886,6 +957,8 @@
 				DEVELOPMENT_TEAM = 92Y6UC7Q5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Crewous/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진첩 사용";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진첩 사용";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -919,6 +992,8 @@
 				DEVELOPMENT_TEAM = 92Y6UC7Q5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Crewous/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진첩 사용";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진첩 사용";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1015,6 +1090,8 @@
 				DEVELOPMENT_TEAM = 92Y6UC7Q5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Crewous/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진첩 사용";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진첩 사용";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1064,6 +1141,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AC5A7A9D2BE0A67D00A13991 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+		AC5A7AB22BE21D0200A13991 /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 		AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1107,6 +1200,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AC5A7A9E2BE0A67D00A13991 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC5A7A9D2BE0A67D00A13991 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		AC5A7AA02BE0A67D00A13991 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC5A7A9D2BE0A67D00A13991 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+		AC5A7AB32BE21D0200A13991 /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC5A7AB22BE21D0200A13991 /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
+		};
 		AC9FD0B22BC79B4500395FC2 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AC9FD0B12BC79B4500395FC2 /* XCRemoteSwiftPackageReference "Alamofire" */;

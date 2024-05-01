@@ -89,11 +89,15 @@ final class CrewDetailView: BaseView {
     func configure(_ data: PostData) {
         
         guard let crewName = data.crewName,
-              let imageData = data.files.first else { return }
+              let imageData = data.files.first,
+              let membershipFee = data.membershipFee else { return }
         
         imageView.loadImage(from: imageData)
         
         crewLabel.custom(title: crewName, color: .white, fontScale: .bold, fontSize: .large)
+        applyButton.custom(title: "APPLY\n₩\(membershipFee)", titleColor: .white, bgColor: .customGreen)
+        applyButton.titleLabel?.textAlignment = .center
+        applyButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     func setApplyButton(isHidden: Bool) {

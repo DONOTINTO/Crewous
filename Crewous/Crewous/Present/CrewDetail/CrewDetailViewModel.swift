@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import iamport_ios
 
 final class CrewDetailViewModel: ViewModelType {
     
@@ -19,8 +20,12 @@ final class CrewDetailViewModel: ViewModelType {
     var postData: PostData?
     var userData: [FetchUserDataModel]?
     
+    // 결제
+    let paymentSuccess = PublishRelay<IamportResponse>()
+    
     struct Input {
         
+        let paymentSuccess: PublishRelay<IamportResponse>
         let viewWillAppearObservable: Observable<Void>
         let postIdentifierObservable: PublishRelay<String>
         let crewApplyButtonTapObservable: Observable<Void>
@@ -43,6 +48,8 @@ final class CrewDetailViewModel: ViewModelType {
         let applySuccess: PublishRelay<Void>
         let resignSuccess: PublishRelay<Void>
         let applyOrResignFailure: PublishRelay<APIError>
+        
+        let validationFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -79,7 +86,11 @@ final class CrewDetailViewModel: ViewModelType {
         // 내가 가입한 크루정보 가져오기 실패
         let fetchSelfFailure = PublishRelay<APIError>()
         
-        // 가입 성공
+        // 결제 성공/실패
+        let validationSuccess = PublishRelay<PaymentValidationDataModel>()
+        let validationFailure = PublishRelay<APIError>()
+        
+        // 가입 성공/실패
         let applySuccess = PublishRelay<Void>()
         let resignSuccess = PublishRelay<Void>()
         let applyOrResignFailure = PublishRelay<APIError>()
@@ -182,8 +193,29 @@ final class CrewDetailViewModel: ViewModelType {
                 isMyCrew.accept(postCrewData.postID == myCrewData.postID)
             }.disposed(by: disposeBag)
         
-        // 가입 버튼 클릭
-        input.crewApplyButtonTapObservable
+        // 결제 성공
+        Observable.zip(input.paymentSuccess, postDataSuccess)
+            .flatMap { data in
+                
+                let (response, postData) = data
+                let query = PaymentValidationQuery(imp_uid: response.imp_uid ?? "", post_id: postData.postID, productName: postData.crewName ?? "goods99j", price: Int(postData.membershipFee!)!)
+                
+                return APIManager.callAPI(router: Router.paymentsValidation(query: query), dataModel: PaymentValidationDataModel.self)
+            }.subscribe(with: self) { owner, result in
+                
+                switch result {
+                    
+                case .success(let paymentValidationData):
+                    
+                    validationSuccess.accept(paymentValidationData)
+                    
+                case .failure(let apiError):
+                    validationFailure.accept(apiError)
+                }
+            }.disposed(by: disposeBag)
+        
+        // 결제 검증 -> 좋아요 2 적용
+        validationSuccess
             .withLatestFrom(postDataSuccess)
             .flatMap { postData in
                 
@@ -226,6 +258,7 @@ final class CrewDetailViewModel: ViewModelType {
                       fetchSelfFailure: fetchSelfFailure,
                       applySuccess: applySuccess,
                       resignSuccess: resignSuccess,
-                      applyOrResignFailure: applyOrResignFailure)
+                      applyOrResignFailure: applyOrResignFailure,
+                      validationFailure: validationFailure)
     }
 }

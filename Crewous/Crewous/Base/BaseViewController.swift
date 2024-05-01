@@ -153,6 +153,32 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
             default:
                 return
             }
+            
+            // MARK: 결제 검증 실패
+        case .paymentValidation:
+            switch apiError {
+            
+            case .code401, .code403:
+                
+                makeAlert(msg: "Error Code: \(apiError.rawValue)") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToSignIn()
+                }
+            case .code409:
+                
+                makeAlert(msg: "검증처리가 완료되었습니다.")
+            case .code410:
+                
+                makeAlert(msg: "게시물을 찾을 수 없습니다.") { [weak self] _ in
+                    
+                    guard let self else { return }
+                    
+                    self.changeRootViewToStats()
+                }
+            default: return
+            }
         }
     }
     
