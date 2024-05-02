@@ -101,9 +101,24 @@ final class StatsViewController: BaseViewController<StatsView> {
                 
             }.disposed(by: disposeBag)
         
+        // 크루 정보 업데이트
         output.fetchCrewSuccess
             .bind(to: layoutView.collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        layoutView.collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                
+                let data = owner.dataSource[indexPath.section].items[indexPath.item]
+                
+                let nextVC = CrewDetailViewController()
+                nextVC.modalPresentationStyle = .pageSheet
+                
+                owner.present(nextVC, animated: true) {
+                    nextVC.viewModel.postIdentifier.accept(data.postID)
+                }
+                
+            }.disposed(by: disposeBag)
     }
     
     override func configureCollectionView() {

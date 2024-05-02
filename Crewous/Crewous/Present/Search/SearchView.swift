@@ -45,9 +45,12 @@ final class SearchView: BaseView {
         searchTableView.separatorStyle = .none
         
         searchController.searchBar.backgroundColor = .white
-        searchController.searchBar.barStyle = .default
+        searchController.searchBar.barStyle = .black
         searchController.searchBar.searchBarStyle = .default
+        searchController.searchBar.searchTextField.backgroundColor = .customBlack
         searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.searchTextField.textColor = .customBlack
         
         emptyImageView.image = UIImage.ball
         
