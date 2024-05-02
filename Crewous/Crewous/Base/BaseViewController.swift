@@ -26,11 +26,11 @@ class BaseViewController<LayoutView: UIView>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureCollectionView()
         bind()
         configure()
         makeBackBarButton()
         configureNavigation()
-        configureCollectionView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

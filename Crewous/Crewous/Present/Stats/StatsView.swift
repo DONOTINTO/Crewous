@@ -10,7 +10,7 @@ import SnapKit
 
 final class StatsView: BaseView {
     
-    // let collectionView = UICollectionView()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: HotCrewCompositional.create())
     
     let profileView = UIView()
     private let profileImageView = UIImageView()
@@ -28,9 +28,6 @@ final class StatsView: BaseView {
     private let positionLiteralLabel = UILabel()
     private let positionInfoLabel = UILabel()
     
-    let withDrawButton =  UIButton()
-    let logoutButton = UIButton()
-    
     private let indicator = UIActivityIndicatorView(style: .medium)
     
     override func configureHierarchy() {
@@ -43,9 +40,7 @@ final class StatsView: BaseView {
         
         [heightLiteralLabel, heightInfoLabel, crewLiteralLabel, crewInfoLabel, weightLiteralLabel, weightInfoLabel, positionLiteralLabel, positionInfoLabel].forEach { addSubview($0) }
         
-    #if DEBUG
-        debug()
-    #endif
+        addSubview(collectionView)
     }
     
     override func configureLayout() {
@@ -142,6 +137,13 @@ final class StatsView: BaseView {
             $0.leading.equalTo(self.snp.centerX)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(30)
         }
+        
+        collectionView.snp.makeConstraints {
+            
+            $0.top.equalTo(positionInfoLabel.snp.bottom).offset(50)
+            $0.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+            $0.bottom.greaterThanOrEqualTo(self.safeAreaLayoutGuide)
+        }
     }
     
     override func configureView() {
@@ -176,6 +178,8 @@ final class StatsView: BaseView {
         positionInfoLabel.custom(title: "-", color: .customBlack, fontScale: .bold, fontSize: .large)
         
         indicator.hidesWhenStopped = true
+        
+        collectionView.backgroundColor = .customGreen.withAlphaComponent(0.1)
     }
     
     func configure(fetchSelfData: FetchUserDataModel, fetchMyCrewData: FetchMyCrewDataModel) {
@@ -216,28 +220,5 @@ final class StatsView: BaseView {
     func profileViewAddTapGesture(_ gesture: UITapGestureRecognizer) {
         
         profileView.addGestureRecognizer(gesture)
-    }
-    
-    // TEST
-    func debug() {
-        
-        addSubview(withDrawButton)
-        addSubview(logoutButton)
-        
-        withDrawButton.snp.makeConstraints {
-            $0.bottom.equalTo(logoutButton.snp.top).offset(-10)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
-            $0.height.equalTo(30)
-        }
-        
-        logoutButton.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(30)
-            $0.height.equalTo(30)
-        }
-        
-        withDrawButton.custom(title: "탈퇴(테스트용)", titleColor: .black, bgColor: .customGreen)
-        
-        logoutButton.custom(title: "로그아웃(테스트용)", titleColor: .black, bgColor: .customGreen)
     }
 }

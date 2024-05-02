@@ -44,6 +44,8 @@
 		AC5A7ACB2BE34EA200A13991 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */; };
 		AC5A7ACD2BE36EF600A13991 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */; };
 		AC5A7ACF2BE37EE900A13991 /* SettingTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */; };
+		AC5A7AD12BE39BA700A13991 /* HotCrewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AD02BE39BA700A13991 /* HotCrewCollectionViewCell.swift */; };
+		AC5A7AD32BE3B36000A13991 /* HotCrewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AD22BE3B36000A13991 /* HotCrewCollectionReusableView.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -92,7 +94,7 @@
 		ACBD68AA2BDF828E0077C6FC /* UploadImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */; };
 		ACBD68AD2BDFC87D0077C6FC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */; };
 		ACBD68AF2BDFC8850077C6FC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68AE2BDFC8850077C6FC /* SettingView.swift */; };
-		ACBD68B12BDFD5F70077C6FC /* HomeCompositional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */; };
+		ACBD68B12BDFD5F70077C6FC /* HotCrewCompositional.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBD68B02BDFD5F70077C6FC /* HotCrewCompositional.swift */; };
 		ACDF67A52BC90BAA0046766B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A42BC90BAA0046766B /* SignUpView.swift */; };
 		ACDF67A72BC90BBC0046766B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */; };
 		ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF67A82BC94DE60046766B /* SignUpQuery.swift */; };
@@ -160,6 +162,8 @@
 		AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableHeaderView.swift; sourceTree = "<group>"; };
+		AC5A7AD02BE39BA700A13991 /* HotCrewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCrewCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC5A7AD22BE3B36000A13991 /* HotCrewCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCrewCollectionReusableView.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,7 +209,7 @@
 		ACBD68A92BDF828E0077C6FC /* UploadImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageQuery.swift; sourceTree = "<group>"; };
 		ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		ACBD68AE2BDFC8850077C6FC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCompositional.swift; sourceTree = "<group>"; };
+		ACBD68B02BDFD5F70077C6FC /* HotCrewCompositional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCrewCompositional.swift; sourceTree = "<group>"; };
 		ACDF67A42BC90BAA0046766B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ACDF67A62BC90BBC0046766B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ACDF67A82BC94DE60046766B /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
@@ -567,6 +571,8 @@
 				ACDF67B62BCB26410046766B /* StatsViewModel.swift */,
 				ACDF67AD2BCAAD090046766B /* StatsViewController.swift */,
 				ACDF67AF2BCAAD140046766B /* StatsView.swift */,
+				AC5A7AD02BE39BA700A13991 /* HotCrewCollectionViewCell.swift */,
+				AC5A7AD22BE3B36000A13991 /* HotCrewCollectionReusableView.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -575,7 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3264F62BD3813000531BC1 /* CrewContentCompositional.swift */,
-				ACBD68B02BDFD5F70077C6FC /* HomeCompositional.swift */,
+				ACBD68B02BDFD5F70077C6FC /* HotCrewCompositional.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -729,7 +735,7 @@
 				AC9FD0E92BC7EE9A00395FC2 /* SignUpViewModel.swift in Sources */,
 				AC9FD0EF2BC7FEDC00395FC2 /* RouterType.swift in Sources */,
 				AC3264FA2BD389CD00531BC1 /* ContentPageViewController.swift in Sources */,
-				ACBD68B12BDFD5F70077C6FC /* HomeCompositional.swift in Sources */,
+				ACBD68B12BDFD5F70077C6FC /* HotCrewCompositional.swift in Sources */,
 				AC32650E2BD5002100531BC1 /* InfoPageViewModel.swift in Sources */,
 				ACDF67BB2BCB2E100046766B /* RxSwift++.swift in Sources */,
 				AC5A7ABF2BE2393200A13991 /* PayViewModel.swift in Sources */,
@@ -759,6 +765,7 @@
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				AC3265362BD76EF100531BC1 /* SearchView.swift in Sources */,
+				AC5A7AD32BE3B36000A13991 /* HotCrewCollectionReusableView.swift in Sources */,
 				AC5A7ACF2BE37EE900A13991 /* SettingTableHeaderView.swift in Sources */,
 				AC5A7AB62BE21F6600A13991 /* PaymentManager.swift in Sources */,
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
@@ -813,6 +820,7 @@
 				AC9FD0BE2BC79C0400395FC2 /* BaseView.swift in Sources */,
 				AC9FD0F62BC804C200395FC2 /* SignInQuery.swift in Sources */,
 				ACDF67E12BCD14920046766B /* MyCrewViewController.swift in Sources */,
+				AC5A7AD12BE39BA700A13991 /* HotCrewCollectionViewCell.swift in Sources */,
 				ACDF680C2BCE980B0046766B /* MakeCrewQuery.swift in Sources */,
 				ACDF682A2BD0FCD60046766B /* APIInterceptor.swift in Sources */,
 			);

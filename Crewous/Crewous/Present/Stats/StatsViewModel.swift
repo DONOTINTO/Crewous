@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 final class StatsViewModel: ViewModelType {
     
@@ -22,43 +23,72 @@ final class StatsViewModel: ViewModelType {
     struct Output {
         
         let fetchSelfSuccess: PublishRelay<FetchUserDataModel>
-        let fetchCrewSuccess: PublishRelay<FetchMyCrewDataModel>
+        let fetchMyCrewSuccess: PublishRelay<FetchMyCrewDataModel>
         let fetchFailure: PublishRelay<APIError>
         
         let updateProfileSuccess: PublishRelay<FetchUserDataModel>
         let updateProfileFailure: PublishRelay<APIError>
+        
+        let fetchCrewSuccess: PublishRelay<[HotCrewSection]>
+        let fetchCrewFailure: PublishRelay<APIError>
     }
     
     func transform(input: Input) -> Output {
         
         let fetchSelfSuccess = PublishRelay<FetchUserDataModel>()
-        let fetchCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
+        let fetchMyCrewSuccess = PublishRelay<FetchMyCrewDataModel>()
         let fetchFailure = PublishRelay<APIError>()
         
         let fetchMyCrew = PublishRelay<Void>()
         let updateProfileSuccess = PublishRelay<FetchUserDataModel>()
         let updateProfileFailure = PublishRelay<APIError>()
         
+        let fetchCrewSuccess = PublishRelay<[HotCrewSection]>()
+        let fetchCrewFailure = PublishRelay<APIError>()
+        
         // 내 정보 가져오기 (200 / 401 / 403 / 409)
-        input.viewWillAppearObservable
-            .flatMap { _ in
+        let viewWillAppearShared = input.viewWillAppearObservable
+            .share()
+        
+        viewWillAppearShared.flatMap { _ in
+            
+            return APIManager.callAPI(router: Router.fetchSelf,
+                                      dataModel: FetchUserDataModel.self)
+        }
+        .subscribe(with: self) { owner, fetchSelfData in
+            
+            switch fetchSelfData {
+            case .success(let data):
                 
-                return APIManager.callAPI(router: Router.fetchSelf,
-                                          dataModel: FetchUserDataModel.self)
-            }.subscribe(with: self) { owner, fetchSelfData in
+                fetchSelfSuccess.accept(data)
+                // 내 정보를 가져왔으면 크루 정보 가져오기
+                fetchMyCrew.accept(())
+            case .failure(let apiError):
                 
-                switch fetchSelfData {
-                case .success(let data):
-                    
-                    fetchSelfSuccess.accept(data)
-                    // 내 정보를 가져왔으면 크루 정보 가져오기
-                    fetchMyCrew.accept(())
-                case .failure(let apiError):
-                    
-                    fetchFailure.accept(apiError)
-                }
+                fetchFailure.accept(apiError)
+            }
+            
+        }
+        .disposed(by: disposeBag)
+        
+        // 크루 데이터(포스트 조회) 가져오기
+        viewWillAppearShared.flatMap { _ in
+            
+            let query = FetchCrewQuery(limit: "100", product_id: ProductID.crew.rawValue)
+            return APIManager.callAPI(router: Router.fetchCrew(fetchCrewQuery: query), dataModel: FetchCrewDataModel.self)
+        }.subscribe(with: self) { owner, result in
+            
+            switch result {
+            case .success(let fetchCrewDataModel):
                 
-            }.disposed(by: disposeBag)
+                let hotCrewSection = [HotCrewSection(items: fetchCrewDataModel.data)]
+                fetchCrewSuccess.accept(hotCrewSection)
+                
+            case .failure(let apiError):
+                
+                fetchCrewFailure.accept(apiError)
+            }
+        }.disposed(by: disposeBag)
         
         // 좋아요2를 누른 포스트(내가 가입한 크루) 정보 가져오기 (200 / 400 / 401 / 403 / 410 / 419)
         fetchMyCrew
@@ -71,7 +101,7 @@ final class StatsViewModel: ViewModelType {
                     
                 case .success(let data):
                     
-                    fetchCrewSuccess.accept(data)
+                    fetchMyCrewSuccess.accept(data)
                 case .failure(let apiError):
                     
                     fetchFailure.accept(apiError)
@@ -98,9 +128,27 @@ final class StatsViewModel: ViewModelType {
             }.disposed(by: disposeBag)
         
         return Output(fetchSelfSuccess: fetchSelfSuccess,
-                      fetchCrewSuccess: fetchCrewSuccess,
+                      fetchMyCrewSuccess: fetchMyCrewSuccess,
                       fetchFailure: fetchFailure,
                       updateProfileSuccess: updateProfileSuccess,
-                      updateProfileFailure: updateProfileFailure)
+                      updateProfileFailure: updateProfileFailure,
+                      fetchCrewSuccess: fetchCrewSuccess,
+                      fetchCrewFailure: fetchCrewFailure)
+    }
+}
+
+struct HotCrewSection {
+    
+    var items: [PostData]
+}
+
+extension HotCrewSection: SectionModelType {
+    
+    typealias Item = PostData
+    
+    init(original: HotCrewSection, items: [PostData]) {
+        
+        self = original
+        self.items = items
     }
 }

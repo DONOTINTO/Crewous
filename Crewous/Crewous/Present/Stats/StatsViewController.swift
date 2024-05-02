@@ -8,17 +8,20 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import YPImagePicker
 
-class StatsViewController: BaseViewController<StatsView> {
+final class StatsViewController: BaseViewController<StatsView> {
     
     let viewModel = StatsViewModel()
-    let picker = YPImagePicker()
+    
+    private let picker = YPImagePicker()
+    
+    private var dataSource: RxCollectionViewSectionedReloadDataSource<HotCrewSection>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +73,7 @@ class StatsViewController: BaseViewController<StatsView> {
         let output = viewModel.transform(input: input)
         
         // 유저 정보 불러오기 성공
-        Observable.zip(output.fetchSelfSuccess, output.fetchCrewSuccess)
+        Observable.zip(output.fetchSelfSuccess, output.fetchMyCrewSuccess)
             .bind(with: self) { owner, datas in
                 
                 let (fetchSelfData, fetchMyCrewData) = datas
@@ -97,38 +100,37 @@ class StatsViewController: BaseViewController<StatsView> {
                 }
                 
             }.disposed(by: disposeBag)
+        
+        output.fetchCrewSuccess
+            .bind(to: layoutView.collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
-}
-
-extension StatsViewController {
     
-    func testCode() {
+    override func configureCollectionView() {
         
-        // 탈퇴(테스트)
-        layoutView.withDrawButton.rx.tap
-            .flatMap {
-                
-                return APIManager.callAPI(router: Router.withDraw, dataModel: WithDrawDataModel.self)
-            }.subscribe(with: self) { owner, result in
-                
-                switch result {
-                    
-                case .success(_):
-                    
-                    owner.makeAlert(msg: "탈퇴 완료") { _ in
-                        
-                        owner.changeRootViewToSignIn()
-                    }
-                    
-                case .failure(_):
-                    print("fail")
-                }
-            }.disposed(by: disposeBag)
+        layoutView.collectionView.register(HotCrewCollectionViewCell.self, forCellWithReuseIdentifier: HotCrewCollectionViewCell.identifier)
+        layoutView.collectionView.register(HotCrewCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HotCrewCollectionReusableView.identifier)
         
-        // 로그아웃(테스트용)
-        layoutView.logoutButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.changeRootViewToSignIn()
-            }.disposed(by: disposeBag)
+        dataSource = RxCollectionViewSectionedReloadDataSource<HotCrewSection> { dataSource, collectionView, indexPath, item in
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotCrewCollectionViewCell.identifier, for: indexPath) as? HotCrewCollectionViewCell else { return UICollectionViewCell() }
+            
+            cell.configure(item)
+            
+            return cell
+        } configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+            
+            if kind == UICollectionView.elementKindSectionHeader {
+                
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HotCrewCollectionReusableView.identifier, for: indexPath) as? HotCrewCollectionReusableView else { return UICollectionReusableView() }
+                
+                header.configure("WEEKLY HOT CREW")
+                
+                return header
+            } else {
+                
+                fatalError()
+            }
+        }
     }
 }
