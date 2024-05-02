@@ -41,6 +41,9 @@
 		AC5A7AC12BE23C3700A13991 /* PayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */; };
 		AC5A7AC32BE2416300A13991 /* PaymentValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */; };
 		AC5A7AC52BE241B900A13991 /* PaymentValidationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */; };
+		AC5A7ACB2BE34EA200A13991 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */; };
+		AC5A7ACD2BE36EF600A13991 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */; };
+		AC5A7ACF2BE37EE900A13991 /* SettingTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */; };
 		AC9FD09E2BC79AFC00395FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */; };
 		AC9FD0A02BC79AFC00395FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */; };
 		AC9FD0A22BC79AFC00395FC2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9FD0A12BC79AFC00395FC2 /* SignInViewController.swift */; };
@@ -154,6 +157,9 @@
 		AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayDelegate.swift; sourceTree = "<group>"; };
 		AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationQuery.swift; sourceTree = "<group>"; };
 		AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationDataModel.swift; sourceTree = "<group>"; };
+		AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableHeaderView.swift; sourceTree = "<group>"; };
 		AC9FD09A2BC79AFB00395FC2 /* Crewous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crewous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9FD09D2BC79AFC00395FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC9FD09F2BC79AFC00395FC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -546,8 +552,11 @@
 		ACBD68AB2BDFC84E0077C6FC /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */,
 				ACBD68AC2BDFC87D0077C6FC /* SettingViewController.swift */,
 				ACBD68AE2BDFC8850077C6FC /* SettingView.swift */,
+				AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */,
+				AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -712,6 +721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3265082BD3A2CA00531BC1 /* CrewDetailViewModel.swift in Sources */,
+				AC5A7ACB2BE34EA200A13991 /* SettingViewModel.swift in Sources */,
 				ACDF67A92BC94DE60046766B /* SignUpQuery.swift in Sources */,
 				AC9FD0E42BC7E0B200395FC2 /* ViewModelType.swift in Sources */,
 				AC3264F72BD3813000531BC1 /* CrewContentCompositional.swift in Sources */,
@@ -740,6 +750,7 @@
 				AC3264F52BD3800800531BC1 /* CrewContentViewController.swift in Sources */,
 				ACBD68AF2BDFC8850077C6FC /* SettingView.swift in Sources */,
 				AC32650C2BD4FB5700531BC1 /* ContentPageViewModel.swift in Sources */,
+				AC5A7ACD2BE36EF600A13991 /* SettingTableViewCell.swift in Sources */,
 				ACBD683A2BDCC85C0077C6FC /* CommentTableViewCell.swift in Sources */,
 				ACDF67F62BCD74790046766B /* MakeCrewView.swift in Sources */,
 				ACDF67B72BCB26410046766B /* StatsViewModel.swift in Sources */,
@@ -748,6 +759,7 @@
 				ACDF67BD2BCBE7040046766B /* RefreshDataModel.swift in Sources */,
 				ACDF67B02BCAAD140046766B /* StatsView.swift in Sources */,
 				AC3265362BD76EF100531BC1 /* SearchView.swift in Sources */,
+				AC5A7ACF2BE37EE900A13991 /* SettingTableHeaderView.swift in Sources */,
 				AC5A7AB62BE21F6600A13991 /* PaymentManager.swift in Sources */,
 				ACDF67AE2BCAAD090046766B /* StatsViewController.swift in Sources */,
 				AC3264F32BD37FF300531BC1 /* CrewContentView.swift in Sources */,

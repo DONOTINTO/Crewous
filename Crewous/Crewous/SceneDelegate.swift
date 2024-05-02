@@ -102,14 +102,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let searchVC = SearchViewController()
         let SearchNaviVC = UINavigationController(rootViewController: searchVC)
         
+        let settingVC = SettingViewController()
+        let settingNaviVC = UINavigationController(rootViewController: settingVC)
+        
         let tabVC = UITabBarController()
-        tabVC.setViewControllers([statsNaviVC, myCrewNaviVC, SearchNaviVC], animated: true)
+        tabVC.setViewControllers([statsNaviVC, myCrewNaviVC, SearchNaviVC, settingVC], animated: true)
         tabVC.tabBar.items?[0].image = UIImage(systemName: "house")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
         tabVC.tabBar.items?[0].selectedImage = UIImage(systemName: "house.fill")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
-        tabVC.tabBar.items?[1].image = UIImage(systemName: "person.3.fill")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
-        tabVC.tabBar.items?[1].selectedImage = UIImage(systemName: "person.3.fill")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[1].image = UIImage(systemName: "figure.stand.line.dotted.figure.stand")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[1].selectedImage = UIImage(systemName: "figure.stand.line.dotted.figure.stand")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
         tabVC.tabBar.items?[2].image = UIImage(systemName: "magnifyingglass")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
         tabVC.tabBar.items?[2].selectedImage = UIImage(systemName: "magnifyingglass")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[3].image = UIImage(systemName: "gearshape.fill")?.withTintColor(.customGray, renderingMode: .alwaysOriginal)
+        tabVC.tabBar.items?[3].selectedImage = UIImage(systemName: "gearshape.fill")?.withTintColor(.customBlack, renderingMode: .alwaysOriginal)
         
         return tabVC
     }

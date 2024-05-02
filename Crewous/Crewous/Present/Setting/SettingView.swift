@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SettingView: BaseView {
 
@@ -13,13 +14,19 @@ class SettingView: BaseView {
     
     override func configureHierarchy() {
         
+        addSubview(tableView)
     }
 
     override func configureLayout() {
         
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self.safeAreaLayoutGuide)
+        }
     }
     
     override func configureView() {
         
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .singleLine
     }
 }
