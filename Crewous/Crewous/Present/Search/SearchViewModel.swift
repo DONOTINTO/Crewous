@@ -70,9 +70,9 @@ final class SearchViewModel: ViewModelType {
         
         return data.filter { data in
             
-            guard let name = data.crewName else { return false }
+            guard let name = data.crewName?.lowercased() else { return false }
             
-            return name.contains(input)
+            return name.contains(input.lowercased())
         }
     }
 }
