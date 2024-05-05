@@ -40,6 +40,11 @@ class SettingViewController: BaseViewController<SettingView> {
                 switch title {
                 case .logout:
                     
+                    UDManager.accessToken = ""
+                    UDManager.refreshToken = ""
+                    UDManager.isLogin = false
+                    UDManager.userID = ""
+                    
                     owner.changeRootViewToSignIn()
                 case .withDraw:
                     

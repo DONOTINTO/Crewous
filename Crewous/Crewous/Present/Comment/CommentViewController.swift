@@ -8,10 +8,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 final class CommentViewController: BaseViewController<CommentView> {
     
     let viewModel = CommentViewModel()
+    
+    private var dataSource: RxTableViewSectionedReloadDataSource<CommentSection>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,24 +23,37 @@ final class CommentViewController: BaseViewController<CommentView> {
     
     override func bind() {
         
+        let itemDeleteObservable = PublishRelay<String>()
+        
+        dataSource.canEditRowAtIndexPath = { dataSource, indexPath in
+        
+            let userID = dataSource[indexPath].creator.userID
+            
+            return userID == UDManager.userID ? true : false
+        }
+        
+        layoutView.commentTableView.rx.itemDeleted
+            .bind(with: self) { owner, indexPath in
+                
+                let commentID = owner.dataSource[indexPath].commentID
+                
+                itemDeleteObservable.accept(commentID)
+                
+            }.disposed(by: disposeBag)
+        
         let commentObservable = layoutView.inputButton.rx.tap
             .withLatestFrom(layoutView.userInputTextField.rx.text.orEmpty.asObservable())
         
         let input = CommentViewModel.Input(postIdentifier: PublishRelay<String>(),
-                                           commentInputObservable: commentObservable)
+                                           commentInputObservable: commentObservable, 
+                                           itemDeleteObservable: itemDeleteObservable)
         let output = viewModel.transform(input: input)
         
         input.postIdentifier.accept(viewModel.postIdentifier)
         
         output.postDataSuccess
-            .bind(to: layoutView.commentTableView.rx.items(cellIdentifier: CommentTableViewCell.identifier, cellType: CommentTableViewCell.self)) { [weak self] index, data, cell in
-                
-                guard let self else { return }
-                
-                cell.configure(data)
-                self.layoutView.userInputTextField.text = ""
-                
-            }.disposed(by: disposeBag)
+            .bind(to: layoutView.commentTableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
         
         output.postDataFailure
             .bind(with: self) { owner, apiError in
@@ -58,6 +74,16 @@ final class CommentViewController: BaseViewController<CommentView> {
         
         layoutView.commentTableView.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.identifier)
         layoutView.commentTableView.separatorStyle = .none
+        
+        dataSource = RxTableViewSectionedReloadDataSource<CommentSection> { dataSource, tableView, indexPath, item in
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.identifier, for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
+            
+            cell.configure(item)
+            self.layoutView.userInputTextField.text = ""
+            
+            return cell
+        }
     }
     
     override func configureNavigation() {

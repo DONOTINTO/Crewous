@@ -33,6 +33,8 @@ enum Router: RouterType {
     case like2(postID: String, query: Like2Query) // '좋아요2' 적용/취소
     /// 댓글 작성
     case comment(postID: String, query: CommentQuery) // 댓글 달기
+    /// 댓글 삭제
+    case commentDelete(postID: String, commentID: String)
     
     /// 내 프로필 수정
     case updateProfile(query: UpdateProfileQuery)
@@ -74,6 +76,8 @@ extension Router {
             return "포스트 좋아요2 - 크루 가입"
         case .comment:
             return "댓글 작성"
+        case .commentDelete:
+            return "댓글 삭제"
         case .updateProfile:
             return "내 프로필 수정"
         case .withDraw:
@@ -99,6 +103,8 @@ extension Router {
             return .get
         case .updateProfile:
             return .put
+        case .commentDelete:
+            return .delete
         }
     }
     
@@ -131,6 +137,8 @@ extension Router {
             return Path.makeCrew.rawValue
         case .comment(let postID, _):
             return "/v1/posts/\(postID)/comments"
+        case .commentDelete(let postID, let commentID):
+            return "/v1/posts/\(postID)/comments/\(commentID)"
         case .paymentsValidation:
             return Path.paymentValidation.rawValue
         }
@@ -161,7 +169,7 @@ extension Router {
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.data.rawValue,
                 HTTPHeader.Key.sesacKey.rawValue: APIKey.sesacKey.rawValue
             ]
-        case .makeCrew, .like2, .comment, .paymentsValidation:
+        case .makeCrew, .like2, .comment, .commentDelete, .paymentsValidation:
             return [
                 HTTPHeader.Key.authorization.rawValue: UDManager.accessToken,
                 HTTPHeader.Key.contentType.rawValue: HTTPHeader.Value.json.rawValue,

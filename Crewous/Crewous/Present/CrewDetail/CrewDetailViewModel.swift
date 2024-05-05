@@ -87,7 +87,7 @@ final class CrewDetailViewModel: ViewModelType {
         let fetchSelfFailure = PublishRelay<APIError>()
         
         // 결제 성공/실패
-        let validationSuccess = PublishRelay<PaymentValidationDataModel>()
+        let validationSuccess = PublishRelay<NoneDataModel>()
         let validationFailure = PublishRelay<APIError>()
         
         // 가입 성공/실패
@@ -200,7 +200,7 @@ final class CrewDetailViewModel: ViewModelType {
                 let (response, postData) = data
                 let query = PaymentValidationQuery(imp_uid: response.imp_uid ?? "", post_id: postData.postID, productName: postData.crewName ?? "goods99j", price: Int(postData.membershipFee!)!)
                 
-                return APIManager.callAPI(router: Router.paymentsValidation(query: query), dataModel: PaymentValidationDataModel.self)
+                return APIManager.callAPI(router: Router.paymentsValidation(query: query), dataModel: NoneDataModel.self)
             }.subscribe(with: self) { owner, result in
                 
                 switch result {

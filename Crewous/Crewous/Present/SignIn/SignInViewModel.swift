@@ -67,10 +67,11 @@ final class SignInViewModel: ViewModelType {
                 switch signInData {
                 case .success(let data):
                     
-                    //데이터 저장 (accessToken / refreshToken / isLogin)
+                    //데이터 저장 (accessToken / refreshToken / isLogin / UserID)
                     UDManager.accessToken = data.accessToken
                     UDManager.refreshToken = data.refreshToken
                     UDManager.isLogin = true
+                    UDManager.userID = data.userID
                     
                     signInSuccess.accept(())
                 case .failure(let apiError):

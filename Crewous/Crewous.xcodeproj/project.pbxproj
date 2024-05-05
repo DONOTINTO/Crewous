@@ -40,7 +40,7 @@
 		AC5A7ABF2BE2393200A13991 /* PayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ABE2BE2393200A13991 /* PayViewModel.swift */; };
 		AC5A7AC12BE23C3700A13991 /* PayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */; };
 		AC5A7AC32BE2416300A13991 /* PaymentValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */; };
-		AC5A7AC52BE241B900A13991 /* PaymentValidationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */; };
+		AC5A7AC52BE241B900A13991 /* NoneDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7AC42BE241B900A13991 /* NoneDataModel.swift */; };
 		AC5A7ACB2BE34EA200A13991 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */; };
 		AC5A7ACD2BE36EF600A13991 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */; };
 		AC5A7ACF2BE37EE900A13991 /* SettingTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */; };
@@ -158,7 +158,7 @@
 		AC5A7ABE2BE2393200A13991 /* PayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewModel.swift; sourceTree = "<group>"; };
 		AC5A7AC02BE23C3700A13991 /* PayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayDelegate.swift; sourceTree = "<group>"; };
 		AC5A7AC22BE2416300A13991 /* PaymentValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationQuery.swift; sourceTree = "<group>"; };
-		AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentValidationDataModel.swift; sourceTree = "<group>"; };
+		AC5A7AC42BE241B900A13991 /* NoneDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneDataModel.swift; sourceTree = "<group>"; };
 		AC5A7ACA2BE34EA200A13991 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		AC5A7ACC2BE36EF600A13991 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		AC5A7ACE2BE37EE900A13991 /* SettingTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableHeaderView.swift; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 				ACDF68172BD001620046766B /* Like2DataModel.swift */,
 				ACDF68192BD015700046766B /* WithDrawDataModel.swift */,
 				AC3265482BD7A2A200531BC1 /* FetchCrewDataModel.swift */,
-				AC5A7AC42BE241B900A13991 /* PaymentValidationDataModel.swift */,
+				AC5A7AC42BE241B900A13991 /* NoneDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -772,7 +772,7 @@
 				AC3264F32BD37FF300531BC1 /* CrewContentView.swift in Sources */,
 				ACDF67B52BCB238B0046766B /* Label++.swift in Sources */,
 				AC32650A2BD4F82000531BC1 /* CrewContentViewModel.swift in Sources */,
-				AC5A7AC52BE241B900A13991 /* PaymentValidationDataModel.swift in Sources */,
+				AC5A7AC52BE241B900A13991 /* NoneDataModel.swift in Sources */,
 				AC9FD0DD2BC7C5F400395FC2 /* TextField++.swift in Sources */,
 				AC9FD0E12BC7E00700395FC2 /* SignInViewModel.swift in Sources */,
 				AC9FD0F32BC8006A00395FC2 /* Router.swift in Sources */,
