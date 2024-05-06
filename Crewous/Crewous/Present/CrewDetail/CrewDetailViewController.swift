@@ -144,19 +144,14 @@ final class CrewDetailViewController: BaseViewController<CrewDetailView> {
             .bind(with: self) { owner, _ in
                 
                 print("⚠️⚠️ 결제창 이동⚠️⚠️")
-                guard let postData = owner.viewModel.postData else { return }
+                guard let postData = owner.viewModel.postData,
+                      let title = postData.crewName,
+                      let amount = postData.membershipFee else { return }
                 
-                let nextVC = PayViewController()
-                nextVC.payDelegate = self
+                let payViewModel = PayViewModel(postTitle: title, amount: amount, paymentService: PaymentManager())
+                let nextVC = PayViewController(viewModel: payViewModel, payDelegate: owner)
                 
-                owner.present(nextVC, animated: true) {
-                    
-                    guard let title = postData.crewName,
-                          let amount = postData.membershipFee else { return }
-                    
-                    nextVC.viewModel.postTitleObservable.accept(title)
-                    nextVC.viewModel.amountObservable.accept(amount)
-                }
+                owner.present(nextVC, animated: true)
             }.disposed(by: disposeBag)
         
         // 결제 검증 실패

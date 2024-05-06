@@ -11,36 +11,38 @@ import RxCocoa
 
 class PayViewController: BaseViewController<PayView> {
     
-    let viewModel = PayViewModel()
+    var viewModel: PaymentGatewayViewModel
+    var payDelegate: PayDelegate
     
-    var payDelegate: PayDelegate?
+    init(viewModel: PaymentGatewayViewModel, payDelegate: PayDelegate) {
+        self.viewModel = viewModel
+        self.payDelegate = payDelegate
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.connectPG(webView: layoutView.wkWebView, payDelegate: payDelegate)
     }
     
     override func bind() {
         
-        Observable.zip(viewModel.postTitleObservable, viewModel.amountObservable)
-            .bind(with: self) { owner, data in
+        viewModel.paidSuccess
+            .bind(with: self) { owner, _ in
                 
-                let (title, amount) = data
+                owner.dismiss(animated: true)
+            }.disposed(by: disposeBag)
+        
+        viewModel.paidCancel
+            .bind(with: self) { owner, _ in
                 
-                PaymentManager.paid(amount: amount, webView: owner.layoutView.wkWebView, postTitle: title) { response in
-                    
-                    guard let response,
-                          let success = response.success else { return }
-                    
-                    if success {
-                        print("⚠️⚠️ 결제 성공 ⚠️⚠️")
-                        self.payDelegate?.payComplete(response: response)
-                        self.dismiss(animated: true)
-                    } else {
-                        print("⚠️⚠️ 결제 취소 ⚠️⚠️")
-                        self.dismiss(animated: true)
-                    }
-                }
+                owner.dismiss(animated: true)
             }.disposed(by: disposeBag)
     }
 }

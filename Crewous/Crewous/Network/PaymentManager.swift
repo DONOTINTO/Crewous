@@ -9,9 +9,14 @@ import Foundation
 import iamport_ios
 import WebKit
 
-class PaymentManager {
+protocol PaymentService {
     
-    static func paid(amount: String, webView: WKWebView, postTitle: String, completionHandler: @escaping (IamportResponse?) -> Void) {
+    func paid(amount: String, webView: WKWebView, postTitle: String, completionHandler: @escaping (IamportResponse?) -> Void)
+}
+
+class PaymentManager: PaymentService {
+    
+    func paid(amount: String, webView: WKWebView, postTitle: String, completionHandler: @escaping (IamportResponse?) -> Void) {
         
         let payment = IamportPayment(
             pg: PG.html5_inicis.makePgRawName(pgId: APIKey.pgKey.rawValue), // PG 사
