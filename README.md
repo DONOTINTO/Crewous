@@ -1,46 +1,54 @@
 # Crewous
 
-**📘 앱 소개 및 기능**
+<p align="center">
+	<img src = "https://github.com/DONOTINTO/ToughCookie/assets/123792519/481f88bb-6b60-4b15-8100-5ccf4a0d1782" align="center" width="24%">
+	<img src = "https://github.com/DONOTINTO/ToughCookie/assets/123792519/0b722abc-cc39-4236-acf5-c1dba64374f6" align="center" width="24%">
+	<img src = "https://github.com/DONOTINTO/ToughCookie/assets/123792519/cd856b89-7ddd-4560-8379-a2c25251aaf3" align="center" width="24%">
+	<img src="https://github.com/DONOTINTO/ToughCookie/assets/123792519/59543360-ca27-40e1-9bf7-ba03ac52e877" align="center" width="24%">
+</p> <br>
 
-출시 기간 : 2024.04.10 ~ 2024.05.05
+## 앱 소개 및 기능
 
-- 농구 크루를 생성 또는 가입하여 크루 단위의 정보를 습득
-- **Configuration** : 최소버전 16.0 / 세로모드 / 아이폰용 / 라이트 모드
+> 출시 기간 : 2024.04.10 ~ 2024.05.05   
+> 최소버전 16.0 / 세로모드 / 아이폰 전용
 
-**📘 핵심 기능**
+ Crewous는 농구 크루를 편하게 하기 위해 기획된 앱입니다. 앱에 가입하게 되면 내가 원하는 크루를 검색 또는 추천 받을 수 있습니다.
+원하는 크루가 없다면 직접 크루를 생성할 수 있습니다. 크루에는 크루 가입 비용이 존재하며, 크루에 가입 시 결제가 진행됩니다.
+결제가 성공적으로 진행된다면 해당 크루에 가입할 수 있습니다.
+생성된 크루의 정보창에 들어가게 된다면, 크루 정보 및 멤버를 확인할 수 있으며 크루별로 댓글을 달 수 있습니다.
 
-- **크루 생성 |** 사진 및 크루 정보들을 바탕으로 나의 크루를 생성
-- **크루 가입 |** 포트원을 통해 크루 가입 시 금액을 지불하고 가입 가능
-- **크루 검색 |** 등록된 크루들의 이름을 통해 검색 가능
-- **크루 댓글 |** 내 크루, 상대 크루 상관없이 댓글을 달고 삭제 가능
+## 핵심 기능
+### 크루 생성
+> 사진 및 크루 정보들을 바탕으로 나의 크루를 생성
 
- ****
+### 크루 가입
+> 포트원을 통해 크루 가입 시 금액을 지불하고 가입 가능
 
-**📘 기술 스택**
+### 크루 검색
+> 등록된 크루들의 이름을 통해 검색 가능
 
-**프레임워크**
+### 크루 댓글
+> 내 크루, 상대 크루 상관없이 댓글을 달고 삭제 가능
 
-- **UIKit(Code Base)**
+## 기술 스택
 
-**라이브러리**
+`UIKit(CodeBase)` <br>
+`Alamofire` / `YPImagePicker` / `PHPicker`/ `KingFisher` / `SnapKit` <br>
+`RxSwift` / `RxDataSource` <br>
+`Portone` <br>
+`UICollectionCompositional Layout` <br> 
+`MVVM` / `Input Output` / `Router` <br>
+`Git` / `Github` / `Figma` <br>
 
-- **Snapkit(codebase UI)**
-- **Alamofire**
-- **KingFisher**
-- **RxSwift**
-- **RxDataSource**
+- 이전 프로젝트에서 고려했던 `Router 패턴`과 `Generic`을 실질적으로 사용해보며 `Alamofire`를 활용하고, `Interceptor`를 통해 서버 통신에 필요한 `JWT 토큰`이 만료되었는지 체크하는 코드를 통해 대응 요소를 줄였음
 
-**디자인 패턴**
+- `RxSwift`와 `Input Ouput 패턴` 통해 Action과 비즈니스 로직을 분리하고, `ViewModelProtocol`를 통해 일관된 ViewmModel를 구성하고 유지보수성을 고려
 
-- **MVVM**
+- `BaseVC`와 `ErrorHandler` 메소드를 통해 모든 VC에서 동일한 메소드를 통해 에러를 관리하여 코드 재사용성을 높이고 가독성을 높임
 
-**버전 관리**
+## 회고
 
-- **Git / Github / Github Desktop**
-
-**📘 Crewous를 진행하며 배운 점들**
-
-1. Alamofire의 다양한 활용법과 네트워크 통신의 이해
+#### ✏️ Alamofire의 다양한 활용법과 네트워크 통신의 이해
 
 기존에는 request를 통해 간단한 네트워크 통신을 구현한 정도였다면,
 
@@ -64,39 +72,29 @@ body는 json이나 xml형태로 데이터의 양이 크거나 복잡할 때 사�
 
 암호화까지는 진행하지 않았지만, 기존에 이러한 차이점을 모르고 사용하다 여러 케이스들을 접하면서 차이점을 공부할 수 있었다
 
-1. embedded View
+#### ✏️ PageVC와 CollectionView를 통한 Tab 기능 구현
 
-embedded view를 통해 한 화면에서 여러 view를 embedded하여 사용했다.
+PageVC에서 스와이프로 페이지가 변경되면 설정한 Delegate를 통해 CollectionView로 페이지 변경을 알리고,
 
-각 view의 재사용성을 높일 수 있다는 점이 가장 좋았지만 그만큼 viewModel을 통해 데이터를 전달하는 과정이 쉽지만은 않았다.
+<img src = "https://github.com/DONOTINTO/Document/assets/123792519/44c5e9f0-9101-439e-8df5-e00013ac2e75">
 
-비교적 구조가 간단했던 결제 쪽에서 DIP를 준수한 DI를 적용해봤다.
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled.png)
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%201.png)
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%202.png)
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%203.png)
-
-1. PageVC와 CollectionView
-
-PageVC에서 스와이프로 페이지가 변경되면 설정한 Delegate를 통해 CollectionView로 페이지 변경을 알림
+<img src = "https://github.com/DONOTINTO/Document/assets/123792519/078f3a2c-d565-4797-a23d-e4fe37fc7bd0">
 
 CollectionView에서 셀의 클릭은 pageVC의 setViewControllers 메소드를 통해 pageVC를 변경해주었다.
 
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%204.png)
+<img src = "https://github.com/DONOTINTO/Document/assets/123792519/013c3ae6-cf80-4999-ac29-e0506da37d26">
 
-기능이 동일한 함수지만 가독성을 위해 구분해두었다
+이 부분을 직접 구현하면서 아직 데이터 전달에서 많은 아쉬움이 남았다.
 
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%205.png)
+값을 넘길 때 ViewModel에 PublishRelay로 값을 그대로 넘겨줬는데, 뷰 모델을 생성해서 VC 생성 시 해당 ViewModel로 넘겨주는 방식도 고려해보았으면 좋았을 것 같다.
 
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%206.png)
 
-사실 postData, userData, afterPagingEvent 세가지 시퀀스가 섞여있는 구조라 상당히 마음에 안들지만 시간 내 안전하게 리팩토링할 자신이 솔직히 없었다
+---
+---
+# 수정중!!!
 
-1. API 통신 실패
+
+#### ✏️ API 통신 실패
 
 VC는 BaseVC라는 커스텀 VC를 상속받아 생성한다
 
