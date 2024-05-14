@@ -48,7 +48,7 @@
 
 ## 회고
 
-#### ✏️ Alamofire의 다양한 활용법과 네트워크 통신의 이해
+### ✏️ Alamofire의 다양한 활용법과 네트워크 통신의 이해
 
 기존에는 request를 통해 간단한 네트워크 통신을 구현한 정도였다면,
 
@@ -72,47 +72,19 @@ body는 json이나 xml형태로 데이터의 양이 크거나 복잡할 때 사�
 
 암호화까지는 진행하지 않았지만, 기존에 이러한 차이점을 모르고 사용하다 여러 케이스들을 접하면서 차이점을 공부할 수 있었다
 
-#### ✏️ PageVC와 CollectionView를 통한 Tab 기능 구현
+### ✏️ 유지보수를 고려한 에러 핸들링 적용하기
 
-PageVC에서 스와이프로 페이지가 변경되면 설정한 Delegate를 통해 CollectionView로 페이지 변경을 알리고,
+이전 DoT 프로젝트에서는 AF의 Result에 AFError대신 커스텀 에러를 사용할 수 있다는 점을 알게 됐다.
+Crewous에서는 이를 적용하여 커스텀 Error를 만들었는데, 적용 방식은 다음과 같았다.
 
-<img src = "https://github.com/DONOTINTO/Document/assets/123792519/44c5e9f0-9101-439e-8df5-e00013ac2e75">
+1. `ViewModel`에서 `API 호출`
+2. `Status Code`를 통해 `커스텀 Error 생성`
+3. `Result`를 통해 커스텀 Error를 다시 `ViewModel로 전달`
+4. ViewModel은 이를 `Output으로 VC에 전달`
 
-<img src = "https://github.com/DONOTINTO/Document/assets/123792519/078f3a2c-d565-4797-a23d-e4fe37fc7bd0">
+구조가 이렇다보니, 각 VC마다 Error에 대한 처리가 필요했는데 넘어오는 Status Code에 따른 처리가 비슷한 반면 VC마다 코드를 처리하다 보니 코드가 반복되는 부분은 BaseVC에서 메소드를 생성하여 이를 상속받은 VC에서 해당 메소드만을 호출하면 되도록 했다.
 
-CollectionView에서 셀의 클릭은 pageVC의 setViewControllers 메소드를 통해 pageVC를 변경해주었다.
-
-<img src = "https://github.com/DONOTINTO/Document/assets/123792519/013c3ae6-cf80-4999-ac29-e0506da37d26">
-
-이 부분을 직접 구현하면서 아직 데이터 전달에서 많은 아쉬움이 남았다.
-
-값을 넘길 때 ViewModel에 PublishRelay로 값을 그대로 넘겨줬는데, 뷰 모델을 생성해서 VC 생성 시 해당 ViewModel로 넘겨주는 방식도 고려해보았으면 좋았을 것 같다.
-
-
----
----
-# 수정중!!!
-
-
-#### ✏️ API 통신 실패
-
-VC는 BaseVC라는 커스텀 VC를 상속받아 생성한다
-
-이를 이용해서 BaseVC에 api error에 대한 처리를 위한 errorHandler 메소드를 만들어두고 모든 VC에서 해당 메소드만 호출하면 되도록 설계했다.
-
-1. 통신에 실패하면 status code를 통해 API Error 인스턴스를 생성하여 반환한다.
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%207.png)
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%208.png)
-
-1. API 통신에 실패하면 해당 VM에서 Output으로 apiError를 던져준다.
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%209.png)
-
-1. VC는 전달받은 apiError와 API 호출타입을 파라미터로 BaseVC에 작성된 errorHandler 메소드를 호출한다.
-
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%2010.png)
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/6caab862-b79b-45f2-aa97-3eb042bbf406">
 
 1. BaseVC errorHandler에서 이에 대한 모든 처리를 담당한다.
 
@@ -122,4 +94,38 @@ VC는 BaseVC라는 커스텀 VC를 상속받아 생성한다
 
 3) 그 외 타입들에 대하여 Alert를 띄우는 등 상황에 맞추어 처리하였다.
 
-![Untitled](Crewous%202df56d1d73b54cb685405b6d98230c3d/Untitled%2011.png)
+## 트러블슈팅
+
+### ✏️ PageVC와 CollectionView를 통한 Tab 기능 구현
+
+#### ❗️ 문제상황
+
+탭을 담당하는 CollectionView의 셀을 클릭했을 때 크루 정보 탭은 정상 동작했지만, 멤버 탭은 화면 전환은 이루어져도 화면이 그려지지 않았다.
+
+#### ❗️ 원인파악
+
+PageVC를 생성할 때 PageVC ViewModel에 크루 정보가 담긴 `PostData`와 멤버 정보가 담긴 `userData`를 넘겨주고 PageVC에서 다시 InfoVC와 MemberVC에 각각 PostData와 UserData를 넘겨준다.
+
+다만 PageVC는 초기 생성될 때 노출되는 첫 화면에 대해서만 실제 VC가 ViewDidLoad가 되고 있었기 때문에, 해당 시점에 MemberVC에 UserData를 넘겨줘도 아직 시퀀스를 구독하기 이전이기 때문에 시퀀스가 무시됐던 것이었다.
+
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/ec29c25c-2988-42c1-89e7-9aaebfba4bf5">
+
+#### ! 해결방법
+
+셀을 클릭해서 다음 화면으로 넘어가서 실제 MemberVC가 ViewDidLoad 된 후 값을 넘겨줬다.
+
+1. 셀을 클릭하면 선택한 셀의 row를 저장한다.
+
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/47f87855-0991-4b56-9ca4-cfe3833d638a">
+
+2. ViewModel에서는 (왼쪽 스와이프 / 오른쪽 스와이프)를 판별하여 저장하고 selected row 값을 저장한다.
+
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/1bda1421-687e-407a-ab5b-7d3000a25a28">
+
+3. 저장한 selected row값 역시 전달한다.
+
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/4f8024ca-8a64-4586-8596-c6ab936aa521">
+
+4. 넘겨받은 seleted row를 통해 선택된 page를 확인하고 해당하는 viewModel에 다시 한번 데이터를 전달한다. 이 후 seleted row 데이터가 전달받을때마다 동작해야하기 때문에 zip대신 combinelastest를 사용했다.
+
+<img src = "https://github.com/DONOTINTO/Crewous/assets/123792519/9920e77c-c521-4f16-ac68-ea11e919f67b">
